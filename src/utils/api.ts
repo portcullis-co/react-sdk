@@ -1,5 +1,4 @@
-const PORTCULLIS_NEXT_URL = process.env.NEXT_PUBLIC_PORTCULLIS_URL || 'localhost:3000';
-const isDevelopment = process.env.NODE_ENV === 'development' || PORTCULLIS_NEXT_URL.includes('localhost');
+const PORTCULLIS_NEXT_URL = process.env.NEXT_PUBLIC_PORTCULLIS_URL || 'https://portcullis-app.fly.dev';
 
 interface ExportPayload {
   organization: string;
@@ -11,13 +10,15 @@ interface ExportPayload {
 }
 
 export async function createExport(apiKey: string, payload: ExportPayload) {
-  const protocol = isDevelopment ? 'http' : 'https';
-  const response = await fetch(`${protocol}://${PORTCULLIS_NEXT_URL}/api/v1/exports`, {
+  const response = await fetch(`${PORTCULLIS_NEXT_URL}/api/v1/exports`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'x-api-key': apiKey
+      'x-api-key': apiKey,
+      'Origin': window.location.origin
     },
+    credentials: 'include',
+    mode: 'cors',
     body: JSON.stringify(payload)
   });
 
