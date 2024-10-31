@@ -1,4 +1,4 @@
-const PORTCULLIS_NEXT_URL = process.env.NEXT_PUBLIC_PORTCULLIS_URL || 'https://app.portcullis.com';
+const PORTCULLIS_NEXT_URL = process.env.NEXT_PUBLIC_PORTCULLIS_URL || 'localhost:3000';
 
 interface ExportPayload {
   organization: string;
