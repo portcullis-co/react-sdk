@@ -1,4 +1,5 @@
 const PORTCULLIS_NEXT_URL = process.env.NEXT_PUBLIC_PORTCULLIS_URL || 'localhost:3000';
+const isDevelopment = process.env.NODE_ENV === 'development' || PORTCULLIS_NEXT_URL.includes('localhost');
 
 interface ExportPayload {
   organization: string;
@@ -10,7 +11,8 @@ interface ExportPayload {
 }
 
 export async function createExport(apiKey: string, payload: ExportPayload) {
-  const response = await fetch(`https://${PORTCULLIS_NEXT_URL}/api/exports`, {
+  const protocol = isDevelopment ? 'http' : 'https';
+  const response = await fetch(`${protocol}://${PORTCULLIS_NEXT_URL}/api/v1/exports`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
