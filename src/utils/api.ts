@@ -10,15 +10,14 @@ interface ExportPayload {
 }
 
 export async function createExport(apiKey: string, payload: ExportPayload) {
-  const response = await fetch(`${PORTCULLIS_NEXT_URL}/api/v1/exports`, {
+  const response = await fetch(`${PORTCULLIS_NEXT_URL}/api/exports`, {
     method: 'POST',
+    credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
       'x-api-key': apiKey,
       'Origin': window.location.origin
     },
-    credentials: 'include',
-    mode: 'cors',
     body: JSON.stringify(payload)
   });
 
