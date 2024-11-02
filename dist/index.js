@@ -86534,9 +86534,8 @@ function _createExport() {
                                 "Origin": window.location.origin
                             },
                             body: JSON.stringify({
-                                internal_warehouse: {
-                                    credentials: payload.internal_credentials
-                                },
+                                internal_credentials: payload.internal_credentials,
+                                internal_warehouse: payload.internal_warehouse,
                                 destination_type: payload.destination_type,
                                 destination_name: payload.destination_name,
                                 table: payload.table,
@@ -98307,7 +98306,7 @@ var ExportWrapper = function(param) {
                         ]);
                         return [
                             4,
-                            supabase.from("warehouses").select("credentials").eq("id", internalWarehouse).single()
+                            supabase.from("warehouses").select("credentials, id").eq("id", internalWarehouse).single()
                         ];
                     case 1:
                         _ref = _state.sent(), warehouseData = _ref.data, _$error = _ref.error;
@@ -98317,9 +98316,7 @@ var ExportWrapper = function(param) {
                             4,
                             createExport(apiKey, {
                                 organization: organizationId,
-                                internal_warehouse: {
-                                    credentials: warehouseData.credentials
-                                },
+                                internal_warehouse: warehouseData.id,
                                 internal_credentials: warehouseData.credentials,
                                 destination_type: destination_type,
                                 destination_name: destination_name,

@@ -2,9 +2,7 @@ const PORTCULLIS_NEXT_URL = process.env.NEXT_PUBLIC_PORTCULLIS_URL || 'https://p
 
 interface ExportPayload {
   organization: string;
-  internal_warehouse: {
-    credentials: string;
-  };
+  internal_warehouse: string;
   destination_type: string;
   destination_name: string;
   internal_credentials: string;
@@ -32,9 +30,8 @@ export async function createExport(apiKey: string, payload: ExportPayload) {
       'Origin': window.location.origin
     },
     body: JSON.stringify({
-      internal_warehouse: {
-        credentials: payload.internal_credentials // Make sure this matches the expected structure
-      },
+      internal_credentials: payload.internal_credentials,
+      internal_warehouse: payload.internal_warehouse,
       destination_type: payload.destination_type,
       destination_name: payload.destination_name,
       table: payload.table,

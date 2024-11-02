@@ -127,7 +127,7 @@ export const ExportWrapper: React.FC<ExportWrapperProps> = ({
     try {
       const { data: warehouseData, error } = await supabase
         .from('warehouses')
-        .select('credentials')
+        .select('credentials, id')
         .eq('id', internalWarehouse)
         .single();
 
@@ -136,9 +136,7 @@ export const ExportWrapper: React.FC<ExportWrapperProps> = ({
 
       const data = await createExport(apiKey, {
         organization: organizationId,
-        internal_warehouse: {
-          credentials: warehouseData.credentials
-        },
+        internal_warehouse: warehouseData.id,
         internal_credentials: warehouseData.credentials,
         destination_type: destination_type,
         destination_name: destination_name,
