@@ -806,22 +806,20 @@ var warehouseIcons = (_obj1 = {}, _define_property(_obj1, "clickhouse" /* Clickh
     className: "mr-2 h-4 w-4"
 })), _obj1);
 var ExportWrapper = function(param) {
-    var apiKey = param.apiKey, organizationId = param.organizationId, internalWarehouse = param.internalWarehouse, _param_allowedTables = param.allowedTables, allowedTables = _param_allowedTables === void 0 ? [] : _param_allowedTables, _param_theme = param.theme, theme = _param_theme === void 0 ? "light" : _param_theme, onSuccess = param.onSuccess, onError = param.onError;
+    var apiKey = param.apiKey, organizationId = param.organizationId, internalWarehouse = param.internalWarehouse, table_name = param.table_name, _param_theme = param.theme, theme = _param_theme === void 0 ? "light" : _param_theme, onSuccess = param.onSuccess, onError = param.onError;
     var _React9_useState = _sliced_to_array(React9.useState("destination"), 2), currentStep = _React9_useState[0], setCurrentStep = _React9_useState[1];
     var _React9_useState1 = _sliced_to_array(React9.useState("clickhouse" /* Clickhouse */ ), 2), destination_type = _React9_useState1[0], setdestination_type = _React9_useState1[1];
     var _React9_useState2 = _sliced_to_array(React9.useState(""), 2), destination_name = _React9_useState2[0], setdestination_name = _React9_useState2[1];
     var _React9_useState3 = _sliced_to_array(React9.useState({}), 2), credentials = _React9_useState3[0], setCredentials = _React9_useState3[1];
     var _React9_useState4 = _sliced_to_array(React9.useState(""), 2), scheduledAt = _React9_useState4[0], setScheduledAt = _React9_useState4[1];
     var _React9_useState5 = _sliced_to_array(React9.useState(""), 2), dateTimeError = _React9_useState5[0], setDateTimeError = _React9_useState5[1];
-    React9.useState("");
     var _useToast = useToast(), toast2 = _useToast.toast;
     var _React9_useState6 = _sliced_to_array(React9.useState(false), 2), isLoading = _React9_useState6[0], setIsLoading = _React9_useState6[1];
     var containerRef = useRef(null);
     var _useState = _sliced_to_array(useState(0), 2), containerWidth = _useState[0], setContainerWidth = _useState[1];
-    var _useState1 = _sliced_to_array(useState([]), 2), availableTables = _useState1[0], setAvailableTables = _useState1[1];
-    var _useState2 = _sliced_to_array(useState(""), 2), selectedTable = _useState2[0], setSelectedTable = _useState2[1];
-    var _useState3 = _sliced_to_array(useState(false), 2), isLoadingTables = _useState3[0], setIsLoadingTables = _useState3[1];
-    var PORTCULLIS_NEXT_URL2 = process.env.NEXT_PUBLIC_PORTCULLIS_URL || "https://portcullis-app.fly.dev";
+    useState("");
+    useState(false);
+    process.env.NEXT_PUBLIC_PORTCULLIS_URL || "https://portcullis-app.fly.dev";
     useEffect(function() {
         if (!containerRef.current) return;
         var resizeObserver = new ResizeObserver(function(entries) {
@@ -875,7 +873,7 @@ var ExportWrapper = function(param) {
                                 internal_warehouse: internalWarehouse,
                                 destination_type: destination_type,
                                 destination_name: destination_name,
-                                table: selectedTable,
+                                table: table_name,
                                 credentials: credentials,
                                 scheduled_at: scheduledAt || void 0
                             })
@@ -987,43 +985,9 @@ var ExportWrapper = function(param) {
             }
         }, "Back"), /* @__PURE__ */ React9.createElement(Button, {
             onClick: function() {
-                return setCurrentStep("table");
-            },
-            disabled: !Object.keys(credentials).length
-        }, "Continue")));
-    };
-    var renderTableStep = function() {
-        return /* @__PURE__ */ React9.createElement(React9.Fragment, null, /* @__PURE__ */ React9.createElement(CardHeader, null, /* @__PURE__ */ React9.createElement(CardTitle, null, "Select Table")), /* @__PURE__ */ React9.createElement(CardContent, {
-            className: "space-y-4"
-        }, isLoadingTables ? /* @__PURE__ */ React9.createElement("div", {
-            className: "space-y-2"
-        }, /* @__PURE__ */ React9.createElement(Skeleton, {
-            className: "h-4 w-[200px]"
-        }), /* @__PURE__ */ React9.createElement(Skeleton, {
-            className: "h-10 w-full"
-        })) : /* @__PURE__ */ React9.createElement("div", {
-            className: "space-y-2"
-        }, /* @__PURE__ */ React9.createElement(Label, null, "Table"), /* @__PURE__ */ React9.createElement(Select, {
-            value: selectedTable,
-            onValueChange: setSelectedTable
-        }, /* @__PURE__ */ React9.createElement(SelectTrigger, null, /* @__PURE__ */ React9.createElement(SelectValue, {
-            placeholder: "Select a table"
-        })), /* @__PURE__ */ React9.createElement(SelectContent, null, availableTables.map(function(table2) {
-            return /* @__PURE__ */ React9.createElement(SelectItem, {
-                key: table2.name,
-                value: table2.name
-            }, table2.name, " (", table2.total_rows.toLocaleString(), " rows)");
-        }))))), /* @__PURE__ */ React9.createElement(CardFooter, {
-            className: "space-x-2"
-        }, /* @__PURE__ */ React9.createElement(Button, {
-            onClick: function() {
-                return setCurrentStep("credentials");
-            }
-        }, "Back"), /* @__PURE__ */ React9.createElement(Button, {
-            onClick: function() {
                 return setCurrentStep("schedule");
             },
-            disabled: !selectedTable
+            disabled: !Object.keys(credentials).length
         }, "Continue")));
     };
     var renderScheduleStep = function() {
@@ -1031,112 +995,36 @@ var ExportWrapper = function(param) {
             className: "space-y-4"
         }, /* @__PURE__ */ React9.createElement("div", {
             className: "space-y-2"
-        }, /* @__PURE__ */ React9.createElement(Label, null, "Schedule (Optional)"), /* @__PURE__ */ React9.createElement(Input, {
+        }, /* @__PURE__ */ React9.createElement(Label, null, "Schedule Time (UTC)"), /* @__PURE__ */ React9.createElement(Input, {
+            type: "datetime-local",
             value: scheduledAt,
             onChange: function(e) {
-                setScheduledAt(e.target.value);
+                var date = new Date(e.target.value);
+                setScheduledAt(date.toISOString());
                 setDateTimeError("");
             },
-            placeholder: "YYYY-MM-DDThh:mm:ssZ"
+            min: /* @__PURE__ */ new Date().toISOString().slice(0, 16),
+            className: "w-full"
         }), dateTimeError && /* @__PURE__ */ React9.createElement("p", {
-            className: "text-sm text-red-500 mt-1"
+            className: "text-sm text-destructive"
         }, dateTimeError), /* @__PURE__ */ React9.createElement("p", {
             className: "text-sm text-muted-foreground"
-        }, "Example: 2024-03-21T15:30:00Z"))), /* @__PURE__ */ React9.createElement(CardFooter, {
+        }, "Select when you want this export to run. Leave empty for immediate execution."))), /* @__PURE__ */ React9.createElement(CardFooter, {
             className: "space-x-2"
         }, /* @__PURE__ */ React9.createElement(Button, {
             onClick: function() {
                 return setCurrentStep("credentials");
             }
         }, "Back"), /* @__PURE__ */ React9.createElement(Button, {
-            onClick: handleSubmit
+            onClick: handleSubmit,
+            disabled: !!dateTimeError
         }, "Create Export")));
     };
     var stepComponents = {
         destination: renderDestinationStep,
         credentials: renderCredentialsStep,
-        table: renderTableStep,
         schedule: renderScheduleStep
     };
-    var fetchAvailableTables = /*#__PURE__*/ function() {
-        var _ref = _async_to_generator(function() {
-            var response, data, error;
-            return _ts_generator(this, function(_state) {
-                switch(_state.label){
-                    case 0:
-                        setIsLoadingTables(true);
-                        _state.label = 1;
-                    case 1:
-                        _state.trys.push([
-                            1,
-                            4,
-                            5,
-                            6
-                        ]);
-                        if (!internalWarehouse) {
-                            throw new Error("Warehouse ID is required");
-                        }
-                        return [
-                            4,
-                            fetch("".concat(PORTCULLIS_NEXT_URL2, "/api/warehouses?id=").concat(internalWarehouse), {
-                                method: "GET",
-                                headers: {
-                                    "Content-Type": "application/json"
-                                }
-                            })
-                        ];
-                    case 2:
-                        response = _state.sent();
-                        if (!response.ok) {
-                            throw new Error("Failed to fetch tables");
-                        }
-                        return [
-                            4,
-                            response.json()
-                        ];
-                    case 3:
-                        data = _state.sent();
-                        setAvailableTables(data.tables);
-                        return [
-                            3,
-                            6
-                        ];
-                    case 4:
-                        error = _state.sent();
-                        toast2({
-                            title: "Error",
-                            description: "Failed to fetch available tables",
-                            variant: "destructive"
-                        });
-                        onError === null || onError === void 0 ? void 0 : onError(error);
-                        return [
-                            3,
-                            6
-                        ];
-                    case 5:
-                        setIsLoadingTables(false);
-                        return [
-                            7
-                        ];
-                    case 6:
-                        return [
-                            2
-                        ];
-                }
-            });
-        });
-        return function fetchAvailableTables() {
-            return _ref.apply(this, arguments);
-        };
-    }();
-    useEffect(function() {
-        if (currentStep === "table" && internalWarehouse) {
-            fetchAvailableTables();
-        }
-    }, [
-        currentStep,
-        internalWarehouse
-    ]);
     return /* @__PURE__ */ React9.createElement("div", {
         ref: containerRef,
         className: "relative w-full"

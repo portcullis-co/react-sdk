@@ -18,13 +18,13 @@ export interface ExportWrapperProps {
   apiKey: string;
   organizationId: string;
   internalWarehouse: string;
-  allowedTables?: string[];
+  table_name: string;
   theme?: 'light' | 'dark';
   onSuccess?: (data: any) => void;
   onError?: (error: any) => void;
 }
 
-type Step = 'destination' | 'credentials' | 'table' | 'schedule';
+type Step = 'destination' | 'credentials' | 'schedule';
 
 interface TableMetadata {
   name: string;
@@ -90,7 +90,7 @@ export const ExportWrapper: React.FC<ExportWrapperProps> = ({
   apiKey,
   organizationId,
   internalWarehouse,
-  allowedTables = [],
+  table_name,
   theme = 'light',
   onSuccess,
   onError,
@@ -101,12 +101,10 @@ export const ExportWrapper: React.FC<ExportWrapperProps> = ({
   const [credentials, setCredentials] = React.useState<Record<string, string>>({});
   const [scheduledAt, setScheduledAt] = React.useState<string>('');
   const [dateTimeError, setDateTimeError] = React.useState<string>('');
-  const [table, setTable] = React.useState<string>('');
   const { toast } = useToast();
   const [isLoading, setIsLoading] = React.useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
   const [containerWidth, setContainerWidth] = useState(0)
-  const [availableTables, setAvailableTables] = useState<TableMetadata[]>([]);
   const [selectedTable, setSelectedTable] = useState<string>('');
   const [isLoadingTables, setIsLoadingTables] = useState(false);
 
@@ -138,7 +136,7 @@ export const ExportWrapper: React.FC<ExportWrapperProps> = ({
         internal_warehouse: internalWarehouse,
         destination_type: destination_type,
         destination_name: destination_name,
-        table: selectedTable,
+        table: table_name,
         credentials: credentials,
         scheduled_at: scheduledAt || undefined
       });
@@ -256,54 +254,8 @@ export const ExportWrapper: React.FC<ExportWrapperProps> = ({
           Back
         </Button>
         <Button
-          onClick={() => setCurrentStep('table')}
-          disabled={!Object.keys(credentials).length}
-        >
-          Continue
-        </Button>
-      </CardFooter>
-    </>
-  );
-
-  const renderTableStep = () => (
-    <>
-      <CardHeader>
-        <CardTitle>Select Table</CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-4">
-        {isLoadingTables ? (
-          <div className="space-y-2">
-            <Skeleton className="h-4 w-[200px]" />
-            <Skeleton className="h-10 w-full" />
-          </div>
-        ) : (
-          <div className="space-y-2">
-            <Label>Table</Label>
-            <Select
-              value={selectedTable}
-              onValueChange={setSelectedTable}
-            >
-              <SelectTrigger>
-                <SelectValue placeholder="Select a table" />
-              </SelectTrigger>
-              <SelectContent>
-                {availableTables.map((table) => (
-                  <SelectItem key={table.name} value={table.name}>
-                    {table.name} ({table.total_rows.toLocaleString()} rows)
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-        )}
-      </CardContent>
-      <CardFooter className="space-x-2">
-        <Button onClick={() => setCurrentStep('credentials')}>
-          Back
-        </Button>
-        <Button
           onClick={() => setCurrentStep('schedule')}
-          disabled={!selectedTable}
+          disabled={!Object.keys(credentials).length}
         >
           Continue
         </Button>
@@ -318,20 +270,23 @@ export const ExportWrapper: React.FC<ExportWrapperProps> = ({
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="space-y-2">
-          <Label>Schedule (Optional)</Label>
+          <Label>Schedule Time (UTC)</Label>
           <Input
+            type="datetime-local"
             value={scheduledAt}
             onChange={(e) => {
-              setScheduledAt(e.target.value);
+              const date = new Date(e.target.value);
+              setScheduledAt(date.toISOString());
               setDateTimeError('');
             }}
-            placeholder="YYYY-MM-DDThh:mm:ssZ"
+            min={new Date().toISOString().slice(0, 16)}
+            className="w-full"
           />
           {dateTimeError && (
-            <p className="text-sm text-red-500 mt-1">{dateTimeError}</p>
+            <p className="text-sm text-destructive">{dateTimeError}</p>
           )}
           <p className="text-sm text-muted-foreground">
-            Example: 2024-03-21T15:30:00Z
+            Select when you want this export to run. Leave empty for immediate execution.
           </p>
         </div>
       </CardContent>
@@ -339,7 +294,10 @@ export const ExportWrapper: React.FC<ExportWrapperProps> = ({
         <Button onClick={() => setCurrentStep('credentials')}>
           Back
         </Button>
-        <Button onClick={handleSubmit}>
+        <Button 
+          onClick={handleSubmit}
+          disabled={!!dateTimeError}
+        >
           Create Export
         </Button>
       </CardFooter>
@@ -349,49 +307,8 @@ export const ExportWrapper: React.FC<ExportWrapperProps> = ({
   const stepComponents = {
     destination: renderDestinationStep,
     credentials: renderCredentialsStep,
-    table: renderTableStep,
     schedule: renderScheduleStep,
   };
-
-  // Add this function to fetch tables
-  const fetchAvailableTables = async () => {
-    setIsLoadingTables(true);
-    try {
-      if (!internalWarehouse) {
-        throw new Error('Warehouse ID is required');
-      }
-
-      const response = await fetch(`${PORTCULLIS_NEXT_URL}/api/warehouses?id=${internalWarehouse}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        }
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to fetch tables');
-      }
-
-      const data = await response.json();
-      setAvailableTables(data.tables);
-    } catch (error) {
-      toast({
-        title: "Error",
-        description: "Failed to fetch available tables",
-        variant: "destructive",
-      });
-      onError?.(error);
-    } finally {
-      setIsLoadingTables(false);
-    }
-  };
-
-  // Add effect to fetch tables when entering table step
-  useEffect(() => {
-    if (currentStep === 'table' && internalWarehouse) {
-      fetchAvailableTables();
-    }
-  }, [currentStep, internalWarehouse]);
 
   return (
     <div ref={containerRef} className="relative w-full">
