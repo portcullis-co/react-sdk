@@ -4,7 +4,7 @@ interface ExportWrapperProps {
     apiKey: string;
     organizationId: string;
     internalWarehouse: string;
-    table_name: string;
+    tableName: string;
     theme?: 'light' | 'dark';
     onSuccess?: (data: any) => void;
     onError?: (error: any) => void;
