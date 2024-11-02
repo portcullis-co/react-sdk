@@ -95,7 +95,7 @@ export const ExportWrapper: React.FC<ExportWrapperProps> = ({
   const [destination_type, setdestination_type] = React.useState<WarehouseType>(WarehouseType.Clickhouse);
   const [destination_name, setdestination_name] = React.useState('');
   const [credentials, setCredentials] = React.useState<Record<string, string>>({});
-  const [scheduledAt, setScheduledAt] = React.useState<Date | undefined>(undefined);
+  const [scheduledAt, setScheduledAt] = React.useState<string | undefined>(undefined);
   const [dateTimeError, setDateTimeError] = React.useState<string>('');
   const { toast } = useToast();
   const [isLoading, setIsLoading] = React.useState(false)
@@ -123,10 +123,6 @@ export const ExportWrapper: React.FC<ExportWrapperProps> = ({
 
   const handleSubmit = async () => {
     try {
-      if (scheduledAt) {
-        dateTimeSchema.parse(scheduledAt);
-      }
-      
       const data = await createExport(apiKey, {
         organization: organizationId,
         internal_warehouse: internalWarehouse,
@@ -134,7 +130,7 @@ export const ExportWrapper: React.FC<ExportWrapperProps> = ({
         destination_name: destination_name,
         table: table_name,
         credentials: credentials,
-        scheduled_at: scheduledAt ? scheduledAt.toISOString() : undefined
+        scheduled_at: scheduledAt || ''
       });
 
       toast({
@@ -144,18 +140,12 @@ export const ExportWrapper: React.FC<ExportWrapperProps> = ({
 
       onSuccess?.(data);
     } catch (error: unknown) {
-      if (error instanceof z.ZodError) {
-        setDateTimeError(error.errors[0].message);
-        return;
-      }
-      if (error instanceof Error) {
-        toast({
-          title: "Error",
-          description: error instanceof Error ? error.message : "Failed to create export",
-          variant: "destructive",
-        });
-        onError?.(error);
-      }
+      toast({
+        title: "Error",
+        description: error instanceof Error ? error.message : "Failed to create export",
+        variant: "destructive",
+      });
+      onError?.(error);
     }
   };
 
@@ -268,14 +258,9 @@ export const ExportWrapper: React.FC<ExportWrapperProps> = ({
         <div className="space-y-2">
           <Label>Schedule Time</Label>
           <Input
-            value={typeof scheduledAt === 'string' ? scheduledAt : scheduledAt?.toISOString() || ''}
-            onChange={(e) => {
-              const value = e.target.value;
-              // Only update if it's empty or a valid ISO date
-              if (!value || !isNaN(Date.parse(value)) || value.endsWith(':') || value.endsWith('-')) {
-                setScheduledAt(value ? new Date(value) : undefined);
-              }
-            }}
+            value={scheduledAt || ''}
+            onChange={(e) => setScheduledAt(e.target.value)}
+            type="datetime-local"
             placeholder="2024-03-21T15:30:00+00:00"
             className={dateTimeError ? 'border-red-500' : ''}
           />

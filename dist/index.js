@@ -794,7 +794,7 @@ var credentialFields = (_obj = {}, _define_property(_obj, "clickhouse" /* Clickh
     "password",
     "schema"
 ]), _obj);
-var dateTimeSchema = z__namespace.string().datetime();
+z__namespace.string().datetime();
 var _obj1;
 var warehouseIcons = (_obj1 = {}, _define_property(_obj1, "clickhouse" /* Clickhouse */ , /* @__PURE__ */ React9__namespace.createElement("img", {
     src: "https://cdn.brandfetch.io/idnezyZEJm/theme/dark/symbol.svg",
@@ -883,9 +883,6 @@ var ExportWrapper = function(param) {
                             ,
                             3
                         ]);
-                        if (scheduledAt) {
-                            dateTimeSchema.parse(scheduledAt);
-                        }
                         return [
                             4,
                             createExport(apiKey, {
@@ -895,7 +892,7 @@ var ExportWrapper = function(param) {
                                 destination_name: destination_name,
                                 table: table_name,
                                 credentials: credentials,
-                                scheduled_at: scheduledAt ? scheduledAt.toISOString() : void 0
+                                scheduled_at: scheduledAt || ""
                             })
                         ];
                     case 1:
@@ -911,20 +908,12 @@ var ExportWrapper = function(param) {
                         ];
                     case 2:
                         error = _state.sent();
-                        if (_instanceof(error, z__namespace.ZodError)) {
-                            setDateTimeError(error.errors[0].message);
-                            return [
-                                2
-                            ];
-                        }
-                        if (_instanceof(error, Error)) {
-                            toast2({
-                                title: "Error",
-                                description: _instanceof(error, Error) ? error.message : "Failed to create export",
-                                variant: "destructive"
-                            });
-                            onError === null || onError === void 0 ? void 0 : onError(error);
-                        }
+                        toast2({
+                            title: "Error",
+                            description: _instanceof(error, Error) ? error.message : "Failed to create export",
+                            variant: "destructive"
+                        });
+                        onError === null || onError === void 0 ? void 0 : onError(error);
                         return [
                             3,
                             3
@@ -1016,13 +1005,11 @@ var ExportWrapper = function(param) {
         }, /* @__PURE__ */ React9__namespace.createElement("div", {
             className: "space-y-2"
         }, /* @__PURE__ */ React9__namespace.createElement(Label, null, "Schedule Time"), /* @__PURE__ */ React9__namespace.createElement(Input, {
-            value: typeof scheduledAt === "string" ? scheduledAt : (scheduledAt === null || scheduledAt === void 0 ? void 0 : scheduledAt.toISOString()) || "",
+            value: scheduledAt || "",
             onChange: function(e) {
-                var value = e.target.value;
-                if (!value || !isNaN(Date.parse(value)) || value.endsWith(":") || value.endsWith("-")) {
-                    setScheduledAt(value ? new Date(value) : void 0);
-                }
+                return setScheduledAt(e.target.value);
             },
+            type: "datetime-local",
             placeholder: "2024-03-21T15:30:00+00:00",
             className: dateTimeError ? "border-red-500" : ""
         }), dateTimeError && /* @__PURE__ */ React9__namespace.createElement("p", {
