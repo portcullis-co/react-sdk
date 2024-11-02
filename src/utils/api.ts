@@ -2,7 +2,9 @@ const PORTCULLIS_NEXT_URL = process.env.NEXT_PUBLIC_PORTCULLIS_URL || 'https://p
 
 interface ExportPayload {
   organization: string;
-  internal_warehouse: string;
+  internal_warehouse: {
+    credentials: string;
+  };
   destination_type: string;
   destination_name: string;
   internal_credentials: string;
@@ -12,6 +14,15 @@ interface ExportPayload {
 }
 
 export async function createExport(apiKey: string, payload: ExportPayload) {
+  // Validate required fields before making the request
+  if (!payload.internal_credentials) {
+    throw new Error('Internal warehouse credentials are required');
+  }
+
+  if (!payload.destination_type || !payload.destination_name || !payload.table || !payload.credentials) {
+    throw new Error('Missing required fields in payload');
+  }
+
   const response = await fetch(`${PORTCULLIS_NEXT_URL}/api/exports`, {
     method: 'POST',
     credentials: 'include',
@@ -20,12 +31,22 @@ export async function createExport(apiKey: string, payload: ExportPayload) {
       'x-api-key': apiKey,
       'Origin': window.location.origin
     },
-    body: JSON.stringify(payload)
+    body: JSON.stringify({
+      internal_warehouse: {
+        credentials: payload.internal_credentials // Make sure this matches the expected structure
+      },
+      destination_type: payload.destination_type,
+      destination_name: payload.destination_name,
+      table: payload.table,
+      credentials: payload.credentials,
+      scheduled_at: payload.scheduled_at
+    })
   });
 
   const data = await response.json();
   
   if (!response.ok) {
+    console.error('Export creation failed:', data);
     throw new Error(data.error || 'Failed to create export');
   }
 

@@ -136,7 +136,9 @@ export const ExportWrapper: React.FC<ExportWrapperProps> = ({
 
       const data = await createExport(apiKey, {
         organization: organizationId,
-        internal_warehouse:internalWarehouse,
+        internal_warehouse: {
+          credentials: warehouseData.credentials
+        },
         internal_credentials: warehouseData.credentials,
         destination_type: destination_type,
         destination_name: destination_name,

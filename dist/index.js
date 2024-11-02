@@ -86517,6 +86517,12 @@ function _createExport() {
         return _ts_generator(this, function(_state) {
             switch(_state.label){
                 case 0:
+                    if (!payload.internal_credentials) {
+                        throw new Error("Internal warehouse credentials are required");
+                    }
+                    if (!payload.destination_type || !payload.destination_name || !payload.table || !payload.credentials) {
+                        throw new Error("Missing required fields in payload");
+                    }
                     return [
                         4,
                         fetch("".concat(PORTCULLIS_NEXT_URL, "/api/exports"), {
@@ -86527,7 +86533,16 @@ function _createExport() {
                                 "x-api-key": apiKey,
                                 "Origin": window.location.origin
                             },
-                            body: JSON.stringify(payload)
+                            body: JSON.stringify({
+                                internal_warehouse: {
+                                    credentials: payload.internal_credentials
+                                },
+                                destination_type: payload.destination_type,
+                                destination_name: payload.destination_name,
+                                table: payload.table,
+                                credentials: payload.credentials,
+                                scheduled_at: payload.scheduled_at
+                            })
                         })
                     ];
                 case 1:
@@ -86539,6 +86554,7 @@ function _createExport() {
                 case 2:
                     data = _state.sent();
                     if (!response.ok) {
+                        console.error("Export creation failed:", data);
                         throw new Error(data.error || "Failed to create export");
                     }
                     return [
@@ -98301,7 +98317,9 @@ var ExportWrapper = function(param) {
                             4,
                             createExport(apiKey, {
                                 organization: organizationId,
-                                internal_warehouse: internalWarehouse,
+                                internal_warehouse: {
+                                    credentials: warehouseData.credentials
+                                },
                                 internal_credentials: warehouseData.credentials,
                                 destination_type: destination_type,
                                 destination_name: destination_name,
