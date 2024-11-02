@@ -8,6 +8,9 @@ dependencies:
   '@clickhouse/client-web':
     specifier: ^1.7.0
     version: 1.7.0
+  '@hookform/resolvers':
+    specifier: ^3.9.1
+    version: 3.9.1(react-hook-form@7.53.1)
   '@radix-ui/react-checkbox':
     specifier: ^1.1.2
     version: 1.1.2(@types/react@18.3.12)(react-dom@18.3.1)(react@18.3.1)
@@ -38,15 +41,15 @@ dependencies:
   '@radix-ui/react-toast':
     specifier: ^1.2.2
     version: 1.2.2(@types/react@18.3.12)(react-dom@18.3.1)(react@18.3.1)
-  '@runportcullis/portcullis-react':
-    specifier: file:runportcullis-portcullis-react-0.1.9.tgz
-    version: file:runportcullis-portcullis-react-0.1.9.tgz(@swc/core@1.7.42)(@types/react@18.3.12)(react-dom@18.3.1)(react@18.3.1)
   class-variance-authority:
     specifier: ^0.7.0
     version: 0.7.0
   clsx:
     specifier: ^2.1.1
     version: 2.1.1
+  date-fns:
+    specifier: ^4.1.0
+    version: 4.1.0
   framer-motion:
     specifier: ^11.11.10
     version: 11.11.11(react-dom@18.3.1)(react@18.3.1)
@@ -62,6 +65,12 @@ dependencies:
   react-dom:
     specifier: '>=16.8.0'
     version: 18.3.1(react@18.3.1)
+  react-hook-form:
+    specifier: ^7.53.1
+    version: 7.53.1(react@18.3.1)
+  sonner:
+    specifier: ^1.5.0
+    version: 1.5.0(react-dom@18.3.1)(react@18.3.1)
   tailwind-merge:
     specifier: ^2.5.4
     version: 2.5.4
@@ -527,6 +536,14 @@ packages:
 
   /@floating-ui/utils@0.2.8:
     resolution: {integrity: sha512-kym7SodPp8/wloecOpcmSnWJsK7M0E5Wg8UcFA+uO4B9s5d0ywXOEro/8HM9x0rW+TljRzul/14UYz3TleT3ig==}
+    dev: false
+
+  /@hookform/resolvers@3.9.1(react-hook-form@7.53.1):
+    resolution: {integrity: sha512-ud2HqmGBM0P0IABqoskKWI6PEf6ZDDBZkFqe2Vnl+mTHCEHzr3ISjjZyCwTjC/qpL25JC9aIDkloQejvMeq0ug==}
+    peerDependencies:
+      react-hook-form: ^7.0.0
+    dependencies:
+      react-hook-form: 7.53.1(react@18.3.1)
     dev: false
 
   /@isaacs/cliui@8.0.2:
@@ -2331,6 +2348,15 @@ packages:
       scheduler: 0.23.2
     dev: false
 
+  /react-hook-form@7.53.1(react@18.3.1):
+    resolution: {integrity: sha512-6aiQeBda4zjcuaugWvim9WsGqisoUk+etmFEsSUMm451/Ic8L/UAb7sRtMj3V+Hdzm6mMjU1VhiSzYUZeBm0Vg==}
+    engines: {node: '>=18.0.0'}
+    peerDependencies:
+      react: ^16.8.0 || ^17 || ^18 || ^19
+    dependencies:
+      react: 18.3.1
+    dev: false
+
   /react-remove-scroll-bar@2.3.6(@types/react@18.3.12)(react@18.3.1):
     resolution: {integrity: sha512-DtSYaao4mBmX+HDo5YWYdBWQwYIQQshUV/dVxFxK+KM26Wjwp1gZ6rv6OC3oujI6Bfu6Xyg3TwK533AQutsn/g==}
     engines: {node: '>=10'}
@@ -2505,6 +2531,16 @@ packages:
     resolution: {integrity: sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==}
     engines: {node: '>=8'}
     dev: true
+
+  /sonner@1.5.0(react-dom@18.3.1)(react@18.3.1):
+    resolution: {integrity: sha512-FBjhG/gnnbN6FY0jaNnqZOMmB73R+5IiyYAw8yBj7L54ER7HB3fOSE5OFiQiE2iXWxeXKvg6fIP4LtVppHEdJA==}
+    peerDependencies:
+      react: ^18.0.0
+      react-dom: ^18.0.0
+    dependencies:
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+    dev: false
 
   /source-map@0.8.0-beta.0:
     resolution: {integrity: sha512-2ymg6oRBpebeZi9UUNsgQ89bhx01TcTkmNTGnNO88imTmbSgy4nfujrgVEFKWpMTEGA11EDkTt7mqObTPdigIA==}
@@ -2771,48 +2807,4 @@ packages:
 
   /zod@3.23.8:
     resolution: {integrity: sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==}
-    dev: false
-
-  file:runportcullis-portcullis-react-0.1.9.tgz(@swc/core@1.7.42)(@types/react@18.3.12)(react-dom@18.3.1)(react@18.3.1):
-    resolution: {integrity: sha512-U46Z7ZsreaPkCej8Wi47vyA597yIFb5zFVy0rmZH9bRR7y69YIrHOYjK1dLstD20OFgJdpm1rf+QpNiG9oS2wg==, tarball: file:runportcullis-portcullis-react-0.1.9.tgz}
-    id: file:runportcullis-portcullis-react-0.1.9.tgz
-    name: '@runportcullis/portcullis-react'
-    version: 0.1.9
-    peerDependencies:
-      react: '>=16.8.0'
-      react-dom: '>=16.8.0'
-    dependencies:
-      '@clickhouse/client-web': 1.7.0
-      '@radix-ui/react-checkbox': 1.1.2(@types/react@18.3.12)(react-dom@18.3.1)(react@18.3.1)
-      '@radix-ui/react-dialog': 1.1.2(@types/react@18.3.12)(react-dom@18.3.1)(react@18.3.1)
-      '@radix-ui/react-dropdown-menu': 2.1.2(@types/react@18.3.12)(react-dom@18.3.1)(react@18.3.1)
-      '@radix-ui/react-icons': 1.3.1(react@18.3.1)
-      '@radix-ui/react-label': 2.1.0(@types/react@18.3.12)(react-dom@18.3.1)(react@18.3.1)
-      '@radix-ui/react-popover': 1.1.2(@types/react@18.3.12)(react-dom@18.3.1)(react@18.3.1)
-      '@radix-ui/react-scroll-area': 1.2.0(@types/react@18.3.12)(react-dom@18.3.1)(react@18.3.1)
-      '@radix-ui/react-select': 2.1.2(@types/react@18.3.12)(react-dom@18.3.1)(react@18.3.1)
-      '@radix-ui/react-slot': 1.1.0(@types/react@18.3.12)(react@18.3.1)
-      '@radix-ui/react-toast': 1.2.2(@types/react@18.3.12)(react-dom@18.3.1)(react@18.3.1)
-      class-variance-authority: 0.7.0
-      clsx: 2.1.1
-      framer-motion: 11.11.11(react-dom@18.3.1)(react@18.3.1)
-      lucide-react: 0.454.0(react@18.3.1)
-      react: 18.3.1
-      react-day-picker: 9.2.1(react@18.3.1)
-      react-dom: 18.3.1(react@18.3.1)
-      tailwind-merge: 2.5.4
-      tsup: 8.3.5(@swc/core@1.7.42)
-      zod: 3.23.8
-    transitivePeerDependencies:
-      - '@emotion/is-prop-valid'
-      - '@microsoft/api-extractor'
-      - '@swc/core'
-      - '@types/react'
-      - '@types/react-dom'
-      - jiti
-      - postcss
-      - supports-color
-      - tsx
-      - typescript
-      - yaml
     dev: false

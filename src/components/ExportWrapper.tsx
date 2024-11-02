@@ -12,6 +12,7 @@ import { Skeleton } from "./ui/skeleton"
 import { useEffect, useRef, useState } from "react"
 import { createClient } from '@clickhouse/client-web';
 import { PortcullisTag } from "./PortcullisTag";
+import { DateTimePickerForm } from "./ui/datetime-picker";
 
 // Change the interface declaration to export
 export interface ExportWrapperProps {
@@ -99,7 +100,7 @@ export const ExportWrapper: React.FC<ExportWrapperProps> = ({
   const [destination_type, setdestination_type] = React.useState<WarehouseType>(WarehouseType.Clickhouse);
   const [destination_name, setdestination_name] = React.useState('');
   const [credentials, setCredentials] = React.useState<Record<string, string>>({});
-  const [scheduledAt, setScheduledAt] = React.useState<string>('');
+  const [scheduledAt, setScheduledAt] = React.useState<Date | undefined>(undefined);
   const [dateTimeError, setDateTimeError] = React.useState<string>('');
   const { toast } = useToast();
   const [isLoading, setIsLoading] = React.useState(false)
@@ -138,7 +139,7 @@ export const ExportWrapper: React.FC<ExportWrapperProps> = ({
         destination_name: destination_name,
         table: table_name,
         credentials: credentials,
-        scheduled_at: scheduledAt || undefined
+        scheduled_at: scheduledAt ? scheduledAt.toISOString() : undefined
       });
 
       toast({
@@ -271,20 +272,10 @@ export const ExportWrapper: React.FC<ExportWrapperProps> = ({
       <CardContent className="space-y-4">
         <div className="space-y-2">
           <Label>Schedule Time (UTC)</Label>
-          <Input
-            type="datetime-local"
+          <DateTimePickerForm 
             value={scheduledAt}
-            onChange={(e) => {
-              const date = new Date(e.target.value);
-              setScheduledAt(date.toISOString());
-              setDateTimeError('');
-            }}
-            min={new Date().toISOString().slice(0, 16)}
-            className="w-full"
+            onChange={(date) => setScheduledAt(date)}
           />
-          {dateTimeError && (
-            <p className="text-sm text-destructive">{dateTimeError}</p>
-          )}
           <p className="text-sm text-muted-foreground">
             Select when you want this export to run. Leave empty for immediate execution.
           </p>
