@@ -284,8 +284,8 @@ function _ts_generator(thisArg, body) {
         };
     }
 }
-import * as React8 from 'react';
-import React8__default, { useRef, useState, useEffect } from 'react';
+import * as React9 from 'react';
+import React9__default, { useRef, useState, useEffect } from 'react';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { Slot } from '@radix-ui/react-slot';
@@ -302,61 +302,61 @@ function cn() {
     return twMerge(clsx(inputs));
 }
 // src/components/ui/card.tsx
-var Card = React8.forwardRef(function(_param, ref) {
+var Card = React9.forwardRef(function(_param, ref) {
     var className = _param.className, props = _object_without_properties(_param, [
         "className"
     ]);
-    return /* @__PURE__ */ React8.createElement("div", _object_spread({
+    return /* @__PURE__ */ React9.createElement("div", _object_spread({
         ref: ref,
         className: cn("rounded-xl border bg-card text-card-foreground shadow", className)
     }, props));
 });
 Card.displayName = "Card";
-var CardHeader = React8.forwardRef(function(_param, ref) {
+var CardHeader = React9.forwardRef(function(_param, ref) {
     var className = _param.className, props = _object_without_properties(_param, [
         "className"
     ]);
-    return /* @__PURE__ */ React8.createElement("div", _object_spread({
+    return /* @__PURE__ */ React9.createElement("div", _object_spread({
         ref: ref,
         className: cn("flex flex-col space-y-1.5 p-6", className)
     }, props));
 });
 CardHeader.displayName = "CardHeader";
-var CardTitle = React8.forwardRef(function(_param, ref) {
+var CardTitle = React9.forwardRef(function(_param, ref) {
     var className = _param.className, props = _object_without_properties(_param, [
         "className"
     ]);
-    return /* @__PURE__ */ React8.createElement("h3", _object_spread({
+    return /* @__PURE__ */ React9.createElement("h3", _object_spread({
         ref: ref,
         className: cn("font-semibold leading-none tracking-tight", className)
     }, props));
 });
 CardTitle.displayName = "CardTitle";
-var CardDescription = React8.forwardRef(function(_param, ref) {
+var CardDescription = React9.forwardRef(function(_param, ref) {
     var className = _param.className, props = _object_without_properties(_param, [
         "className"
     ]);
-    return /* @__PURE__ */ React8.createElement("p", _object_spread({
+    return /* @__PURE__ */ React9.createElement("p", _object_spread({
         ref: ref,
         className: cn("text-sm text-muted-foreground", className)
     }, props));
 });
 CardDescription.displayName = "CardDescription";
-var CardContent = React8.forwardRef(function(_param, ref) {
+var CardContent = React9.forwardRef(function(_param, ref) {
     var className = _param.className, props = _object_without_properties(_param, [
         "className"
     ]);
-    return /* @__PURE__ */ React8.createElement("div", _object_spread({
+    return /* @__PURE__ */ React9.createElement("div", _object_spread({
         ref: ref,
         className: cn("p-6 pt-0", className)
     }, props));
 });
 CardContent.displayName = "CardContent";
-var CardFooter = React8.forwardRef(function(_param, ref) {
+var CardFooter = React9.forwardRef(function(_param, ref) {
     var className = _param.className, props = _object_without_properties(_param, [
         "className"
     ]);
-    return /* @__PURE__ */ React8.createElement("div", _object_spread({
+    return /* @__PURE__ */ React9.createElement("div", _object_spread({
         ref: ref,
         className: cn("flex items-center p-6 pt-0", className)
     }, props));
@@ -384,7 +384,7 @@ var buttonVariants = cva("inline-flex items-center justify-center whitespace-now
         size: "default"
     }
 });
-var Button = React8.forwardRef(function(_param, ref) {
+var Button = React9.forwardRef(function(_param, ref) {
     var className = _param.className, variant = _param.variant, size = _param.size, _param_asChild = _param.asChild, asChild = _param_asChild === void 0 ? false : _param_asChild, props = _object_without_properties(_param, [
         "className",
         "variant",
@@ -392,7 +392,7 @@ var Button = React8.forwardRef(function(_param, ref) {
         "asChild"
     ]);
     var Comp = asChild ? Slot : "button";
-    return /* @__PURE__ */ React8.createElement(Comp, _object_spread({
+    return /* @__PURE__ */ React9.createElement(Comp, _object_spread({
         className: cn(buttonVariants({
             variant: variant,
             size: size,
@@ -402,12 +402,12 @@ var Button = React8.forwardRef(function(_param, ref) {
     }, props));
 });
 Button.displayName = "Button";
-var Input = React8.forwardRef(function(_param, ref) {
+var Input = React9.forwardRef(function(_param, ref) {
     var className = _param.className, type = _param.type, props = _object_without_properties(_param, [
         "className",
         "type"
     ]);
-    return /* @__PURE__ */ React8.createElement("input", _object_spread({
+    return /* @__PURE__ */ React9.createElement("input", _object_spread({
         type: type,
         className: cn("flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50", className),
         ref: ref
@@ -415,11 +415,11 @@ var Input = React8.forwardRef(function(_param, ref) {
 });
 Input.displayName = "Input";
 var labelVariants = cva("text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70");
-var Label = React8.forwardRef(function(_param, ref) {
+var Label = React9.forwardRef(function(_param, ref) {
     var className = _param.className, props = _object_without_properties(_param, [
         "className"
     ]);
-    return /* @__PURE__ */ React8.createElement(LabelPrimitive.Root, _object_spread({
+    return /* @__PURE__ */ React9.createElement(LabelPrimitive.Root, _object_spread({
         ref: ref,
         className: cn(labelVariants(), className)
     }, props));
@@ -427,86 +427,86 @@ var Label = React8.forwardRef(function(_param, ref) {
 Label.displayName = LabelPrimitive.Root.displayName;
 var Select = SelectPrimitive.Root;
 var SelectValue = SelectPrimitive.Value;
-var SelectTrigger = React8.forwardRef(function(_param, ref) {
+var SelectTrigger = React9.forwardRef(function(_param, ref) {
     var className = _param.className, children = _param.children, props = _object_without_properties(_param, [
         "className",
         "children"
     ]);
-    return /* @__PURE__ */ React8.createElement(SelectPrimitive.Trigger, _object_spread({
+    return /* @__PURE__ */ React9.createElement(SelectPrimitive.Trigger, _object_spread({
         ref: ref,
         className: cn("flex h-9 w-full items-center justify-between whitespace-nowrap rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1", className)
-    }, props), children, /* @__PURE__ */ React8.createElement(SelectPrimitive.Icon, {
+    }, props), children, /* @__PURE__ */ React9.createElement(SelectPrimitive.Icon, {
         asChild: true
-    }, /* @__PURE__ */ React8.createElement(CaretSortIcon, {
+    }, /* @__PURE__ */ React9.createElement(CaretSortIcon, {
         className: "h-4 w-4 opacity-50"
     })));
 });
 SelectTrigger.displayName = SelectPrimitive.Trigger.displayName;
-var SelectScrollUpButton = React8.forwardRef(function(_param, ref) {
+var SelectScrollUpButton = React9.forwardRef(function(_param, ref) {
     var className = _param.className, props = _object_without_properties(_param, [
         "className"
     ]);
-    return /* @__PURE__ */ React8.createElement(SelectPrimitive.ScrollUpButton, _object_spread({
+    return /* @__PURE__ */ React9.createElement(SelectPrimitive.ScrollUpButton, _object_spread({
         ref: ref,
         className: cn("flex cursor-default items-center justify-center py-1", className)
-    }, props), /* @__PURE__ */ React8.createElement(ChevronUpIcon, null));
+    }, props), /* @__PURE__ */ React9.createElement(ChevronUpIcon, null));
 });
 SelectScrollUpButton.displayName = SelectPrimitive.ScrollUpButton.displayName;
-var SelectScrollDownButton = React8.forwardRef(function(_param, ref) {
+var SelectScrollDownButton = React9.forwardRef(function(_param, ref) {
     var className = _param.className, props = _object_without_properties(_param, [
         "className"
     ]);
-    return /* @__PURE__ */ React8.createElement(SelectPrimitive.ScrollDownButton, _object_spread({
+    return /* @__PURE__ */ React9.createElement(SelectPrimitive.ScrollDownButton, _object_spread({
         ref: ref,
         className: cn("flex cursor-default items-center justify-center py-1", className)
-    }, props), /* @__PURE__ */ React8.createElement(ChevronDownIcon, null));
+    }, props), /* @__PURE__ */ React9.createElement(ChevronDownIcon, null));
 });
 SelectScrollDownButton.displayName = SelectPrimitive.ScrollDownButton.displayName;
-var SelectContent = React8.forwardRef(function(_param, ref) {
+var SelectContent = React9.forwardRef(function(_param, ref) {
     var className = _param.className, children = _param.children, _param_position = _param.position, position = _param_position === void 0 ? "popper" : _param_position, props = _object_without_properties(_param, [
         "className",
         "children",
         "position"
     ]);
-    return /* @__PURE__ */ React8.createElement(SelectPrimitive.Portal, null, /* @__PURE__ */ React8.createElement(SelectPrimitive.Content, _object_spread({
+    return /* @__PURE__ */ React9.createElement(SelectPrimitive.Portal, null, /* @__PURE__ */ React9.createElement(SelectPrimitive.Content, _object_spread({
         ref: ref,
         className: cn("relative z-50 max-h-96 min-w-[8rem] overflow-hidden rounded-md border bg-popover text-popover-foreground shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2", position === "popper" && "data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1", className),
         position: position
-    }, props), /* @__PURE__ */ React8.createElement(SelectScrollUpButton, null), /* @__PURE__ */ React8.createElement(SelectPrimitive.Viewport, {
+    }, props), /* @__PURE__ */ React9.createElement(SelectScrollUpButton, null), /* @__PURE__ */ React9.createElement(SelectPrimitive.Viewport, {
         className: cn("p-1", position === "popper" && "h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)]")
-    }, children), /* @__PURE__ */ React8.createElement(SelectScrollDownButton, null)));
+    }, children), /* @__PURE__ */ React9.createElement(SelectScrollDownButton, null)));
 });
 SelectContent.displayName = SelectPrimitive.Content.displayName;
-var SelectLabel = React8.forwardRef(function(_param, ref) {
+var SelectLabel = React9.forwardRef(function(_param, ref) {
     var className = _param.className, props = _object_without_properties(_param, [
         "className"
     ]);
-    return /* @__PURE__ */ React8.createElement(SelectPrimitive.Label, _object_spread({
+    return /* @__PURE__ */ React9.createElement(SelectPrimitive.Label, _object_spread({
         ref: ref,
         className: cn("px-2 py-1.5 text-sm font-semibold", className)
     }, props));
 });
 SelectLabel.displayName = SelectPrimitive.Label.displayName;
-var SelectItem = React8.forwardRef(function(_param, ref) {
+var SelectItem = React9.forwardRef(function(_param, ref) {
     var className = _param.className, children = _param.children, props = _object_without_properties(_param, [
         "className",
         "children"
     ]);
-    return /* @__PURE__ */ React8.createElement(SelectPrimitive.Item, _object_spread({
+    return /* @__PURE__ */ React9.createElement(SelectPrimitive.Item, _object_spread({
         ref: ref,
         className: cn("relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pl-2 pr-8 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50", className)
-    }, props), /* @__PURE__ */ React8.createElement("span", {
+    }, props), /* @__PURE__ */ React9.createElement("span", {
         className: "absolute right-2 flex h-3.5 w-3.5 items-center justify-center"
-    }, /* @__PURE__ */ React8.createElement(SelectPrimitive.ItemIndicator, null, /* @__PURE__ */ React8.createElement(CheckIcon, {
+    }, /* @__PURE__ */ React9.createElement(SelectPrimitive.ItemIndicator, null, /* @__PURE__ */ React9.createElement(CheckIcon, {
         className: "h-4 w-4"
-    }))), /* @__PURE__ */ React8.createElement(SelectPrimitive.ItemText, null, children));
+    }))), /* @__PURE__ */ React9.createElement(SelectPrimitive.ItemText, null, children));
 });
 SelectItem.displayName = SelectPrimitive.Item.displayName;
-var SelectSeparator = React8.forwardRef(function(_param, ref) {
+var SelectSeparator = React9.forwardRef(function(_param, ref) {
     var className = _param.className, props = _object_without_properties(_param, [
         "className"
     ]);
-    return /* @__PURE__ */ React8.createElement(SelectPrimitive.Separator, _object_spread({
+    return /* @__PURE__ */ React9.createElement(SelectPrimitive.Separator, _object_spread({
         ref: ref,
         className: cn("-mx-1 my-1 h-px bg-muted", className)
     }, props));
@@ -622,8 +622,8 @@ function toast(_param) {
     };
 }
 function useToast() {
-    var _React8_useState = _sliced_to_array(React8.useState(memoryState), 2), state = _React8_useState[0], setState = _React8_useState[1];
-    React8.useEffect(function() {
+    var _React9_useState = _sliced_to_array(React9.useState(memoryState), 2), state = _React9_useState[0], setState = _React9_useState[1];
+    React9.useEffect(function() {
         listeners.push(setState);
         return function() {
             var index = listeners.indexOf(setState);
@@ -692,10 +692,29 @@ function Skeleton(_param) {
     var className = _param.className, props = _object_without_properties(_param, [
         "className"
     ]);
-    return /* @__PURE__ */ React8__default.createElement("div", _object_spread({
+    return /* @__PURE__ */ React9__default.createElement("div", _object_spread({
         className: cn("animate-pulse rounded-md bg-muted", className)
     }, props));
 }
+var PortcullisTag = function() {
+    return /* @__PURE__ */ React9__default.createElement("div", {
+        className: "border-t border-border/40"
+    }, /* @__PURE__ */ React9__default.createElement("a", {
+        href: "https://runportcullis.com",
+        target: "_blank",
+        rel: "noopener noreferrer",
+        className: "flex items-center justify-end p-4 group"
+    }, /* @__PURE__ */ React9__default.createElement("div", {
+        className: "flex items-center gap-2"
+    }, /* @__PURE__ */ React9__default.createElement("img", {
+        src: "/portcullis.svg",
+        alt: "Portcullis",
+        className: "w-4 h-4 group-hover:scale-110 transition-transform duration-200"
+    }), /* @__PURE__ */ React9__default.createElement("span", {
+        className: cn("text-sm font-semibold bg-gradient-to-r from-[#faff69] to-[#171717]", "bg-clip-text text-transparent", "animate-gradient bg-[length:200%_auto]", "group-hover:bg-[length:300%_auto] transition-all duration-200")
+    }, "Powered by Portcullis"))));
+};
+// src/components/ExportWrapper.tsx
 var WarehouseType = /* @__PURE__ */ function(WarehouseType2) {
     WarehouseType2["Clickhouse"] = "clickhouse";
     WarehouseType2["Snowflake"] = "snowflake";
@@ -757,46 +776,46 @@ var dateTimeSchema = z.string().refine(function(value) {
     return regex.test(value);
 }, "Must be in ISO 8601 format (e.g., 2024-03-21T15:30:00Z)");
 var _obj1;
-var warehouseIcons = (_obj1 = {}, _define_property(_obj1, "clickhouse" /* Clickhouse */ , /* @__PURE__ */ React8.createElement("img", {
+var warehouseIcons = (_obj1 = {}, _define_property(_obj1, "clickhouse" /* Clickhouse */ , /* @__PURE__ */ React9.createElement("img", {
     src: "https://cdn.brandfetch.io/idnezyZEJm/theme/dark/symbol.svg",
     alt: "Clickhouse",
     className: "mr-2 h-4 w-4"
-})), _define_property(_obj1, "snowflake" /* Snowflake */ , /* @__PURE__ */ React8.createElement("img", {
+})), _define_property(_obj1, "snowflake" /* Snowflake */ , /* @__PURE__ */ React9.createElement("img", {
     src: "https://cdn.brandfetch.io/idJz-fGD_q/theme/dark/symbol.svg",
     alt: "Snowflake",
     className: "mr-2 h-4 w-4"
-})), _define_property(_obj1, "databricks" /* Databricks */ , /* @__PURE__ */ React8.createElement("img", {
+})), _define_property(_obj1, "databricks" /* Databricks */ , /* @__PURE__ */ React9.createElement("img", {
     src: "https://cdn.brandfetch.io/idSUrLOWbH/theme/dark/symbol.svg?k=bfHSJFAPEG",
     alt: "Databricks",
     className: "mr-2 h-4 w-4"
-})), _define_property(_obj1, "bigquery" /* BigQuery */ , /* @__PURE__ */ React8.createElement("img", {
+})), _define_property(_obj1, "bigquery" /* BigQuery */ , /* @__PURE__ */ React9.createElement("img", {
     src: "https://cdn.worldvectorlogo.com/logos/google-bigquery-logo-1.svg",
     alt: "BigQuery",
     className: "mr-2 h-4 w-4"
-})), _define_property(_obj1, "redshift" /* Redshift */ , /* @__PURE__ */ React8.createElement("img", {
+})), _define_property(_obj1, "redshift" /* Redshift */ , /* @__PURE__ */ React9.createElement("img", {
     src: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Amazon-Redshift-Logo.svg/218px-Amazon-Redshift-Logo.svg.png",
     alt: "Redshift",
     className: "mr-2 h-4 w-4"
-})), _define_property(_obj1, "kafka" /* Kafka */ , /* @__PURE__ */ React8.createElement("img", {
+})), _define_property(_obj1, "kafka" /* Kafka */ , /* @__PURE__ */ React9.createElement("img", {
     src: "https://upload.wikimedia.org/wikipedia/commons/0/05/Apache_kafka.svg",
     alt: "Kafka",
     className: "mr-2 h-4 w-4"
-})), _define_property(_obj1, "postgres" /* Postgres */ , /* @__PURE__ */ React8.createElement("img", {
+})), _define_property(_obj1, "postgres" /* Postgres */ , /* @__PURE__ */ React9.createElement("img", {
     src: "https://cdn.brandfetch.io/idjSeCeMle/theme/dark/logo.svg?k=bfHSJFAPEG",
     alt: "Postgres",
     className: "mr-2 h-4 w-4"
 })), _obj1);
 var ExportWrapper = function(param) {
-    var apiKey = param.apiKey, organizationId = param.organizationId, internal_warehouse = param.internal_warehouse, _param_allowedTables = param.allowedTables, allowedTables = _param_allowedTables === void 0 ? [] : _param_allowedTables, _param_theme = param.theme, theme = _param_theme === void 0 ? "light" : _param_theme, onSuccess = param.onSuccess, onError = param.onError;
-    var _React8_useState = _sliced_to_array(React8.useState("destination"), 2), currentStep = _React8_useState[0], setCurrentStep = _React8_useState[1];
-    var _React8_useState1 = _sliced_to_array(React8.useState("clickhouse" /* Clickhouse */ ), 2), destination_type = _React8_useState1[0], setdestination_type = _React8_useState1[1];
-    var _React8_useState2 = _sliced_to_array(React8.useState(""), 2), destination_name = _React8_useState2[0], setdestination_name = _React8_useState2[1];
-    var _React8_useState3 = _sliced_to_array(React8.useState({}), 2), credentials = _React8_useState3[0], setCredentials = _React8_useState3[1];
-    var _React8_useState4 = _sliced_to_array(React8.useState(""), 2), scheduledAt = _React8_useState4[0], setScheduledAt = _React8_useState4[1];
-    var _React8_useState5 = _sliced_to_array(React8.useState(""), 2), dateTimeError = _React8_useState5[0], setDateTimeError = _React8_useState5[1];
-    React8.useState("");
+    var apiKey = param.apiKey, organizationId = param.organizationId, internalWarehouse = param.internalWarehouse, _param_allowedTables = param.allowedTables, allowedTables = _param_allowedTables === void 0 ? [] : _param_allowedTables, _param_theme = param.theme, theme = _param_theme === void 0 ? "light" : _param_theme, onSuccess = param.onSuccess, onError = param.onError;
+    var _React9_useState = _sliced_to_array(React9.useState("destination"), 2), currentStep = _React9_useState[0], setCurrentStep = _React9_useState[1];
+    var _React9_useState1 = _sliced_to_array(React9.useState("clickhouse" /* Clickhouse */ ), 2), destination_type = _React9_useState1[0], setdestination_type = _React9_useState1[1];
+    var _React9_useState2 = _sliced_to_array(React9.useState(""), 2), destination_name = _React9_useState2[0], setdestination_name = _React9_useState2[1];
+    var _React9_useState3 = _sliced_to_array(React9.useState({}), 2), credentials = _React9_useState3[0], setCredentials = _React9_useState3[1];
+    var _React9_useState4 = _sliced_to_array(React9.useState(""), 2), scheduledAt = _React9_useState4[0], setScheduledAt = _React9_useState4[1];
+    var _React9_useState5 = _sliced_to_array(React9.useState(""), 2), dateTimeError = _React9_useState5[0], setDateTimeError = _React9_useState5[1];
+    React9.useState("");
     var _useToast = useToast(), toast2 = _useToast.toast;
-    var _React8_useState6 = _sliced_to_array(React8.useState(false), 2), isLoading = _React8_useState6[0], setIsLoading = _React8_useState6[1];
+    var _React9_useState6 = _sliced_to_array(React9.useState(false), 2), isLoading = _React9_useState6[0], setIsLoading = _React9_useState6[1];
     var containerRef = useRef(null);
     var _useState = _sliced_to_array(useState(0), 2), containerWidth = _useState[0], setContainerWidth = _useState[1];
     var _useState1 = _sliced_to_array(useState([]), 2), availableTables = _useState1[0], setAvailableTables = _useState1[1];
@@ -853,7 +872,7 @@ var ExportWrapper = function(param) {
                             4,
                             createExport(apiKey, {
                                 organization: organizationId,
-                                internal_warehouse: internal_warehouse,
+                                internal_warehouse: internalWarehouse,
                                 destination_type: destination_type,
                                 destination_name: destination_name,
                                 table: selectedTable,
@@ -904,34 +923,37 @@ var ExportWrapper = function(param) {
         };
     }();
     var renderDestinationStep = function() {
-        return /* @__PURE__ */ React8.createElement(React8.Fragment, null, /* @__PURE__ */ React8.createElement(CardHeader, null, /* @__PURE__ */ React8.createElement(CardTitle, null, "Configure Destination")), /* @__PURE__ */ React8.createElement(CardContent, {
+        return /* @__PURE__ */ React9.createElement(React9.Fragment, null, /* @__PURE__ */ React9.createElement(CardHeader, null, /* @__PURE__ */ React9.createElement(CardTitle, null, "Configure Destination")), /* @__PURE__ */ React9.createElement(CardContent, {
             className: "space-y-4"
-        }, /* @__PURE__ */ React8.createElement("div", {
+        }, /* @__PURE__ */ React9.createElement("div", {
             className: "space-y-2"
-        }, /* @__PURE__ */ React8.createElement(Label, null, "Warehouse Type"), /* @__PURE__ */ React8.createElement(Select, {
+        }, /* @__PURE__ */ React9.createElement(Label, null, "Destination Type"), /* @__PURE__ */ React9.createElement(Select, {
             value: destination_type,
             onValueChange: function(value) {
                 return setdestination_type(value);
             }
-        }, /* @__PURE__ */ React8.createElement(SelectTrigger, null, /* @__PURE__ */ React8.createElement(SelectValue, {
-            placeholder: "Select a warehouse type"
-        })), /* @__PURE__ */ React8.createElement(SelectContent, null, Object.values(WarehouseType).map(function(type) {
-            return /* @__PURE__ */ React8.createElement(SelectItem, {
+        }, /* @__PURE__ */ React9.createElement(SelectTrigger, {
+            className: "w-full"
+        }, /* @__PURE__ */ React9.createElement(SelectValue, null, destination_type && /* @__PURE__ */ React9.createElement("div", {
+            className: "flex items-center gap-2"
+        }, warehouseIcons[destination_type], /* @__PURE__ */ React9.createElement("span", null, destination_type.charAt(0).toUpperCase() + destination_type.slice(1))))), /* @__PURE__ */ React9.createElement(SelectContent, null, Object.values(WarehouseType).map(function(type) {
+            return /* @__PURE__ */ React9.createElement(SelectItem, {
                 key: type,
-                value: type,
-                className: "flex items-center"
-            }, warehouseIcons[type], /* @__PURE__ */ React8.createElement("span", {
-                className: "capitalize"
-            }, type));
-        })))), /* @__PURE__ */ React8.createElement("div", {
+                value: type
+            }, /* @__PURE__ */ React9.createElement("div", {
+                className: "flex items-center gap-2 w-full min-w-[200px]"
+            }, warehouseIcons[type], /* @__PURE__ */ React9.createElement("span", {
+                className: "truncate"
+            }, type.charAt(0).toUpperCase() + type.slice(1))));
+        })))), /* @__PURE__ */ React9.createElement("div", {
             className: "space-y-2"
-        }, /* @__PURE__ */ React8.createElement(Label, null, "Warehouse Name"), /* @__PURE__ */ React8.createElement(Input, {
+        }, /* @__PURE__ */ React9.createElement(Label, null, "Warehouse Name"), /* @__PURE__ */ React9.createElement(Input, {
             value: destination_name,
             onChange: function(e) {
                 return setdestination_name(e.target.value);
             },
             placeholder: "Enter a name for this warehouse"
-        }))), /* @__PURE__ */ React8.createElement(CardFooter, null, /* @__PURE__ */ React8.createElement(Button, {
+        }))), /* @__PURE__ */ React9.createElement(CardFooter, null, /* @__PURE__ */ React9.createElement(Button, {
             onClick: function() {
                 return setCurrentStep("credentials");
             },
@@ -939,15 +961,15 @@ var ExportWrapper = function(param) {
         }, "Continue")));
     };
     var renderCredentialsStep = function() {
-        return /* @__PURE__ */ React8.createElement(React8.Fragment, null, /* @__PURE__ */ React8.createElement(CardHeader, null, /* @__PURE__ */ React8.createElement(CardTitle, null, "Configure Credentials")), /* @__PURE__ */ React8.createElement(CardContent, {
+        return /* @__PURE__ */ React9.createElement(React9.Fragment, null, /* @__PURE__ */ React9.createElement(CardHeader, null, /* @__PURE__ */ React9.createElement(CardTitle, null, "Configure Credentials")), /* @__PURE__ */ React9.createElement(CardContent, {
             className: "space-y-4"
         }, credentialFields[destination_type].map(function(field) {
-            return /* @__PURE__ */ React8.createElement("div", {
+            return /* @__PURE__ */ React9.createElement("div", {
                 key: field,
                 className: "space-y-2"
-            }, /* @__PURE__ */ React8.createElement(Label, {
+            }, /* @__PURE__ */ React9.createElement(Label, {
                 className: "capitalize"
-            }, field === "host" ? "Hostname" : field === "port" ? "Port Number" : field.charAt(0).toUpperCase() + field.slice(1).replace("_", " ")), /* @__PURE__ */ React8.createElement(Input, {
+            }, field === "host" ? "Hostname" : field === "port" ? "Port Number" : field.charAt(0).toUpperCase() + field.slice(1).replace("_", " ")), /* @__PURE__ */ React9.createElement(Input, {
                 type: field.includes("password") ? "password" : "text",
                 value: credentials[field] || "",
                 onChange: function(e) {
@@ -957,13 +979,13 @@ var ExportWrapper = function(param) {
                 },
                 placeholder: field === "port" ? "8123" : field === "host" ? "localhost" : "Enter ".concat(field.replace("_", " "))
             }));
-        })), /* @__PURE__ */ React8.createElement(CardFooter, {
+        })), /* @__PURE__ */ React9.createElement(CardFooter, {
             className: "space-x-2"
-        }, /* @__PURE__ */ React8.createElement(Button, {
+        }, /* @__PURE__ */ React9.createElement(Button, {
             onClick: function() {
                 return setCurrentStep("destination");
             }
-        }, "Back"), /* @__PURE__ */ React8.createElement(Button, {
+        }, "Back"), /* @__PURE__ */ React9.createElement(Button, {
             onClick: function() {
                 return setCurrentStep("table");
             },
@@ -971,33 +993,33 @@ var ExportWrapper = function(param) {
         }, "Continue")));
     };
     var renderTableStep = function() {
-        return /* @__PURE__ */ React8.createElement(React8.Fragment, null, /* @__PURE__ */ React8.createElement(CardHeader, null, /* @__PURE__ */ React8.createElement(CardTitle, null, "Select Table")), /* @__PURE__ */ React8.createElement(CardContent, {
+        return /* @__PURE__ */ React9.createElement(React9.Fragment, null, /* @__PURE__ */ React9.createElement(CardHeader, null, /* @__PURE__ */ React9.createElement(CardTitle, null, "Select Table")), /* @__PURE__ */ React9.createElement(CardContent, {
             className: "space-y-4"
-        }, isLoadingTables ? /* @__PURE__ */ React8.createElement("div", {
+        }, isLoadingTables ? /* @__PURE__ */ React9.createElement("div", {
             className: "space-y-2"
-        }, /* @__PURE__ */ React8.createElement(Skeleton, {
+        }, /* @__PURE__ */ React9.createElement(Skeleton, {
             className: "h-4 w-[200px]"
-        }), /* @__PURE__ */ React8.createElement(Skeleton, {
+        }), /* @__PURE__ */ React9.createElement(Skeleton, {
             className: "h-10 w-full"
-        })) : /* @__PURE__ */ React8.createElement("div", {
+        })) : /* @__PURE__ */ React9.createElement("div", {
             className: "space-y-2"
-        }, /* @__PURE__ */ React8.createElement(Label, null, "Table"), /* @__PURE__ */ React8.createElement(Select, {
+        }, /* @__PURE__ */ React9.createElement(Label, null, "Table"), /* @__PURE__ */ React9.createElement(Select, {
             value: selectedTable,
             onValueChange: setSelectedTable
-        }, /* @__PURE__ */ React8.createElement(SelectTrigger, null, /* @__PURE__ */ React8.createElement(SelectValue, {
+        }, /* @__PURE__ */ React9.createElement(SelectTrigger, null, /* @__PURE__ */ React9.createElement(SelectValue, {
             placeholder: "Select a table"
-        })), /* @__PURE__ */ React8.createElement(SelectContent, null, availableTables.map(function(table2) {
-            return /* @__PURE__ */ React8.createElement(SelectItem, {
+        })), /* @__PURE__ */ React9.createElement(SelectContent, null, availableTables.map(function(table2) {
+            return /* @__PURE__ */ React9.createElement(SelectItem, {
                 key: table2.name,
                 value: table2.name
             }, table2.name, " (", table2.total_rows.toLocaleString(), " rows)");
-        }))))), /* @__PURE__ */ React8.createElement(CardFooter, {
+        }))))), /* @__PURE__ */ React9.createElement(CardFooter, {
             className: "space-x-2"
-        }, /* @__PURE__ */ React8.createElement(Button, {
+        }, /* @__PURE__ */ React9.createElement(Button, {
             onClick: function() {
                 return setCurrentStep("credentials");
             }
-        }, "Back"), /* @__PURE__ */ React8.createElement(Button, {
+        }, "Back"), /* @__PURE__ */ React9.createElement(Button, {
             onClick: function() {
                 return setCurrentStep("schedule");
             },
@@ -1005,28 +1027,28 @@ var ExportWrapper = function(param) {
         }, "Continue")));
     };
     var renderScheduleStep = function() {
-        return /* @__PURE__ */ React8.createElement(React8.Fragment, null, /* @__PURE__ */ React8.createElement(CardHeader, null, /* @__PURE__ */ React8.createElement(CardTitle, null, "Schedule Export")), /* @__PURE__ */ React8.createElement(CardContent, {
+        return /* @__PURE__ */ React9.createElement(React9.Fragment, null, /* @__PURE__ */ React9.createElement(CardHeader, null, /* @__PURE__ */ React9.createElement(CardTitle, null, "Schedule Export")), /* @__PURE__ */ React9.createElement(CardContent, {
             className: "space-y-4"
-        }, /* @__PURE__ */ React8.createElement("div", {
+        }, /* @__PURE__ */ React9.createElement("div", {
             className: "space-y-2"
-        }, /* @__PURE__ */ React8.createElement(Label, null, "Schedule (Optional)"), /* @__PURE__ */ React8.createElement(Input, {
+        }, /* @__PURE__ */ React9.createElement(Label, null, "Schedule (Optional)"), /* @__PURE__ */ React9.createElement(Input, {
             value: scheduledAt,
             onChange: function(e) {
                 setScheduledAt(e.target.value);
                 setDateTimeError("");
             },
             placeholder: "YYYY-MM-DDThh:mm:ssZ"
-        }), dateTimeError && /* @__PURE__ */ React8.createElement("p", {
+        }), dateTimeError && /* @__PURE__ */ React9.createElement("p", {
             className: "text-sm text-red-500 mt-1"
-        }, dateTimeError), /* @__PURE__ */ React8.createElement("p", {
+        }, dateTimeError), /* @__PURE__ */ React9.createElement("p", {
             className: "text-sm text-muted-foreground"
-        }, "Example: 2024-03-21T15:30:00Z"))), /* @__PURE__ */ React8.createElement(CardFooter, {
+        }, "Example: 2024-03-21T15:30:00Z"))), /* @__PURE__ */ React9.createElement(CardFooter, {
             className: "space-x-2"
-        }, /* @__PURE__ */ React8.createElement(Button, {
+        }, /* @__PURE__ */ React9.createElement(Button, {
             onClick: function() {
                 return setCurrentStep("credentials");
             }
-        }, "Back"), /* @__PURE__ */ React8.createElement(Button, {
+        }, "Back"), /* @__PURE__ */ React9.createElement(Button, {
             onClick: handleSubmit
         }, "Create Export")));
     };
@@ -1051,9 +1073,12 @@ var ExportWrapper = function(param) {
                             5,
                             6
                         ]);
+                        if (!internalWarehouse) {
+                            throw new Error("Warehouse ID is required");
+                        }
                         return [
                             4,
-                            fetch("".concat(PORTCULLIS_NEXT_URL2, "/api/warehouses?id=").concat(internal_warehouse), {
+                            fetch("".concat(PORTCULLIS_NEXT_URL2, "/api/warehouses?id=").concat(internalWarehouse), {
                                 method: "GET",
                                 headers: {
                                     "Content-Type": "application/json"
@@ -1105,44 +1130,34 @@ var ExportWrapper = function(param) {
         };
     }();
     useEffect(function() {
-        if (currentStep === "table") {
+        if (currentStep === "table" && internalWarehouse) {
             fetchAvailableTables();
         }
     }, [
-        currentStep
+        currentStep,
+        internalWarehouse
     ]);
-    return /* @__PURE__ */ React8.createElement("div", {
+    return /* @__PURE__ */ React9.createElement("div", {
         ref: containerRef,
         className: "relative w-full"
-    }, /* @__PURE__ */ React8.createElement(Card, {
+    }, /* @__PURE__ */ React9.createElement(Card, {
         className: "relative"
-    }, isLoading ? /* @__PURE__ */ React8.createElement("div", {
+    }, isLoading ? /* @__PURE__ */ React9.createElement("div", {
         className: "space-y-4"
-    }, /* @__PURE__ */ React8.createElement(Skeleton, {
+    }, /* @__PURE__ */ React9.createElement(Skeleton, {
         className: "h-10 w-full"
-    }), /* @__PURE__ */ React8.createElement("div", {
+    }), /* @__PURE__ */ React9.createElement("div", {
         className: "space-y-2"
-    }, /* @__PURE__ */ React8.createElement(Skeleton, {
+    }, /* @__PURE__ */ React9.createElement(Skeleton, {
         className: "h-4 w-[".concat(Math.min(250, containerWidth * 0.8), "px]")
-    }), /* @__PURE__ */ React8.createElement(Skeleton, {
+    }), /* @__PURE__ */ React9.createElement(Skeleton, {
         className: "h-8 w-full"
-    }), /* @__PURE__ */ React8.createElement(Skeleton, {
+    }), /* @__PURE__ */ React9.createElement(Skeleton, {
         className: "h-4 w-[".concat(Math.min(200, containerWidth * 0.6), "px]")
-    }), /* @__PURE__ */ React8.createElement(Skeleton, {
+    }), /* @__PURE__ */ React9.createElement(Skeleton, {
         className: "h-8 w-full"
-    })), /* @__PURE__ */ React8.createElement(Skeleton, {
+    })), /* @__PURE__ */ React9.createElement(Skeleton, {
         className: "h-10 w-[".concat(Math.min(120, containerWidth * 0.3), "px]")
-    })) : /* @__PURE__ */ React8.createElement(React8.Fragment, null, stepComponents[currentStep]())), /* @__PURE__ */ React8.createElement("div", {
-        className: "mt-2 flex items-center justify-end"
-    }, /* @__PURE__ */ React8.createElement("a", {
-        href: "https://runportcullis.com",
-        target: "_blank",
-        rel: "noopener noreferrer",
-        className: "inline-flex items-center gap-1.5 text-xs text-muted-foreground/60 hover:text-muted-foreground transition-colors"
-    }, /* @__PURE__ */ React8.createElement("img", {
-        src: "/portcullis.svg",
-        alt: "Portcullis logo",
-        className: "w-3 h-3"
-    }), /* @__PURE__ */ React8.createElement("span", null, "Powered by Portcullis"))));
+    })) : /* @__PURE__ */ React9.createElement(React9.Fragment, null, stepComponents[currentStep](), /* @__PURE__ */ React9.createElement(PortcullisTag, null))));
 };
 export { ExportWrapper, WarehouseType };

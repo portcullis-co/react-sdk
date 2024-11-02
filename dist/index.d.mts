@@ -3,7 +3,7 @@ import * as React from 'react';
 interface ExportWrapperProps {
     apiKey: string;
     organizationId: string;
-    internal_warehouse: string;
+    internalWarehouse: string;
     allowedTables?: string[];
     theme?: 'light' | 'dark';
     onSuccess?: (data: any) => void;

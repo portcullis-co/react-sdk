@@ -11,12 +11,13 @@ import * as z from "zod";
 import { Skeleton } from "./ui/skeleton"
 import { useEffect, useRef, useState } from "react"
 import { createClient } from '@clickhouse/client-web';
+import { PortcullisTag } from "./PortcullisTag";
 
 // Change the interface declaration to export
 export interface ExportWrapperProps {
   apiKey: string;
   organizationId: string;
-  internal_warehouse: string;
+  internalWarehouse: string;
   allowedTables?: string[];
   theme?: 'light' | 'dark';
   onSuccess?: (data: any) => void;
@@ -88,7 +89,7 @@ const warehouseIcons = {
 export const ExportWrapper: React.FC<ExportWrapperProps> = ({
   apiKey,
   organizationId,
-  internal_warehouse,
+  internalWarehouse,
   allowedTables = [],
   theme = 'light',
   onSuccess,
@@ -134,7 +135,7 @@ export const ExportWrapper: React.FC<ExportWrapperProps> = ({
       
       const data = await createExport(apiKey, {
         organization: organizationId,
-        internal_warehouse: internal_warehouse,
+        internal_warehouse: internalWarehouse,
         destination_type: destination_type,
         destination_name: destination_name,
         table: selectedTable,
@@ -171,19 +172,33 @@ export const ExportWrapper: React.FC<ExportWrapperProps> = ({
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="space-y-2">
-          <Label>Warehouse Type</Label>
+          <Label>Destination Type</Label>
           <Select
             value={destination_type}
             onValueChange={(value: WarehouseType) => setdestination_type(value)}
           >
-            <SelectTrigger>
-              <SelectValue placeholder="Select a warehouse type" />
+            <SelectTrigger className="w-full">
+              <SelectValue>
+                {destination_type && (
+                  <div className="flex items-center gap-2">
+                    {warehouseIcons[destination_type]}
+                    <span>{destination_type.charAt(0).toUpperCase() + destination_type.slice(1)}</span>
+                  </div>
+                )}
+              </SelectValue>
             </SelectTrigger>
             <SelectContent>
               {Object.values(WarehouseType).map((type) => (
-                <SelectItem key={type} value={type} className="flex items-center">
-                  {warehouseIcons[type]}
-                  <span className="capitalize">{type}</span>
+                <SelectItem 
+                  key={type} 
+                  value={type}
+                >
+                  <div className="flex items-center gap-2 w-full min-w-[200px]">
+                    {warehouseIcons[type]}
+                    <span className="truncate">
+                      {type.charAt(0).toUpperCase() + type.slice(1)}
+                    </span>
+                  </div>
                 </SelectItem>
               ))}
             </SelectContent>
@@ -342,8 +357,11 @@ export const ExportWrapper: React.FC<ExportWrapperProps> = ({
   const fetchAvailableTables = async () => {
     setIsLoadingTables(true);
     try {
-      // Make a GET request to fetch tables using the API
-      const response = await fetch(`${PORTCULLIS_NEXT_URL}/api/warehouses?id=${internal_warehouse}`, {
+      if (!internalWarehouse) {
+        throw new Error('Warehouse ID is required');
+      }
+
+      const response = await fetch(`${PORTCULLIS_NEXT_URL}/api/warehouses?id=${internalWarehouse}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -370,10 +388,10 @@ export const ExportWrapper: React.FC<ExportWrapperProps> = ({
 
   // Add effect to fetch tables when entering table step
   useEffect(() => {
-    if (currentStep === 'table') {
+    if (currentStep === 'table' && internalWarehouse) {
       fetchAvailableTables();
     }
-  }, [currentStep]);
+  }, [currentStep, internalWarehouse]);
 
   return (
     <div ref={containerRef} className="relative w-full">
@@ -392,25 +410,10 @@ export const ExportWrapper: React.FC<ExportWrapperProps> = ({
         ) : (
           <>
             {stepComponents[currentStep]()}
+            <PortcullisTag />
           </>
         )}
       </Card>
-      
-      <div className="mt-2 flex items-center justify-end">
-        <a 
-          href="https://runportcullis.com" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 text-xs text-muted-foreground/60 hover:text-muted-foreground transition-colors"
-        >
-          <img 
-            src="/portcullis.svg"
-            alt="Portcullis logo"
-            className="w-3 h-3"
-          />
-          <span>Powered by Portcullis</span>
-        </a>
-      </div>
     </div>
   );
 }

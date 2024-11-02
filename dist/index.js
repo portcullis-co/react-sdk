@@ -285,7 +285,7 @@ function _ts_generator(thisArg, body) {
         };
     }
 }
-var React8 = require('react');
+var React9 = require('react');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
 var reactSlot = require('@radix-ui/react-slot');
@@ -313,7 +313,7 @@ function _interopNamespace(e) {
     n.default = e;
     return Object.freeze(n);
 }
-var React8__namespace = /*#__PURE__*/ _interopNamespace(React8);
+var React9__namespace = /*#__PURE__*/ _interopNamespace(React9);
 var LabelPrimitive__namespace = /*#__PURE__*/ _interopNamespace(LabelPrimitive);
 var SelectPrimitive__namespace = /*#__PURE__*/ _interopNamespace(SelectPrimitive);
 var z__namespace = /*#__PURE__*/ _interopNamespace(z);
@@ -325,61 +325,61 @@ function cn() {
     return tailwindMerge.twMerge(clsx.clsx(inputs));
 }
 // src/components/ui/card.tsx
-var Card = React8__namespace.forwardRef(function(_param, ref) {
+var Card = React9__namespace.forwardRef(function(_param, ref) {
     var className = _param.className, props = _object_without_properties(_param, [
         "className"
     ]);
-    return /* @__PURE__ */ React8__namespace.createElement("div", _object_spread({
+    return /* @__PURE__ */ React9__namespace.createElement("div", _object_spread({
         ref: ref,
         className: cn("rounded-xl border bg-card text-card-foreground shadow", className)
     }, props));
 });
 Card.displayName = "Card";
-var CardHeader = React8__namespace.forwardRef(function(_param, ref) {
+var CardHeader = React9__namespace.forwardRef(function(_param, ref) {
     var className = _param.className, props = _object_without_properties(_param, [
         "className"
     ]);
-    return /* @__PURE__ */ React8__namespace.createElement("div", _object_spread({
+    return /* @__PURE__ */ React9__namespace.createElement("div", _object_spread({
         ref: ref,
         className: cn("flex flex-col space-y-1.5 p-6", className)
     }, props));
 });
 CardHeader.displayName = "CardHeader";
-var CardTitle = React8__namespace.forwardRef(function(_param, ref) {
+var CardTitle = React9__namespace.forwardRef(function(_param, ref) {
     var className = _param.className, props = _object_without_properties(_param, [
         "className"
     ]);
-    return /* @__PURE__ */ React8__namespace.createElement("h3", _object_spread({
+    return /* @__PURE__ */ React9__namespace.createElement("h3", _object_spread({
         ref: ref,
         className: cn("font-semibold leading-none tracking-tight", className)
     }, props));
 });
 CardTitle.displayName = "CardTitle";
-var CardDescription = React8__namespace.forwardRef(function(_param, ref) {
+var CardDescription = React9__namespace.forwardRef(function(_param, ref) {
     var className = _param.className, props = _object_without_properties(_param, [
         "className"
     ]);
-    return /* @__PURE__ */ React8__namespace.createElement("p", _object_spread({
+    return /* @__PURE__ */ React9__namespace.createElement("p", _object_spread({
         ref: ref,
         className: cn("text-sm text-muted-foreground", className)
     }, props));
 });
 CardDescription.displayName = "CardDescription";
-var CardContent = React8__namespace.forwardRef(function(_param, ref) {
+var CardContent = React9__namespace.forwardRef(function(_param, ref) {
     var className = _param.className, props = _object_without_properties(_param, [
         "className"
     ]);
-    return /* @__PURE__ */ React8__namespace.createElement("div", _object_spread({
+    return /* @__PURE__ */ React9__namespace.createElement("div", _object_spread({
         ref: ref,
         className: cn("p-6 pt-0", className)
     }, props));
 });
 CardContent.displayName = "CardContent";
-var CardFooter = React8__namespace.forwardRef(function(_param, ref) {
+var CardFooter = React9__namespace.forwardRef(function(_param, ref) {
     var className = _param.className, props = _object_without_properties(_param, [
         "className"
     ]);
-    return /* @__PURE__ */ React8__namespace.createElement("div", _object_spread({
+    return /* @__PURE__ */ React9__namespace.createElement("div", _object_spread({
         ref: ref,
         className: cn("flex items-center p-6 pt-0", className)
     }, props));
@@ -407,7 +407,7 @@ var buttonVariants = classVarianceAuthority.cva("inline-flex items-center justif
         size: "default"
     }
 });
-var Button = React8__namespace.forwardRef(function(_param, ref) {
+var Button = React9__namespace.forwardRef(function(_param, ref) {
     var className = _param.className, variant = _param.variant, size = _param.size, _param_asChild = _param.asChild, asChild = _param_asChild === void 0 ? false : _param_asChild, props = _object_without_properties(_param, [
         "className",
         "variant",
@@ -415,7 +415,7 @@ var Button = React8__namespace.forwardRef(function(_param, ref) {
         "asChild"
     ]);
     var Comp = asChild ? reactSlot.Slot : "button";
-    return /* @__PURE__ */ React8__namespace.createElement(Comp, _object_spread({
+    return /* @__PURE__ */ React9__namespace.createElement(Comp, _object_spread({
         className: cn(buttonVariants({
             variant: variant,
             size: size,
@@ -425,12 +425,12 @@ var Button = React8__namespace.forwardRef(function(_param, ref) {
     }, props));
 });
 Button.displayName = "Button";
-var Input = React8__namespace.forwardRef(function(_param, ref) {
+var Input = React9__namespace.forwardRef(function(_param, ref) {
     var className = _param.className, type = _param.type, props = _object_without_properties(_param, [
         "className",
         "type"
     ]);
-    return /* @__PURE__ */ React8__namespace.createElement("input", _object_spread({
+    return /* @__PURE__ */ React9__namespace.createElement("input", _object_spread({
         type: type,
         className: cn("flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50", className),
         ref: ref
@@ -438,11 +438,11 @@ var Input = React8__namespace.forwardRef(function(_param, ref) {
 });
 Input.displayName = "Input";
 var labelVariants = classVarianceAuthority.cva("text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70");
-var Label = React8__namespace.forwardRef(function(_param, ref) {
+var Label = React9__namespace.forwardRef(function(_param, ref) {
     var className = _param.className, props = _object_without_properties(_param, [
         "className"
     ]);
-    return /* @__PURE__ */ React8__namespace.createElement(LabelPrimitive__namespace.Root, _object_spread({
+    return /* @__PURE__ */ React9__namespace.createElement(LabelPrimitive__namespace.Root, _object_spread({
         ref: ref,
         className: cn(labelVariants(), className)
     }, props));
@@ -450,86 +450,86 @@ var Label = React8__namespace.forwardRef(function(_param, ref) {
 Label.displayName = LabelPrimitive__namespace.Root.displayName;
 var Select = SelectPrimitive__namespace.Root;
 var SelectValue = SelectPrimitive__namespace.Value;
-var SelectTrigger = React8__namespace.forwardRef(function(_param, ref) {
+var SelectTrigger = React9__namespace.forwardRef(function(_param, ref) {
     var className = _param.className, children = _param.children, props = _object_without_properties(_param, [
         "className",
         "children"
     ]);
-    return /* @__PURE__ */ React8__namespace.createElement(SelectPrimitive__namespace.Trigger, _object_spread({
+    return /* @__PURE__ */ React9__namespace.createElement(SelectPrimitive__namespace.Trigger, _object_spread({
         ref: ref,
         className: cn("flex h-9 w-full items-center justify-between whitespace-nowrap rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1", className)
-    }, props), children, /* @__PURE__ */ React8__namespace.createElement(SelectPrimitive__namespace.Icon, {
+    }, props), children, /* @__PURE__ */ React9__namespace.createElement(SelectPrimitive__namespace.Icon, {
         asChild: true
-    }, /* @__PURE__ */ React8__namespace.createElement(reactIcons.CaretSortIcon, {
+    }, /* @__PURE__ */ React9__namespace.createElement(reactIcons.CaretSortIcon, {
         className: "h-4 w-4 opacity-50"
     })));
 });
 SelectTrigger.displayName = SelectPrimitive__namespace.Trigger.displayName;
-var SelectScrollUpButton = React8__namespace.forwardRef(function(_param, ref) {
+var SelectScrollUpButton = React9__namespace.forwardRef(function(_param, ref) {
     var className = _param.className, props = _object_without_properties(_param, [
         "className"
     ]);
-    return /* @__PURE__ */ React8__namespace.createElement(SelectPrimitive__namespace.ScrollUpButton, _object_spread({
+    return /* @__PURE__ */ React9__namespace.createElement(SelectPrimitive__namespace.ScrollUpButton, _object_spread({
         ref: ref,
         className: cn("flex cursor-default items-center justify-center py-1", className)
-    }, props), /* @__PURE__ */ React8__namespace.createElement(reactIcons.ChevronUpIcon, null));
+    }, props), /* @__PURE__ */ React9__namespace.createElement(reactIcons.ChevronUpIcon, null));
 });
 SelectScrollUpButton.displayName = SelectPrimitive__namespace.ScrollUpButton.displayName;
-var SelectScrollDownButton = React8__namespace.forwardRef(function(_param, ref) {
+var SelectScrollDownButton = React9__namespace.forwardRef(function(_param, ref) {
     var className = _param.className, props = _object_without_properties(_param, [
         "className"
     ]);
-    return /* @__PURE__ */ React8__namespace.createElement(SelectPrimitive__namespace.ScrollDownButton, _object_spread({
+    return /* @__PURE__ */ React9__namespace.createElement(SelectPrimitive__namespace.ScrollDownButton, _object_spread({
         ref: ref,
         className: cn("flex cursor-default items-center justify-center py-1", className)
-    }, props), /* @__PURE__ */ React8__namespace.createElement(reactIcons.ChevronDownIcon, null));
+    }, props), /* @__PURE__ */ React9__namespace.createElement(reactIcons.ChevronDownIcon, null));
 });
 SelectScrollDownButton.displayName = SelectPrimitive__namespace.ScrollDownButton.displayName;
-var SelectContent = React8__namespace.forwardRef(function(_param, ref) {
+var SelectContent = React9__namespace.forwardRef(function(_param, ref) {
     var className = _param.className, children = _param.children, _param_position = _param.position, position = _param_position === void 0 ? "popper" : _param_position, props = _object_without_properties(_param, [
         "className",
         "children",
         "position"
     ]);
-    return /* @__PURE__ */ React8__namespace.createElement(SelectPrimitive__namespace.Portal, null, /* @__PURE__ */ React8__namespace.createElement(SelectPrimitive__namespace.Content, _object_spread({
+    return /* @__PURE__ */ React9__namespace.createElement(SelectPrimitive__namespace.Portal, null, /* @__PURE__ */ React9__namespace.createElement(SelectPrimitive__namespace.Content, _object_spread({
         ref: ref,
         className: cn("relative z-50 max-h-96 min-w-[8rem] overflow-hidden rounded-md border bg-popover text-popover-foreground shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2", position === "popper" && "data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1", className),
         position: position
-    }, props), /* @__PURE__ */ React8__namespace.createElement(SelectScrollUpButton, null), /* @__PURE__ */ React8__namespace.createElement(SelectPrimitive__namespace.Viewport, {
+    }, props), /* @__PURE__ */ React9__namespace.createElement(SelectScrollUpButton, null), /* @__PURE__ */ React9__namespace.createElement(SelectPrimitive__namespace.Viewport, {
         className: cn("p-1", position === "popper" && "h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)]")
-    }, children), /* @__PURE__ */ React8__namespace.createElement(SelectScrollDownButton, null)));
+    }, children), /* @__PURE__ */ React9__namespace.createElement(SelectScrollDownButton, null)));
 });
 SelectContent.displayName = SelectPrimitive__namespace.Content.displayName;
-var SelectLabel = React8__namespace.forwardRef(function(_param, ref) {
+var SelectLabel = React9__namespace.forwardRef(function(_param, ref) {
     var className = _param.className, props = _object_without_properties(_param, [
         "className"
     ]);
-    return /* @__PURE__ */ React8__namespace.createElement(SelectPrimitive__namespace.Label, _object_spread({
+    return /* @__PURE__ */ React9__namespace.createElement(SelectPrimitive__namespace.Label, _object_spread({
         ref: ref,
         className: cn("px-2 py-1.5 text-sm font-semibold", className)
     }, props));
 });
 SelectLabel.displayName = SelectPrimitive__namespace.Label.displayName;
-var SelectItem = React8__namespace.forwardRef(function(_param, ref) {
+var SelectItem = React9__namespace.forwardRef(function(_param, ref) {
     var className = _param.className, children = _param.children, props = _object_without_properties(_param, [
         "className",
         "children"
     ]);
-    return /* @__PURE__ */ React8__namespace.createElement(SelectPrimitive__namespace.Item, _object_spread({
+    return /* @__PURE__ */ React9__namespace.createElement(SelectPrimitive__namespace.Item, _object_spread({
         ref: ref,
         className: cn("relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pl-2 pr-8 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50", className)
-    }, props), /* @__PURE__ */ React8__namespace.createElement("span", {
+    }, props), /* @__PURE__ */ React9__namespace.createElement("span", {
         className: "absolute right-2 flex h-3.5 w-3.5 items-center justify-center"
-    }, /* @__PURE__ */ React8__namespace.createElement(SelectPrimitive__namespace.ItemIndicator, null, /* @__PURE__ */ React8__namespace.createElement(reactIcons.CheckIcon, {
+    }, /* @__PURE__ */ React9__namespace.createElement(SelectPrimitive__namespace.ItemIndicator, null, /* @__PURE__ */ React9__namespace.createElement(reactIcons.CheckIcon, {
         className: "h-4 w-4"
-    }))), /* @__PURE__ */ React8__namespace.createElement(SelectPrimitive__namespace.ItemText, null, children));
+    }))), /* @__PURE__ */ React9__namespace.createElement(SelectPrimitive__namespace.ItemText, null, children));
 });
 SelectItem.displayName = SelectPrimitive__namespace.Item.displayName;
-var SelectSeparator = React8__namespace.forwardRef(function(_param, ref) {
+var SelectSeparator = React9__namespace.forwardRef(function(_param, ref) {
     var className = _param.className, props = _object_without_properties(_param, [
         "className"
     ]);
-    return /* @__PURE__ */ React8__namespace.createElement(SelectPrimitive__namespace.Separator, _object_spread({
+    return /* @__PURE__ */ React9__namespace.createElement(SelectPrimitive__namespace.Separator, _object_spread({
         ref: ref,
         className: cn("-mx-1 my-1 h-px bg-muted", className)
     }, props));
@@ -645,8 +645,8 @@ function toast(_param) {
     };
 }
 function useToast() {
-    var _React8__namespace_useState = _sliced_to_array(React8__namespace.useState(memoryState), 2), state = _React8__namespace_useState[0], setState = _React8__namespace_useState[1];
-    React8__namespace.useEffect(function() {
+    var _React9__namespace_useState = _sliced_to_array(React9__namespace.useState(memoryState), 2), state = _React9__namespace_useState[0], setState = _React9__namespace_useState[1];
+    React9__namespace.useEffect(function() {
         listeners.push(setState);
         return function() {
             var index = listeners.indexOf(setState);
@@ -715,10 +715,29 @@ function Skeleton(_param) {
     var className = _param.className, props = _object_without_properties(_param, [
         "className"
     ]);
-    return /* @__PURE__ */ React8__namespace.default.createElement("div", _object_spread({
+    return /* @__PURE__ */ React9__namespace.default.createElement("div", _object_spread({
         className: cn("animate-pulse rounded-md bg-muted", className)
     }, props));
 }
+var PortcullisTag = function() {
+    return /* @__PURE__ */ React9__namespace.default.createElement("div", {
+        className: "border-t border-border/40"
+    }, /* @__PURE__ */ React9__namespace.default.createElement("a", {
+        href: "https://runportcullis.com",
+        target: "_blank",
+        rel: "noopener noreferrer",
+        className: "flex items-center justify-end p-4 group"
+    }, /* @__PURE__ */ React9__namespace.default.createElement("div", {
+        className: "flex items-center gap-2"
+    }, /* @__PURE__ */ React9__namespace.default.createElement("img", {
+        src: "/portcullis.svg",
+        alt: "Portcullis",
+        className: "w-4 h-4 group-hover:scale-110 transition-transform duration-200"
+    }), /* @__PURE__ */ React9__namespace.default.createElement("span", {
+        className: cn("text-sm font-semibold bg-gradient-to-r from-[#faff69] to-[#171717]", "bg-clip-text text-transparent", "animate-gradient bg-[length:200%_auto]", "group-hover:bg-[length:300%_auto] transition-all duration-200")
+    }, "Powered by Portcullis"))));
+};
+// src/components/ExportWrapper.tsx
 var WarehouseType = /* @__PURE__ */ function(WarehouseType2) {
     WarehouseType2["Clickhouse"] = "clickhouse";
     WarehouseType2["Snowflake"] = "snowflake";
@@ -780,53 +799,53 @@ var dateTimeSchema = z__namespace.string().refine(function(value) {
     return regex.test(value);
 }, "Must be in ISO 8601 format (e.g., 2024-03-21T15:30:00Z)");
 var _obj1;
-var warehouseIcons = (_obj1 = {}, _define_property(_obj1, "clickhouse" /* Clickhouse */ , /* @__PURE__ */ React8__namespace.createElement("img", {
+var warehouseIcons = (_obj1 = {}, _define_property(_obj1, "clickhouse" /* Clickhouse */ , /* @__PURE__ */ React9__namespace.createElement("img", {
     src: "https://cdn.brandfetch.io/idnezyZEJm/theme/dark/symbol.svg",
     alt: "Clickhouse",
     className: "mr-2 h-4 w-4"
-})), _define_property(_obj1, "snowflake" /* Snowflake */ , /* @__PURE__ */ React8__namespace.createElement("img", {
+})), _define_property(_obj1, "snowflake" /* Snowflake */ , /* @__PURE__ */ React9__namespace.createElement("img", {
     src: "https://cdn.brandfetch.io/idJz-fGD_q/theme/dark/symbol.svg",
     alt: "Snowflake",
     className: "mr-2 h-4 w-4"
-})), _define_property(_obj1, "databricks" /* Databricks */ , /* @__PURE__ */ React8__namespace.createElement("img", {
+})), _define_property(_obj1, "databricks" /* Databricks */ , /* @__PURE__ */ React9__namespace.createElement("img", {
     src: "https://cdn.brandfetch.io/idSUrLOWbH/theme/dark/symbol.svg?k=bfHSJFAPEG",
     alt: "Databricks",
     className: "mr-2 h-4 w-4"
-})), _define_property(_obj1, "bigquery" /* BigQuery */ , /* @__PURE__ */ React8__namespace.createElement("img", {
+})), _define_property(_obj1, "bigquery" /* BigQuery */ , /* @__PURE__ */ React9__namespace.createElement("img", {
     src: "https://cdn.worldvectorlogo.com/logos/google-bigquery-logo-1.svg",
     alt: "BigQuery",
     className: "mr-2 h-4 w-4"
-})), _define_property(_obj1, "redshift" /* Redshift */ , /* @__PURE__ */ React8__namespace.createElement("img", {
+})), _define_property(_obj1, "redshift" /* Redshift */ , /* @__PURE__ */ React9__namespace.createElement("img", {
     src: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Amazon-Redshift-Logo.svg/218px-Amazon-Redshift-Logo.svg.png",
     alt: "Redshift",
     className: "mr-2 h-4 w-4"
-})), _define_property(_obj1, "kafka" /* Kafka */ , /* @__PURE__ */ React8__namespace.createElement("img", {
+})), _define_property(_obj1, "kafka" /* Kafka */ , /* @__PURE__ */ React9__namespace.createElement("img", {
     src: "https://upload.wikimedia.org/wikipedia/commons/0/05/Apache_kafka.svg",
     alt: "Kafka",
     className: "mr-2 h-4 w-4"
-})), _define_property(_obj1, "postgres" /* Postgres */ , /* @__PURE__ */ React8__namespace.createElement("img", {
+})), _define_property(_obj1, "postgres" /* Postgres */ , /* @__PURE__ */ React9__namespace.createElement("img", {
     src: "https://cdn.brandfetch.io/idjSeCeMle/theme/dark/logo.svg?k=bfHSJFAPEG",
     alt: "Postgres",
     className: "mr-2 h-4 w-4"
 })), _obj1);
 var ExportWrapper = function(param) {
-    var apiKey = param.apiKey, organizationId = param.organizationId, internal_warehouse = param.internal_warehouse, _param_allowedTables = param.allowedTables, allowedTables = _param_allowedTables === void 0 ? [] : _param_allowedTables, _param_theme = param.theme, theme = _param_theme === void 0 ? "light" : _param_theme, onSuccess = param.onSuccess, onError = param.onError;
-    var _React8__namespace_useState = _sliced_to_array(React8__namespace.useState("destination"), 2), currentStep = _React8__namespace_useState[0], setCurrentStep = _React8__namespace_useState[1];
-    var _React8__namespace_useState1 = _sliced_to_array(React8__namespace.useState("clickhouse" /* Clickhouse */ ), 2), destination_type = _React8__namespace_useState1[0], setdestination_type = _React8__namespace_useState1[1];
-    var _React8__namespace_useState2 = _sliced_to_array(React8__namespace.useState(""), 2), destination_name = _React8__namespace_useState2[0], setdestination_name = _React8__namespace_useState2[1];
-    var _React8__namespace_useState3 = _sliced_to_array(React8__namespace.useState({}), 2), credentials = _React8__namespace_useState3[0], setCredentials = _React8__namespace_useState3[1];
-    var _React8__namespace_useState4 = _sliced_to_array(React8__namespace.useState(""), 2), scheduledAt = _React8__namespace_useState4[0], setScheduledAt = _React8__namespace_useState4[1];
-    var _React8__namespace_useState5 = _sliced_to_array(React8__namespace.useState(""), 2), dateTimeError = _React8__namespace_useState5[0], setDateTimeError = _React8__namespace_useState5[1];
-    React8__namespace.useState("");
+    var apiKey = param.apiKey, organizationId = param.organizationId, internalWarehouse = param.internalWarehouse, _param_allowedTables = param.allowedTables, allowedTables = _param_allowedTables === void 0 ? [] : _param_allowedTables, _param_theme = param.theme, theme = _param_theme === void 0 ? "light" : _param_theme, onSuccess = param.onSuccess, onError = param.onError;
+    var _React9__namespace_useState = _sliced_to_array(React9__namespace.useState("destination"), 2), currentStep = _React9__namespace_useState[0], setCurrentStep = _React9__namespace_useState[1];
+    var _React9__namespace_useState1 = _sliced_to_array(React9__namespace.useState("clickhouse" /* Clickhouse */ ), 2), destination_type = _React9__namespace_useState1[0], setdestination_type = _React9__namespace_useState1[1];
+    var _React9__namespace_useState2 = _sliced_to_array(React9__namespace.useState(""), 2), destination_name = _React9__namespace_useState2[0], setdestination_name = _React9__namespace_useState2[1];
+    var _React9__namespace_useState3 = _sliced_to_array(React9__namespace.useState({}), 2), credentials = _React9__namespace_useState3[0], setCredentials = _React9__namespace_useState3[1];
+    var _React9__namespace_useState4 = _sliced_to_array(React9__namespace.useState(""), 2), scheduledAt = _React9__namespace_useState4[0], setScheduledAt = _React9__namespace_useState4[1];
+    var _React9__namespace_useState5 = _sliced_to_array(React9__namespace.useState(""), 2), dateTimeError = _React9__namespace_useState5[0], setDateTimeError = _React9__namespace_useState5[1];
+    React9__namespace.useState("");
     var _useToast = useToast(), toast2 = _useToast.toast;
-    var _React8__namespace_useState6 = _sliced_to_array(React8__namespace.useState(false), 2), isLoading = _React8__namespace_useState6[0], setIsLoading = _React8__namespace_useState6[1];
-    var containerRef = React8.useRef(null);
-    var _React8_useState = _sliced_to_array(React8.useState(0), 2), containerWidth = _React8_useState[0], setContainerWidth = _React8_useState[1];
-    var _React8_useState1 = _sliced_to_array(React8.useState([]), 2), availableTables = _React8_useState1[0], setAvailableTables = _React8_useState1[1];
-    var _React8_useState2 = _sliced_to_array(React8.useState(""), 2), selectedTable = _React8_useState2[0], setSelectedTable = _React8_useState2[1];
-    var _React8_useState3 = _sliced_to_array(React8.useState(false), 2), isLoadingTables = _React8_useState3[0], setIsLoadingTables = _React8_useState3[1];
+    var _React9__namespace_useState6 = _sliced_to_array(React9__namespace.useState(false), 2), isLoading = _React9__namespace_useState6[0], setIsLoading = _React9__namespace_useState6[1];
+    var containerRef = React9.useRef(null);
+    var _React9_useState = _sliced_to_array(React9.useState(0), 2), containerWidth = _React9_useState[0], setContainerWidth = _React9_useState[1];
+    var _React9_useState1 = _sliced_to_array(React9.useState([]), 2), availableTables = _React9_useState1[0], setAvailableTables = _React9_useState1[1];
+    var _React9_useState2 = _sliced_to_array(React9.useState(""), 2), selectedTable = _React9_useState2[0], setSelectedTable = _React9_useState2[1];
+    var _React9_useState3 = _sliced_to_array(React9.useState(false), 2), isLoadingTables = _React9_useState3[0], setIsLoadingTables = _React9_useState3[1];
     var PORTCULLIS_NEXT_URL2 = process.env.NEXT_PUBLIC_PORTCULLIS_URL || "https://portcullis-app.fly.dev";
-    React8.useEffect(function() {
+    React9.useEffect(function() {
         if (!containerRef.current) return;
         var resizeObserver = new ResizeObserver(function(entries) {
             var _iteratorNormalCompletion = true, _didIteratorError = false, _iteratorError = undefined;
@@ -876,7 +895,7 @@ var ExportWrapper = function(param) {
                             4,
                             createExport(apiKey, {
                                 organization: organizationId,
-                                internal_warehouse: internal_warehouse,
+                                internal_warehouse: internalWarehouse,
                                 destination_type: destination_type,
                                 destination_name: destination_name,
                                 table: selectedTable,
@@ -927,34 +946,37 @@ var ExportWrapper = function(param) {
         };
     }();
     var renderDestinationStep = function() {
-        return /* @__PURE__ */ React8__namespace.createElement(React8__namespace.Fragment, null, /* @__PURE__ */ React8__namespace.createElement(CardHeader, null, /* @__PURE__ */ React8__namespace.createElement(CardTitle, null, "Configure Destination")), /* @__PURE__ */ React8__namespace.createElement(CardContent, {
+        return /* @__PURE__ */ React9__namespace.createElement(React9__namespace.Fragment, null, /* @__PURE__ */ React9__namespace.createElement(CardHeader, null, /* @__PURE__ */ React9__namespace.createElement(CardTitle, null, "Configure Destination")), /* @__PURE__ */ React9__namespace.createElement(CardContent, {
             className: "space-y-4"
-        }, /* @__PURE__ */ React8__namespace.createElement("div", {
+        }, /* @__PURE__ */ React9__namespace.createElement("div", {
             className: "space-y-2"
-        }, /* @__PURE__ */ React8__namespace.createElement(Label, null, "Warehouse Type"), /* @__PURE__ */ React8__namespace.createElement(Select, {
+        }, /* @__PURE__ */ React9__namespace.createElement(Label, null, "Destination Type"), /* @__PURE__ */ React9__namespace.createElement(Select, {
             value: destination_type,
             onValueChange: function(value) {
                 return setdestination_type(value);
             }
-        }, /* @__PURE__ */ React8__namespace.createElement(SelectTrigger, null, /* @__PURE__ */ React8__namespace.createElement(SelectValue, {
-            placeholder: "Select a warehouse type"
-        })), /* @__PURE__ */ React8__namespace.createElement(SelectContent, null, Object.values(WarehouseType).map(function(type) {
-            return /* @__PURE__ */ React8__namespace.createElement(SelectItem, {
+        }, /* @__PURE__ */ React9__namespace.createElement(SelectTrigger, {
+            className: "w-full"
+        }, /* @__PURE__ */ React9__namespace.createElement(SelectValue, null, destination_type && /* @__PURE__ */ React9__namespace.createElement("div", {
+            className: "flex items-center gap-2"
+        }, warehouseIcons[destination_type], /* @__PURE__ */ React9__namespace.createElement("span", null, destination_type.charAt(0).toUpperCase() + destination_type.slice(1))))), /* @__PURE__ */ React9__namespace.createElement(SelectContent, null, Object.values(WarehouseType).map(function(type) {
+            return /* @__PURE__ */ React9__namespace.createElement(SelectItem, {
                 key: type,
-                value: type,
-                className: "flex items-center"
-            }, warehouseIcons[type], /* @__PURE__ */ React8__namespace.createElement("span", {
-                className: "capitalize"
-            }, type));
-        })))), /* @__PURE__ */ React8__namespace.createElement("div", {
+                value: type
+            }, /* @__PURE__ */ React9__namespace.createElement("div", {
+                className: "flex items-center gap-2 w-full min-w-[200px]"
+            }, warehouseIcons[type], /* @__PURE__ */ React9__namespace.createElement("span", {
+                className: "truncate"
+            }, type.charAt(0).toUpperCase() + type.slice(1))));
+        })))), /* @__PURE__ */ React9__namespace.createElement("div", {
             className: "space-y-2"
-        }, /* @__PURE__ */ React8__namespace.createElement(Label, null, "Warehouse Name"), /* @__PURE__ */ React8__namespace.createElement(Input, {
+        }, /* @__PURE__ */ React9__namespace.createElement(Label, null, "Warehouse Name"), /* @__PURE__ */ React9__namespace.createElement(Input, {
             value: destination_name,
             onChange: function(e) {
                 return setdestination_name(e.target.value);
             },
             placeholder: "Enter a name for this warehouse"
-        }))), /* @__PURE__ */ React8__namespace.createElement(CardFooter, null, /* @__PURE__ */ React8__namespace.createElement(Button, {
+        }))), /* @__PURE__ */ React9__namespace.createElement(CardFooter, null, /* @__PURE__ */ React9__namespace.createElement(Button, {
             onClick: function() {
                 return setCurrentStep("credentials");
             },
@@ -962,15 +984,15 @@ var ExportWrapper = function(param) {
         }, "Continue")));
     };
     var renderCredentialsStep = function() {
-        return /* @__PURE__ */ React8__namespace.createElement(React8__namespace.Fragment, null, /* @__PURE__ */ React8__namespace.createElement(CardHeader, null, /* @__PURE__ */ React8__namespace.createElement(CardTitle, null, "Configure Credentials")), /* @__PURE__ */ React8__namespace.createElement(CardContent, {
+        return /* @__PURE__ */ React9__namespace.createElement(React9__namespace.Fragment, null, /* @__PURE__ */ React9__namespace.createElement(CardHeader, null, /* @__PURE__ */ React9__namespace.createElement(CardTitle, null, "Configure Credentials")), /* @__PURE__ */ React9__namespace.createElement(CardContent, {
             className: "space-y-4"
         }, credentialFields[destination_type].map(function(field) {
-            return /* @__PURE__ */ React8__namespace.createElement("div", {
+            return /* @__PURE__ */ React9__namespace.createElement("div", {
                 key: field,
                 className: "space-y-2"
-            }, /* @__PURE__ */ React8__namespace.createElement(Label, {
+            }, /* @__PURE__ */ React9__namespace.createElement(Label, {
                 className: "capitalize"
-            }, field === "host" ? "Hostname" : field === "port" ? "Port Number" : field.charAt(0).toUpperCase() + field.slice(1).replace("_", " ")), /* @__PURE__ */ React8__namespace.createElement(Input, {
+            }, field === "host" ? "Hostname" : field === "port" ? "Port Number" : field.charAt(0).toUpperCase() + field.slice(1).replace("_", " ")), /* @__PURE__ */ React9__namespace.createElement(Input, {
                 type: field.includes("password") ? "password" : "text",
                 value: credentials[field] || "",
                 onChange: function(e) {
@@ -980,13 +1002,13 @@ var ExportWrapper = function(param) {
                 },
                 placeholder: field === "port" ? "8123" : field === "host" ? "localhost" : "Enter ".concat(field.replace("_", " "))
             }));
-        })), /* @__PURE__ */ React8__namespace.createElement(CardFooter, {
+        })), /* @__PURE__ */ React9__namespace.createElement(CardFooter, {
             className: "space-x-2"
-        }, /* @__PURE__ */ React8__namespace.createElement(Button, {
+        }, /* @__PURE__ */ React9__namespace.createElement(Button, {
             onClick: function() {
                 return setCurrentStep("destination");
             }
-        }, "Back"), /* @__PURE__ */ React8__namespace.createElement(Button, {
+        }, "Back"), /* @__PURE__ */ React9__namespace.createElement(Button, {
             onClick: function() {
                 return setCurrentStep("table");
             },
@@ -994,33 +1016,33 @@ var ExportWrapper = function(param) {
         }, "Continue")));
     };
     var renderTableStep = function() {
-        return /* @__PURE__ */ React8__namespace.createElement(React8__namespace.Fragment, null, /* @__PURE__ */ React8__namespace.createElement(CardHeader, null, /* @__PURE__ */ React8__namespace.createElement(CardTitle, null, "Select Table")), /* @__PURE__ */ React8__namespace.createElement(CardContent, {
+        return /* @__PURE__ */ React9__namespace.createElement(React9__namespace.Fragment, null, /* @__PURE__ */ React9__namespace.createElement(CardHeader, null, /* @__PURE__ */ React9__namespace.createElement(CardTitle, null, "Select Table")), /* @__PURE__ */ React9__namespace.createElement(CardContent, {
             className: "space-y-4"
-        }, isLoadingTables ? /* @__PURE__ */ React8__namespace.createElement("div", {
+        }, isLoadingTables ? /* @__PURE__ */ React9__namespace.createElement("div", {
             className: "space-y-2"
-        }, /* @__PURE__ */ React8__namespace.createElement(Skeleton, {
+        }, /* @__PURE__ */ React9__namespace.createElement(Skeleton, {
             className: "h-4 w-[200px]"
-        }), /* @__PURE__ */ React8__namespace.createElement(Skeleton, {
+        }), /* @__PURE__ */ React9__namespace.createElement(Skeleton, {
             className: "h-10 w-full"
-        })) : /* @__PURE__ */ React8__namespace.createElement("div", {
+        })) : /* @__PURE__ */ React9__namespace.createElement("div", {
             className: "space-y-2"
-        }, /* @__PURE__ */ React8__namespace.createElement(Label, null, "Table"), /* @__PURE__ */ React8__namespace.createElement(Select, {
+        }, /* @__PURE__ */ React9__namespace.createElement(Label, null, "Table"), /* @__PURE__ */ React9__namespace.createElement(Select, {
             value: selectedTable,
             onValueChange: setSelectedTable
-        }, /* @__PURE__ */ React8__namespace.createElement(SelectTrigger, null, /* @__PURE__ */ React8__namespace.createElement(SelectValue, {
+        }, /* @__PURE__ */ React9__namespace.createElement(SelectTrigger, null, /* @__PURE__ */ React9__namespace.createElement(SelectValue, {
             placeholder: "Select a table"
-        })), /* @__PURE__ */ React8__namespace.createElement(SelectContent, null, availableTables.map(function(table2) {
-            return /* @__PURE__ */ React8__namespace.createElement(SelectItem, {
+        })), /* @__PURE__ */ React9__namespace.createElement(SelectContent, null, availableTables.map(function(table2) {
+            return /* @__PURE__ */ React9__namespace.createElement(SelectItem, {
                 key: table2.name,
                 value: table2.name
             }, table2.name, " (", table2.total_rows.toLocaleString(), " rows)");
-        }))))), /* @__PURE__ */ React8__namespace.createElement(CardFooter, {
+        }))))), /* @__PURE__ */ React9__namespace.createElement(CardFooter, {
             className: "space-x-2"
-        }, /* @__PURE__ */ React8__namespace.createElement(Button, {
+        }, /* @__PURE__ */ React9__namespace.createElement(Button, {
             onClick: function() {
                 return setCurrentStep("credentials");
             }
-        }, "Back"), /* @__PURE__ */ React8__namespace.createElement(Button, {
+        }, "Back"), /* @__PURE__ */ React9__namespace.createElement(Button, {
             onClick: function() {
                 return setCurrentStep("schedule");
             },
@@ -1028,28 +1050,28 @@ var ExportWrapper = function(param) {
         }, "Continue")));
     };
     var renderScheduleStep = function() {
-        return /* @__PURE__ */ React8__namespace.createElement(React8__namespace.Fragment, null, /* @__PURE__ */ React8__namespace.createElement(CardHeader, null, /* @__PURE__ */ React8__namespace.createElement(CardTitle, null, "Schedule Export")), /* @__PURE__ */ React8__namespace.createElement(CardContent, {
+        return /* @__PURE__ */ React9__namespace.createElement(React9__namespace.Fragment, null, /* @__PURE__ */ React9__namespace.createElement(CardHeader, null, /* @__PURE__ */ React9__namespace.createElement(CardTitle, null, "Schedule Export")), /* @__PURE__ */ React9__namespace.createElement(CardContent, {
             className: "space-y-4"
-        }, /* @__PURE__ */ React8__namespace.createElement("div", {
+        }, /* @__PURE__ */ React9__namespace.createElement("div", {
             className: "space-y-2"
-        }, /* @__PURE__ */ React8__namespace.createElement(Label, null, "Schedule (Optional)"), /* @__PURE__ */ React8__namespace.createElement(Input, {
+        }, /* @__PURE__ */ React9__namespace.createElement(Label, null, "Schedule (Optional)"), /* @__PURE__ */ React9__namespace.createElement(Input, {
             value: scheduledAt,
             onChange: function(e) {
                 setScheduledAt(e.target.value);
                 setDateTimeError("");
             },
             placeholder: "YYYY-MM-DDThh:mm:ssZ"
-        }), dateTimeError && /* @__PURE__ */ React8__namespace.createElement("p", {
+        }), dateTimeError && /* @__PURE__ */ React9__namespace.createElement("p", {
             className: "text-sm text-red-500 mt-1"
-        }, dateTimeError), /* @__PURE__ */ React8__namespace.createElement("p", {
+        }, dateTimeError), /* @__PURE__ */ React9__namespace.createElement("p", {
             className: "text-sm text-muted-foreground"
-        }, "Example: 2024-03-21T15:30:00Z"))), /* @__PURE__ */ React8__namespace.createElement(CardFooter, {
+        }, "Example: 2024-03-21T15:30:00Z"))), /* @__PURE__ */ React9__namespace.createElement(CardFooter, {
             className: "space-x-2"
-        }, /* @__PURE__ */ React8__namespace.createElement(Button, {
+        }, /* @__PURE__ */ React9__namespace.createElement(Button, {
             onClick: function() {
                 return setCurrentStep("credentials");
             }
-        }, "Back"), /* @__PURE__ */ React8__namespace.createElement(Button, {
+        }, "Back"), /* @__PURE__ */ React9__namespace.createElement(Button, {
             onClick: handleSubmit
         }, "Create Export")));
     };
@@ -1074,9 +1096,12 @@ var ExportWrapper = function(param) {
                             5,
                             6
                         ]);
+                        if (!internalWarehouse) {
+                            throw new Error("Warehouse ID is required");
+                        }
                         return [
                             4,
-                            fetch("".concat(PORTCULLIS_NEXT_URL2, "/api/warehouses?id=").concat(internal_warehouse), {
+                            fetch("".concat(PORTCULLIS_NEXT_URL2, "/api/warehouses?id=").concat(internalWarehouse), {
                                 method: "GET",
                                 headers: {
                                     "Content-Type": "application/json"
@@ -1127,46 +1152,36 @@ var ExportWrapper = function(param) {
             return _ref.apply(this, arguments);
         };
     }();
-    React8.useEffect(function() {
-        if (currentStep === "table") {
+    React9.useEffect(function() {
+        if (currentStep === "table" && internalWarehouse) {
             fetchAvailableTables();
         }
     }, [
-        currentStep
+        currentStep,
+        internalWarehouse
     ]);
-    return /* @__PURE__ */ React8__namespace.createElement("div", {
+    return /* @__PURE__ */ React9__namespace.createElement("div", {
         ref: containerRef,
         className: "relative w-full"
-    }, /* @__PURE__ */ React8__namespace.createElement(Card, {
+    }, /* @__PURE__ */ React9__namespace.createElement(Card, {
         className: "relative"
-    }, isLoading ? /* @__PURE__ */ React8__namespace.createElement("div", {
+    }, isLoading ? /* @__PURE__ */ React9__namespace.createElement("div", {
         className: "space-y-4"
-    }, /* @__PURE__ */ React8__namespace.createElement(Skeleton, {
+    }, /* @__PURE__ */ React9__namespace.createElement(Skeleton, {
         className: "h-10 w-full"
-    }), /* @__PURE__ */ React8__namespace.createElement("div", {
+    }), /* @__PURE__ */ React9__namespace.createElement("div", {
         className: "space-y-2"
-    }, /* @__PURE__ */ React8__namespace.createElement(Skeleton, {
+    }, /* @__PURE__ */ React9__namespace.createElement(Skeleton, {
         className: "h-4 w-[".concat(Math.min(250, containerWidth * 0.8), "px]")
-    }), /* @__PURE__ */ React8__namespace.createElement(Skeleton, {
+    }), /* @__PURE__ */ React9__namespace.createElement(Skeleton, {
         className: "h-8 w-full"
-    }), /* @__PURE__ */ React8__namespace.createElement(Skeleton, {
+    }), /* @__PURE__ */ React9__namespace.createElement(Skeleton, {
         className: "h-4 w-[".concat(Math.min(200, containerWidth * 0.6), "px]")
-    }), /* @__PURE__ */ React8__namespace.createElement(Skeleton, {
+    }), /* @__PURE__ */ React9__namespace.createElement(Skeleton, {
         className: "h-8 w-full"
-    })), /* @__PURE__ */ React8__namespace.createElement(Skeleton, {
+    })), /* @__PURE__ */ React9__namespace.createElement(Skeleton, {
         className: "h-10 w-[".concat(Math.min(120, containerWidth * 0.3), "px]")
-    })) : /* @__PURE__ */ React8__namespace.createElement(React8__namespace.Fragment, null, stepComponents[currentStep]())), /* @__PURE__ */ React8__namespace.createElement("div", {
-        className: "mt-2 flex items-center justify-end"
-    }, /* @__PURE__ */ React8__namespace.createElement("a", {
-        href: "https://runportcullis.com",
-        target: "_blank",
-        rel: "noopener noreferrer",
-        className: "inline-flex items-center gap-1.5 text-xs text-muted-foreground/60 hover:text-muted-foreground transition-colors"
-    }, /* @__PURE__ */ React8__namespace.createElement("img", {
-        src: "/portcullis.svg",
-        alt: "Portcullis logo",
-        className: "w-3 h-3"
-    }), /* @__PURE__ */ React8__namespace.createElement("span", null, "Powered by Portcullis"))));
+    })) : /* @__PURE__ */ React9__namespace.createElement(React9__namespace.Fragment, null, stepComponents[currentStep](), /* @__PURE__ */ React9__namespace.createElement(PortcullisTag, null))));
 };
 exports.ExportWrapper = ExportWrapper;
 exports.WarehouseType = WarehouseType;
