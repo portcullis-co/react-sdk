@@ -12,7 +12,6 @@ import { Skeleton } from "./ui/skeleton"
 import { useEffect, useRef, useState } from "react"
 import { createClient } from '@clickhouse/client-web';
 import { PortcullisTag } from "./PortcullisTag";
-import { DateTimePickerForm } from "./ui/datetime-picker";
 
 // Change the interface declaration to export
 export interface ExportWrapperProps {
@@ -70,12 +69,8 @@ const credentialFields = {
   [WarehouseType.Postgres]: ['host', 'port', 'database', 'username', 'password', 'schema']
 } as const;
 
-// Add this schema near the top of the file
-const dateTimeSchema = z.string().refine((value) => {
-  const regex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,3})?Z$/;
-  return regex.test(value);
-}, "Must be in ISO 8601 format (e.g., 2024-03-21T15:30:00Z)");
-
+// Update the schema to handle ISO8601 with timezone
+const dateTimeSchema = z.string().datetime();
 // Add after the enums
 const warehouseIcons = {
   [WarehouseType.Clickhouse]: <img src="https://cdn.brandfetch.io/idnezyZEJm/theme/dark/symbol.svg" alt="Clickhouse" className="mr-2 h-4 w-4" />,
@@ -271,13 +266,28 @@ export const ExportWrapper: React.FC<ExportWrapperProps> = ({
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="space-y-2">
-          <Label>Schedule Time (UTC)</Label>
-          <DateTimePickerForm 
-            value={scheduledAt}
-            onChange={(date) => setScheduledAt(date)}
+          <Label>Schedule Time</Label>
+          <Input
+            value={scheduledAt?.toISOString() || ''}
+            onChange={(e) => {
+              setScheduledAt(new Date(e.target.value));
+              try {
+                dateTimeSchema.parse(e.target.value);
+                setDateTimeError('');
+              } catch (error) {
+                if (error instanceof z.ZodError) {
+                  setDateTimeError(error.errors[0].message);
+                }
+              }
+            }}
+            placeholder="2024-03-21T15:30:00+00:00"
+            className={dateTimeError ? 'border-red-500' : ''}
           />
+          {dateTimeError && (
+            <p className="text-sm text-red-500">{dateTimeError}</p>
+          )}
           <p className="text-sm text-muted-foreground">
-            Select when you want this export to run. Leave empty for immediate execution.
+            Enter schedule time in ISO 8601 format with timezone. Leave empty for immediate execution.
           </p>
         </div>
       </CardContent>
