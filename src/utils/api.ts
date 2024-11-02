@@ -5,6 +5,7 @@ interface ExportPayload {
   internal_warehouse: string;
   destination_type: string;
   destination_name: string;
+  internal_credentials: string;
   table: string;
   credentials: Record<string, string>;
   scheduled_at?: string;

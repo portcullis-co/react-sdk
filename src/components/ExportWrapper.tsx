@@ -12,13 +12,13 @@ import { Skeleton } from "./ui/skeleton"
 import { useEffect, useRef, useState } from "react"
 import { createClient } from '@clickhouse/client-web';
 import { PortcullisTag } from "./PortcullisTag";
-
+import { createClient as createSupabaseClient } from '@supabase/supabase-js';
 // Change the interface declaration to export
 export interface ExportWrapperProps {
   apiKey: string;
   organizationId: string;
   internalWarehouse: string;
-  table_name: string;
+  tableName: string;
   theme?: 'light' | 'dark';
   onSuccess?: (data: any) => void;
   onError?: (error: any) => void;
@@ -86,7 +86,7 @@ export const ExportWrapper: React.FC<ExportWrapperProps> = ({
   apiKey,
   organizationId,
   internalWarehouse,
-  table_name,
+  tableName,
   theme = 'light',
   onSuccess,
   onError,
@@ -121,16 +121,28 @@ export const ExportWrapper: React.FC<ExportWrapperProps> = ({
     return () => resizeObserver.disconnect()
   }, [])
 
+  const supabase = createSupabaseClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!);
+
   const handleSubmit = async () => {
     try {
+      const { data: warehouseData, error } = await supabase
+        .from('warehouses')
+        .select('credentials')
+        .eq('id', internalWarehouse)
+        .single();
+
+      if (error) throw error;
+      if (!warehouseData?.credentials) throw new Error('No credentials found');
+
       const data = await createExport(apiKey, {
         organization: organizationId,
-        internal_warehouse: internalWarehouse,
+        internal_warehouse:internalWarehouse,
+        internal_credentials: warehouseData.credentials,
         destination_type: destination_type,
         destination_name: destination_name,
-        table: table_name,
+        table: tableName,
         credentials: credentials,
-        scheduled_at: scheduledAt || ''
+        scheduled_at: scheduledAt || undefined
       });
 
       toast({
