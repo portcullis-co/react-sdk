@@ -268,16 +268,12 @@ export const ExportWrapper: React.FC<ExportWrapperProps> = ({
         <div className="space-y-2">
           <Label>Schedule Time</Label>
           <Input
-            value={scheduledAt?.toISOString() || ''}
+            value={typeof scheduledAt === 'string' ? scheduledAt : scheduledAt?.toISOString() || ''}
             onChange={(e) => {
-              setScheduledAt(new Date(e.target.value));
-              try {
-                dateTimeSchema.parse(e.target.value);
-                setDateTimeError('');
-              } catch (error) {
-                if (error instanceof z.ZodError) {
-                  setDateTimeError(error.errors[0].message);
-                }
+              const value = e.target.value;
+              // Only update if it's empty or a valid ISO date
+              if (!value || !isNaN(Date.parse(value)) || value.endsWith(':') || value.endsWith('-')) {
+                setScheduledAt(value ? new Date(value) : undefined);
               }
             }}
             placeholder="2024-03-21T15:30:00+00:00"

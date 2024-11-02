@@ -993,16 +993,11 @@ var ExportWrapper = function(param) {
         }, /* @__PURE__ */ React9.createElement("div", {
             className: "space-y-2"
         }, /* @__PURE__ */ React9.createElement(Label, null, "Schedule Time"), /* @__PURE__ */ React9.createElement(Input, {
-            value: (scheduledAt === null || scheduledAt === void 0 ? void 0 : scheduledAt.toISOString()) || "",
+            value: typeof scheduledAt === "string" ? scheduledAt : (scheduledAt === null || scheduledAt === void 0 ? void 0 : scheduledAt.toISOString()) || "",
             onChange: function(e) {
-                setScheduledAt(new Date(e.target.value));
-                try {
-                    dateTimeSchema.parse(e.target.value);
-                    setDateTimeError("");
-                } catch (error) {
-                    if (_instanceof(error, z.ZodError)) {
-                        setDateTimeError(error.errors[0].message);
-                    }
+                var value = e.target.value;
+                if (!value || !isNaN(Date.parse(value)) || value.endsWith(":") || value.endsWith("-")) {
+                    setScheduledAt(value ? new Date(value) : void 0);
                 }
             },
             placeholder: "2024-03-21T15:30:00+00:00",
