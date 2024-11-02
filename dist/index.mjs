@@ -294,7 +294,6 @@ import * as LabelPrimitive from '@radix-ui/react-label';
 import { CaretSortIcon, ChevronUpIcon, ChevronDownIcon, CheckIcon } from '@radix-ui/react-icons';
 import * as SelectPrimitive from '@radix-ui/react-select';
 import * as z from 'zod';
-import { createClient } from '@clickhouse/client-web';
 // src/components/ExportWrapper.tsx
 function cn() {
     for(var _len = arguments.length, inputs = new Array(_len), _key = 0; _key < _len; _key++){
@@ -700,6 +699,11 @@ function Skeleton(_param) {
 var WarehouseType = /* @__PURE__ */ function(WarehouseType2) {
     WarehouseType2["Clickhouse"] = "clickhouse";
     WarehouseType2["Snowflake"] = "snowflake";
+    WarehouseType2["Databricks"] = "databricks";
+    WarehouseType2["BigQuery"] = "bigquery";
+    WarehouseType2["Redshift"] = "redshift";
+    WarehouseType2["Kafka"] = "kafka";
+    WarehouseType2["Postgres"] = "postgres";
     return WarehouseType2;
 }(WarehouseType || {});
 var _obj;
@@ -716,11 +720,72 @@ var credentialFields = (_obj = {}, _define_property(_obj, "clickhouse" /* Clickh
     "warehouse",
     "database",
     "schema"
+]), _define_property(_obj, "databricks" /* Databricks */ , [
+    "host",
+    "http_path",
+    "access_token",
+    "catalog",
+    "schema"
+]), _define_property(_obj, "bigquery" /* BigQuery */ , [
+    "project_id",
+    "private_key",
+    "client_email",
+    "dataset"
+]), _define_property(_obj, "redshift" /* Redshift */ , [
+    "host",
+    "port",
+    "database",
+    "username",
+    "password",
+    "schema"
+]), _define_property(_obj, "kafka" /* Kafka */ , [
+    "bootstrap_servers",
+    "topic",
+    "security_protocol",
+    "sasl_username",
+    "sasl_password"
+]), _define_property(_obj, "postgres" /* Postgres */ , [
+    "host",
+    "port",
+    "database",
+    "username",
+    "password",
+    "schema"
 ]), _obj);
 var dateTimeSchema = z.string().refine(function(value) {
     var regex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,3})?Z$/;
     return regex.test(value);
 }, "Must be in ISO 8601 format (e.g., 2024-03-21T15:30:00Z)");
+var _obj1;
+var warehouseIcons = (_obj1 = {}, _define_property(_obj1, "clickhouse" /* Clickhouse */ , /* @__PURE__ */ React8.createElement("img", {
+    src: "https://cdn.brandfetch.io/idnezyZEJm/theme/dark/symbol.svg",
+    alt: "Clickhouse",
+    className: "mr-2 h-4 w-4"
+})), _define_property(_obj1, "snowflake" /* Snowflake */ , /* @__PURE__ */ React8.createElement("img", {
+    src: "https://cdn.brandfetch.io/idJz-fGD_q/theme/dark/symbol.svg",
+    alt: "Snowflake",
+    className: "mr-2 h-4 w-4"
+})), _define_property(_obj1, "databricks" /* Databricks */ , /* @__PURE__ */ React8.createElement("img", {
+    src: "https://cdn.brandfetch.io/idSUrLOWbH/theme/dark/symbol.svg?k=bfHSJFAPEG",
+    alt: "Databricks",
+    className: "mr-2 h-4 w-4"
+})), _define_property(_obj1, "bigquery" /* BigQuery */ , /* @__PURE__ */ React8.createElement("img", {
+    src: "https://cdn.worldvectorlogo.com/logos/google-bigquery-logo-1.svg",
+    alt: "BigQuery",
+    className: "mr-2 h-4 w-4"
+})), _define_property(_obj1, "redshift" /* Redshift */ , /* @__PURE__ */ React8.createElement("img", {
+    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Amazon-Redshift-Logo.svg/218px-Amazon-Redshift-Logo.svg.png",
+    alt: "Redshift",
+    className: "mr-2 h-4 w-4"
+})), _define_property(_obj1, "kafka" /* Kafka */ , /* @__PURE__ */ React8.createElement("img", {
+    src: "https://upload.wikimedia.org/wikipedia/commons/0/05/Apache_kafka.svg",
+    alt: "Kafka",
+    className: "mr-2 h-4 w-4"
+})), _define_property(_obj1, "postgres" /* Postgres */ , /* @__PURE__ */ React8.createElement("img", {
+    src: "https://cdn.brandfetch.io/idjSeCeMle/theme/dark/logo.svg?k=bfHSJFAPEG",
+    alt: "Postgres",
+    className: "mr-2 h-4 w-4"
+})), _obj1);
 var ExportWrapper = function(param) {
     var apiKey = param.apiKey, organizationId = param.organizationId, internal_warehouse = param.internal_warehouse, _param_allowedTables = param.allowedTables, allowedTables = _param_allowedTables === void 0 ? [] : _param_allowedTables, _param_theme = param.theme, theme = _param_theme === void 0 ? "light" : _param_theme, onSuccess = param.onSuccess, onError = param.onError;
     var _React8_useState = _sliced_to_array(React8.useState("destination"), 2), currentStep = _React8_useState[0], setCurrentStep = _React8_useState[1];
@@ -737,6 +802,7 @@ var ExportWrapper = function(param) {
     var _useState1 = _sliced_to_array(useState([]), 2), availableTables = _useState1[0], setAvailableTables = _useState1[1];
     var _useState2 = _sliced_to_array(useState(""), 2), selectedTable = _useState2[0], setSelectedTable = _useState2[1];
     var _useState3 = _sliced_to_array(useState(false), 2), isLoadingTables = _useState3[0], setIsLoadingTables = _useState3[1];
+    var PORTCULLIS_NEXT_URL2 = process.env.NEXT_PUBLIC_PORTCULLIS_URL || "https://portcullis-app.fly.dev";
     useEffect(function() {
         if (!containerRef.current) return;
         var resizeObserver = new ResizeObserver(function(entries) {
@@ -842,26 +908,29 @@ var ExportWrapper = function(param) {
             className: "space-y-4"
         }, /* @__PURE__ */ React8.createElement("div", {
             className: "space-y-2"
-        }, /* @__PURE__ */ React8.createElement(Label, null, "Destination Type"), /* @__PURE__ */ React8.createElement(Select, {
+        }, /* @__PURE__ */ React8.createElement(Label, null, "Warehouse Type"), /* @__PURE__ */ React8.createElement(Select, {
             value: destination_type,
             onValueChange: function(value) {
                 return setdestination_type(value);
             }
         }, /* @__PURE__ */ React8.createElement(SelectTrigger, null, /* @__PURE__ */ React8.createElement(SelectValue, {
-            placeholder: "Select destination type"
+            placeholder: "Select a warehouse type"
         })), /* @__PURE__ */ React8.createElement(SelectContent, null, Object.values(WarehouseType).map(function(type) {
             return /* @__PURE__ */ React8.createElement(SelectItem, {
                 key: type,
-                value: type
-            }, type);
+                value: type,
+                className: "flex items-center"
+            }, warehouseIcons[type], /* @__PURE__ */ React8.createElement("span", {
+                className: "capitalize"
+            }, type));
         })))), /* @__PURE__ */ React8.createElement("div", {
             className: "space-y-2"
-        }, /* @__PURE__ */ React8.createElement(Label, null, "Destination Name"), /* @__PURE__ */ React8.createElement(Input, {
+        }, /* @__PURE__ */ React8.createElement(Label, null, "Warehouse Name"), /* @__PURE__ */ React8.createElement(Input, {
             value: destination_name,
             onChange: function(e) {
                 return setdestination_name(e.target.value);
             },
-            placeholder: "Enter destination name"
+            placeholder: "Enter a name for this warehouse"
         }))), /* @__PURE__ */ React8.createElement(CardFooter, null, /* @__PURE__ */ React8.createElement(Button, {
             onClick: function() {
                 return setCurrentStep("credentials");
@@ -878,7 +947,7 @@ var ExportWrapper = function(param) {
                 className: "space-y-2"
             }, /* @__PURE__ */ React8.createElement(Label, {
                 className: "capitalize"
-            }, field.replace("_", " ")), /* @__PURE__ */ React8.createElement(Input, {
+            }, field === "host" ? "Hostname" : field === "port" ? "Port Number" : field.charAt(0).toUpperCase() + field.slice(1).replace("_", " ")), /* @__PURE__ */ React8.createElement(Input, {
                 type: field.includes("password") ? "password" : "text",
                 value: credentials[field] || "",
                 onChange: function(e) {
@@ -886,7 +955,7 @@ var ExportWrapper = function(param) {
                         return _object_spread_props(_object_spread({}, prev), _define_property({}, field, e.target.value));
                     });
                 },
-                placeholder: "Enter ".concat(field.replace("_", " "))
+                placeholder: field === "port" ? "8123" : field === "host" ? "localhost" : "Enter ".concat(field.replace("_", " "))
             }));
         })), /* @__PURE__ */ React8.createElement(CardFooter, {
             className: "space-x-2"
@@ -969,7 +1038,7 @@ var ExportWrapper = function(param) {
     };
     var fetchAvailableTables = /*#__PURE__*/ function() {
         var _ref = _async_to_generator(function() {
-            var client, tables, rows, error;
+            var response, data, error;
             return _ts_generator(this, function(_state) {
                 switch(_state.label){
                     case 0:
@@ -982,29 +1051,27 @@ var ExportWrapper = function(param) {
                             5,
                             6
                         ]);
-                        client = createClient({
-                            host: internal_warehouse,
-                            username: credentials.username,
-                            password: credentials.password,
-                            database: credentials.database
-                        });
                         return [
                             4,
-                            client.query({
-                                query: "\n          SELECT \n            name,\n            engine,\n            total_rows\n          FROM system.tables \n          WHERE database = '".concat(credentials.database, "'\n          ").concat(allowedTables.length ? "AND name IN (".concat(allowedTables.map(function(t) {
-                                    return "'".concat(t, "'");
-                                }).join(","), ")") : "", "\n        ")
+                            fetch("".concat(PORTCULLIS_NEXT_URL2, "/api/warehouses?id=").concat(internal_warehouse), {
+                                method: "GET",
+                                headers: {
+                                    "Content-Type": "application/json"
+                                }
                             })
                         ];
                     case 2:
-                        tables = _state.sent();
+                        response = _state.sent();
+                        if (!response.ok) {
+                            throw new Error("Failed to fetch tables");
+                        }
                         return [
                             4,
-                            tables.json()
+                            response.json()
                         ];
                     case 3:
-                        rows = _state.sent();
-                        setAvailableTables(rows.data);
+                        data = _state.sent();
+                        setAvailableTables(data.tables);
                         return [
                             3,
                             6
@@ -1047,6 +1114,8 @@ var ExportWrapper = function(param) {
     return /* @__PURE__ */ React8.createElement("div", {
         ref: containerRef,
         className: "relative w-full"
+    }, /* @__PURE__ */ React8.createElement(Card, {
+        className: "relative"
     }, isLoading ? /* @__PURE__ */ React8.createElement("div", {
         className: "space-y-4"
     }, /* @__PURE__ */ React8.createElement(Skeleton, {
@@ -1063,13 +1132,17 @@ var ExportWrapper = function(param) {
         className: "h-8 w-full"
     })), /* @__PURE__ */ React8.createElement(Skeleton, {
         className: "h-10 w-[".concat(Math.min(120, containerWidth * 0.3), "px]")
-    })) : /* @__PURE__ */ React8.createElement(React8.Fragment, null, stepComponents[currentStep](), /* @__PURE__ */ React8.createElement("div", {
-        className: "absolute bottom-2 right-2 flex items-center gap-1 text-sm text-muted-foreground"
+    })) : /* @__PURE__ */ React8.createElement(React8.Fragment, null, stepComponents[currentStep]())), /* @__PURE__ */ React8.createElement("div", {
+        className: "mt-2 flex items-center justify-end"
+    }, /* @__PURE__ */ React8.createElement("a", {
+        href: "https://runportcullis.com",
+        target: "_blank",
+        rel: "noopener noreferrer",
+        className: "inline-flex items-center gap-1.5 text-xs text-muted-foreground/60 hover:text-muted-foreground transition-colors"
     }, /* @__PURE__ */ React8.createElement("img", {
         src: "/portcullis.svg",
         alt: "Portcullis logo",
-        width: 16,
-        height: 16
+        className: "w-3 h-3"
     }), /* @__PURE__ */ React8.createElement("span", null, "Powered by Portcullis"))));
 };
 export { ExportWrapper, WarehouseType };

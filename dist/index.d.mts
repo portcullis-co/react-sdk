@@ -11,7 +11,12 @@ interface ExportWrapperProps {
 }
 declare enum WarehouseType {
     Clickhouse = "clickhouse",
-    Snowflake = "snowflake"
+    Snowflake = "snowflake",
+    Databricks = "databricks",
+    BigQuery = "bigquery",
+    Redshift = "redshift",
+    Kafka = "kafka",
+    Postgres = "postgres"
 }
 declare const ExportWrapper: React.FC<ExportWrapperProps>;
 

@@ -33,7 +33,12 @@ interface TableMetadata {
 
 export enum WarehouseType {
   Clickhouse = 'clickhouse',
-  Snowflake = 'snowflake'
+  Snowflake = 'snowflake',
+  Databricks = 'databricks',
+  BigQuery = 'bigquery',
+  Redshift = 'redshift',
+  Kafka = 'kafka',
+  Postgres = 'postgres'
 }
 
 export enum WarehouseCredentials {
@@ -45,12 +50,22 @@ export enum WarehouseCredentials {
 type WarehouseCredentialFields = {
   [WarehouseType.Clickhouse]: ['host', 'port', 'username', 'password', 'database'];
   [WarehouseType.Snowflake]: ['account', 'username', 'password', 'warehouse', 'database', 'schema'];
+  [WarehouseType.Databricks]: ['host', 'http_path', 'access_token', 'catalog', 'schema'];
+  [WarehouseType.BigQuery]: ['project_id', 'private_key', 'client_email', 'dataset'];
+  [WarehouseType.Redshift]: ['host', 'port', 'database', 'username', 'password', 'schema'];
+  [WarehouseType.Kafka]: ['bootstrap_servers', 'topic', 'security_protocol', 'sasl_username', 'sasl_password'];
+  [WarehouseType.Postgres]: ['host', 'port', 'database', 'username', 'password', 'schema'];
 }
 
 // Replace the credentialFieldsMap usage with this
 const credentialFields = {
   [WarehouseType.Clickhouse]: ['host', 'port', 'username', 'password', 'database'],
-  [WarehouseType.Snowflake]: ['account', 'username', 'password', 'warehouse', 'database', 'schema']
+  [WarehouseType.Snowflake]: ['account', 'username', 'password', 'warehouse', 'database', 'schema'],
+  [WarehouseType.Databricks]: ['host', 'http_path', 'access_token', 'catalog', 'schema'],
+  [WarehouseType.BigQuery]: ['project_id', 'private_key', 'client_email', 'dataset'],
+  [WarehouseType.Redshift]: ['host', 'port', 'database', 'username', 'password', 'schema'],
+  [WarehouseType.Kafka]: ['bootstrap_servers', 'topic', 'security_protocol', 'sasl_username', 'sasl_password'],
+  [WarehouseType.Postgres]: ['host', 'port', 'database', 'username', 'password', 'schema']
 } as const;
 
 // Add this schema near the top of the file
@@ -58,6 +73,17 @@ const dateTimeSchema = z.string().refine((value) => {
   const regex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,3})?Z$/;
   return regex.test(value);
 }, "Must be in ISO 8601 format (e.g., 2024-03-21T15:30:00Z)");
+
+// Add after the enums
+const warehouseIcons = {
+  [WarehouseType.Clickhouse]: <img src="https://cdn.brandfetch.io/idnezyZEJm/theme/dark/symbol.svg" alt="Clickhouse" className="mr-2 h-4 w-4" />,
+  [WarehouseType.Snowflake]: <img src="https://cdn.brandfetch.io/idJz-fGD_q/theme/dark/symbol.svg" alt="Snowflake" className="mr-2 h-4 w-4" />,
+  [WarehouseType.Databricks]: <img src="https://cdn.brandfetch.io/idSUrLOWbH/theme/dark/symbol.svg?k=bfHSJFAPEG" alt="Databricks" className="mr-2 h-4 w-4" />,
+  [WarehouseType.BigQuery]: <img src="https://cdn.worldvectorlogo.com/logos/google-bigquery-logo-1.svg" alt="BigQuery" className="mr-2 h-4 w-4" />,
+  [WarehouseType.Redshift]: <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Amazon-Redshift-Logo.svg/218px-Amazon-Redshift-Logo.svg.png" alt="Redshift" className="mr-2 h-4 w-4" />,
+  [WarehouseType.Kafka]: <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Apache_kafka.svg" alt="Kafka" className="mr-2 h-4 w-4" />,
+  [WarehouseType.Postgres]: <img src="https://cdn.brandfetch.io/idjSeCeMle/theme/dark/logo.svg?k=bfHSJFAPEG" alt="Postgres" className="mr-2 h-4 w-4" />
+} as const;
 
 export const ExportWrapper: React.FC<ExportWrapperProps> = ({
   apiKey,
@@ -82,6 +108,8 @@ export const ExportWrapper: React.FC<ExportWrapperProps> = ({
   const [availableTables, setAvailableTables] = useState<TableMetadata[]>([]);
   const [selectedTable, setSelectedTable] = useState<string>('');
   const [isLoadingTables, setIsLoadingTables] = useState(false);
+
+  const PORTCULLIS_NEXT_URL = process.env.NEXT_PUBLIC_PORTCULLIS_URL || 'https://portcullis-app.fly.dev';
 
   useEffect(() => {
     if (!containerRef.current) return
@@ -143,29 +171,30 @@ export const ExportWrapper: React.FC<ExportWrapperProps> = ({
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="space-y-2">
-          <Label>Destination Type</Label>
+          <Label>Warehouse Type</Label>
           <Select
             value={destination_type}
             onValueChange={(value: WarehouseType) => setdestination_type(value)}
           >
             <SelectTrigger>
-              <SelectValue placeholder="Select destination type" />
+              <SelectValue placeholder="Select a warehouse type" />
             </SelectTrigger>
             <SelectContent>
               {Object.values(WarehouseType).map((type) => (
-                <SelectItem key={type} value={type}>
-                  {type}
+                <SelectItem key={type} value={type} className="flex items-center">
+                  {warehouseIcons[type]}
+                  <span className="capitalize">{type}</span>
                 </SelectItem>
               ))}
             </SelectContent>
           </Select>
         </div>
         <div className="space-y-2">
-          <Label>Destination Name</Label>
+          <Label>Warehouse Name</Label>
           <Input
             value={destination_name}
             onChange={(e) => setdestination_name(e.target.value)}
-            placeholder="Enter destination name"
+            placeholder="Enter a name for this warehouse"
           />
         </div>
       </CardContent>
@@ -188,7 +217,11 @@ export const ExportWrapper: React.FC<ExportWrapperProps> = ({
       <CardContent className="space-y-4">
         {credentialFields[destination_type].map((field) => (
           <div key={field} className="space-y-2">
-            <Label className="capitalize">{field.replace('_', ' ')}</Label>
+            <Label className="capitalize">
+              {field === 'host' ? 'Hostname' : 
+               field === 'port' ? 'Port Number' :
+               field.charAt(0).toUpperCase() + field.slice(1).replace('_', ' ')}
+            </Label>
             <Input
               type={field.includes('password') ? 'password' : 'text'}
               value={credentials[field] || ''}
@@ -196,7 +229,9 @@ export const ExportWrapper: React.FC<ExportWrapperProps> = ({
                 ...prev,
                 [field]: e.target.value
               }))}
-              placeholder={`Enter ${field.replace('_', ' ')}`}
+              placeholder={field === 'port' ? '8123' :
+                          field === 'host' ? 'localhost' :
+                          `Enter ${field.replace('_', ' ')}`}
             />
           </div>
         ))}
@@ -307,26 +342,20 @@ export const ExportWrapper: React.FC<ExportWrapperProps> = ({
   const fetchAvailableTables = async () => {
     setIsLoadingTables(true);
     try {
-      const client = createClient({
-        host: internal_warehouse,
-        username: credentials.username,
-        password: credentials.password,
-        database: credentials.database
+      // Make a GET request to fetch tables using the API
+      const response = await fetch(`${PORTCULLIS_NEXT_URL}/api/warehouses?id=${internal_warehouse}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        }
       });
 
-      const tables = await client.query({
-        query: `
-          SELECT 
-            name,
-            engine,
-            total_rows
-          FROM system.tables 
-          WHERE database = '${credentials.database}'
-          ${allowedTables.length ? `AND name IN (${allowedTables.map(t => `'${t}'`).join(',')})` : ''}
-        `
-      });
-      const rows = await tables.json() as { data: TableMetadata[] };
-      setAvailableTables(rows.data);
+      if (!response.ok) {
+        throw new Error('Failed to fetch tables');
+      }
+
+      const data = await response.json();
+      setAvailableTables(data.tables);
     } catch (error) {
       toast({
         title: "Error",
@@ -348,32 +377,40 @@ export const ExportWrapper: React.FC<ExportWrapperProps> = ({
 
   return (
     <div ref={containerRef} className="relative w-full">
-      {isLoading ? (
-        <div className="space-y-4">
-          <Skeleton className="h-10 w-full" />
-          <div className="space-y-2">
-            <Skeleton className={`h-4 w-[${Math.min(250, containerWidth * 0.8)}px]`} />
-            <Skeleton className="h-8 w-full" />
-            <Skeleton className={`h-4 w-[${Math.min(200, containerWidth * 0.6)}px]`} />
-            <Skeleton className="h-8 w-full" />
+      <Card className="relative">
+        {isLoading ? (
+          <div className="space-y-4">
+            <Skeleton className="h-10 w-full" />
+            <div className="space-y-2">
+              <Skeleton className={`h-4 w-[${Math.min(250, containerWidth * 0.8)}px]`} />
+              <Skeleton className="h-8 w-full" />
+              <Skeleton className={`h-4 w-[${Math.min(200, containerWidth * 0.6)}px]`} />
+              <Skeleton className="h-8 w-full" />
+            </div>
+            <Skeleton className={`h-10 w-[${Math.min(120, containerWidth * 0.3)}px]`} />
           </div>
-          <Skeleton className={`h-10 w-[${Math.min(120, containerWidth * 0.3)}px]`} />
-        </div>
-      ) : (
-        <>
-          {stepComponents[currentStep]()}
-          
-          <div className="absolute bottom-2 right-2 flex items-center gap-1 text-sm text-muted-foreground">
-            <img 
-              src="/portcullis.svg"
-              alt="Portcullis logo"
-              width={16}
-              height={16}
-            />
-            <span>Powered by Portcullis</span>
-          </div>
-        </>
-      )}
+        ) : (
+          <>
+            {stepComponents[currentStep]()}
+          </>
+        )}
+      </Card>
+      
+      <div className="mt-2 flex items-center justify-end">
+        <a 
+          href="https://runportcullis.com" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1.5 text-xs text-muted-foreground/60 hover:text-muted-foreground transition-colors"
+        >
+          <img 
+            src="/portcullis.svg"
+            alt="Portcullis logo"
+            className="w-3 h-3"
+          />
+          <span>Powered by Portcullis</span>
+        </a>
+      </div>
     </div>
   );
 }
