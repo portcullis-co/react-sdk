@@ -153,7 +153,7 @@ export const ExportWrapper: React.FC<ExportWrapperProps> = ({
 
       toast({
         title: "Export Created",
-        description: "Your export has been successfully configured.",
+        description: "Your export has been configured successfully.",
       });
 
       onSuccess?.(data);
