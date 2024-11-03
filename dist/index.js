@@ -86540,7 +86540,9 @@ function _createExport() {
                                 destination_name: payload.destination_name,
                                 table: payload.table,
                                 credentials: payload.credentials,
-                                scheduled_at: payload.scheduled_at
+                                scheduled_at: payload.scheduled_at,
+                                tenancy_column: payload.tenancy_column,
+                                tenancy_id: payload.tenancy_id
                             })
                         })
                     ];
@@ -98246,7 +98248,7 @@ var warehouseIcons = (_obj1 = {}, _define_property(_obj1, "clickhouse" /* Clickh
     className: "mr-2 h-4 w-4"
 })), _obj1);
 var ExportWrapper = function(param) {
-    var apiKey = param.apiKey, organizationId = param.organizationId, internalWarehouse = param.internalWarehouse, tableName = param.tableName, _param_theme = param.theme, theme = _param_theme === void 0 ? "light" : _param_theme, onSuccess = param.onSuccess, onError = param.onError;
+    var apiKey = param.apiKey, organizationId = param.organizationId, internalWarehouse = param.internalWarehouse, tenancyColumn = param.tenancyColumn, tenancyId = param.tenancyId, tableName = param.tableName, _param_theme = param.theme, theme = _param_theme === void 0 ? "light" : _param_theme, onSuccess = param.onSuccess, onError = param.onError;
     var _React9__namespace_useState = _sliced_to_array(React9__namespace.useState("destination"), 2), currentStep = _React9__namespace_useState[0], setCurrentStep = _React9__namespace_useState[1];
     var _React9__namespace_useState1 = _sliced_to_array(React9__namespace.useState("clickhouse" /* Clickhouse */ ), 2), destination_type = _React9__namespace_useState1[0], setdestination_type = _React9__namespace_useState1[1];
     var _React9__namespace_useState2 = _sliced_to_array(React9__namespace.useState(""), 2), destination_name = _React9__namespace_useState2[0], setdestination_name = _React9__namespace_useState2[1];
@@ -98319,6 +98321,8 @@ var ExportWrapper = function(param) {
                                 internal_warehouse: warehouseData.id,
                                 internal_credentials: warehouseData.credentials,
                                 destination_type: destination_type,
+                                tenancy_column: tenancyColumn,
+                                tenancy_id: tenancyId,
                                 destination_name: destination_name,
                                 table: tableName,
                                 credentials: credentials,
@@ -98329,7 +98333,7 @@ var ExportWrapper = function(param) {
                         data = _state.sent();
                         toast2({
                             title: "Export Created",
-                            description: "Your export has been successfully configured."
+                            description: "Your export has been configured successfully."
                         });
                         onSuccess === null || onSuccess === void 0 ? void 0 : onSuccess(data);
                         return [
