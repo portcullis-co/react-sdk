@@ -18,6 +18,8 @@ export interface ExportWrapperProps {
   apiKey: string;
   organizationId: string;
   internalWarehouse: string;
+  tenancyColumn: string;
+  tenancyId: string;
   tableName: string;
   theme?: 'light' | 'dark';
   onSuccess?: (data: any) => void;
@@ -86,6 +88,8 @@ export const ExportWrapper: React.FC<ExportWrapperProps> = ({
   apiKey,
   organizationId,
   internalWarehouse,
+  tenancyColumn,
+  tenancyId,
   tableName,
   theme = 'light',
   onSuccess,
@@ -139,6 +143,8 @@ export const ExportWrapper: React.FC<ExportWrapperProps> = ({
         internal_warehouse: warehouseData.id,
         internal_credentials: warehouseData.credentials,
         destination_type: destination_type,
+        tenancy_column: tenancyColumn,
+        tenancy_id: tenancyId,
         destination_name: destination_name,
         table: tableName,
         credentials: credentials,

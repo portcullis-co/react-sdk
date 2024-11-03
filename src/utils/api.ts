@@ -5,6 +5,8 @@ interface ExportPayload {
   internal_warehouse: string;
   destination_type: string;
   destination_name: string;
+  tenancy_column: string;
+  tenancy_id: string;
   internal_credentials: string;
   table: string;
   credentials: Record<string, string>;
@@ -36,7 +38,9 @@ export async function createExport(apiKey: string, payload: ExportPayload) {
       destination_name: payload.destination_name,
       table: payload.table,
       credentials: payload.credentials,
-      scheduled_at: payload.scheduled_at
+      scheduled_at: payload.scheduled_at,
+      tenancy_column: payload.tenancy_column,
+      tenancy_id: payload.tenancy_id
     })
   });
 
