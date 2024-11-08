@@ -5,6 +5,7 @@ interface ExportComponentProps {
     organizationId: string;
     internalWarehouse: string;
     tenancyColumn: string;
+    tenancyIdentifier: string;
     tableName: string;
     theme?: 'light' | 'dark';
     onSuccess?: (data: any) => void;

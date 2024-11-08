@@ -19,6 +19,7 @@ export interface ExportComponentProps {
   organizationId: string;
   internalWarehouse: string;
   tenancyColumn: string;
+  tenancyIdentifier: string;
   tableName: string;
   theme?: 'light' | 'dark';
   onSuccess?: (data: any) => void;
@@ -88,6 +89,7 @@ export const ExportComponent: React.FC<ExportComponentProps> = ({
   organizationId,
   internalWarehouse,
   tenancyColumn,
+  tenancyIdentifier,
   tableName,
   theme = 'light',
   onSuccess,
@@ -142,6 +144,7 @@ export const ExportComponent: React.FC<ExportComponentProps> = ({
         internal_credentials: warehouseData.credentials,
         destination_type: destination_type,
         tenancy_column: tenancyColumn,
+        tenancy_id: tenancyIdentifier,
         destination_name: destination_name,
         table: tableName,
         credentials: credentials,
