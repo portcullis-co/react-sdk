@@ -1,3 +1,3 @@
-export { ExportWrapper } from './components/ExportWrapper';
-export type { ExportWrapperProps } from './components/ExportWrapper';
-export { WarehouseType } from './components/ExportWrapper';
+export { ExportComponent } from './components/ExportComponent';
+export type { ExportComponentProps } from './components/ExportComponent';
+export { WarehouseType } from './components/ExportComponent';

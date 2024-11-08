@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-interface ExportWrapperProps {
+interface ExportComponentProps {
     apiKey: string;
     organizationId: string;
     internalWarehouse: string;
@@ -20,6 +20,6 @@ declare enum WarehouseType {
     Kafka = "kafka",
     Postgres = "postgres"
 }
-declare const ExportWrapper: React.FC<ExportWrapperProps>;
+declare const ExportComponent: React.FC<ExportComponentProps>;
 
-export { ExportWrapper, type ExportWrapperProps, WarehouseType };
+export { ExportComponent, type ExportComponentProps, WarehouseType };

@@ -14,7 +14,7 @@ import { createClient } from '@clickhouse/client-web';
 import { PortcullisTag } from "./PortcullisTag";
 import { createClient as createSupabaseClient } from '@supabase/supabase-js';
 // Change the interface declaration to export
-export interface ExportWrapperProps {
+export interface ExportComponentProps {
   apiKey: string;
   organizationId: string;
   internalWarehouse: string;
@@ -84,12 +84,11 @@ const warehouseIcons = {
   [WarehouseType.Postgres]: <img src="https://cdn.brandfetch.io/idjSeCeMle/theme/dark/logo.svg?k=bfHSJFAPEG" alt="Postgres" className="mr-2 h-4 w-4" />
 } as const;
 
-export const ExportWrapper: React.FC<ExportWrapperProps> = ({
+export const ExportComponent: React.FC<ExportComponentProps> = ({
   apiKey,
   organizationId,
   internalWarehouse,
   tenancyColumn,
-  tenancyId,
   tableName,
   theme = 'light',
   onSuccess,
@@ -144,7 +143,6 @@ export const ExportWrapper: React.FC<ExportWrapperProps> = ({
         internal_credentials: warehouseData.credentials,
         destination_type: destination_type,
         tenancy_column: tenancyColumn,
-        tenancy_id: tenancyId,
         destination_name: destination_name,
         table: tableName,
         credentials: credentials,

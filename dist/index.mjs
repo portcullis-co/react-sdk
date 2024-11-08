@@ -2216,8 +2216,7 @@ function _createExport() {
                                 table: payload.table,
                                 credentials: payload.credentials,
                                 scheduled_at: payload.scheduled_at,
-                                tenancy_column: payload.tenancy_column,
-                                tenancy_id: payload.tenancy_id
+                                tenancy_column: payload.tenancy_column
                             })
                         })
                     ];
@@ -13858,7 +13857,7 @@ var SupabaseClient = /*#__PURE__*/ function() {
 var createClient = function(supabaseUrl, supabaseKey, options) {
     return new SupabaseClient(supabaseUrl, supabaseKey, options);
 };
-// src/components/ExportWrapper.tsx
+// src/components/ExportComponent.tsx
 var WarehouseType = /* @__PURE__ */ function(WarehouseType2) {
     WarehouseType2["Clickhouse"] = "clickhouse";
     WarehouseType2["Snowflake"] = "snowflake";
@@ -13946,8 +13945,8 @@ var warehouseIcons = (_obj1 = {}, _define_property(_obj1, "clickhouse" /* Clickh
     alt: "Postgres",
     className: "mr-2 h-4 w-4"
 })), _obj1);
-var ExportWrapper = function(param) {
-    var apiKey = param.apiKey, organizationId = param.organizationId, internalWarehouse = param.internalWarehouse, tenancyColumn = param.tenancyColumn, tenancyId = param.tenancyId, tableName = param.tableName, _param_theme = param.theme, theme = _param_theme === void 0 ? "light" : _param_theme, onSuccess = param.onSuccess, onError = param.onError;
+var ExportComponent = function(param) {
+    var apiKey = param.apiKey, organizationId = param.organizationId, internalWarehouse = param.internalWarehouse, tenancyColumn = param.tenancyColumn, tableName = param.tableName, _param_theme = param.theme, theme = _param_theme === void 0 ? "light" : _param_theme, onSuccess = param.onSuccess, onError = param.onError;
     var _React9_useState = _sliced_to_array(React9.useState("destination"), 2), currentStep = _React9_useState[0], setCurrentStep = _React9_useState[1];
     var _React9_useState1 = _sliced_to_array(React9.useState("clickhouse" /* Clickhouse */ ), 2), destination_type = _React9_useState1[0], setdestination_type = _React9_useState1[1];
     var _React9_useState2 = _sliced_to_array(React9.useState(""), 2), destination_name = _React9_useState2[0], setdestination_name = _React9_useState2[1];
@@ -14021,7 +14020,6 @@ var ExportWrapper = function(param) {
                                 internal_credentials: warehouseData.credentials,
                                 destination_type: destination_type,
                                 tenancy_column: tenancyColumn,
-                                tenancy_id: tenancyId,
                                 destination_name: destination_name,
                                 table: tableName,
                                 credentials: credentials,
@@ -14188,4 +14186,4 @@ var ExportWrapper = function(param) {
         className: "h-10 w-[".concat(Math.min(120, containerWidth * 0.3), "px]")
     })) : /* @__PURE__ */ React9.createElement(React9.Fragment, null, stepComponents[currentStep](), /* @__PURE__ */ React9.createElement(PortcullisTag, null))));
 };
-export { ExportWrapper, WarehouseType };
+export { ExportComponent, WarehouseType };
