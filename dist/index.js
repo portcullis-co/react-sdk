@@ -86533,17 +86533,19 @@ function _createExport() {
                                 "x-api-key": apiKey,
                                 "Origin": window.location.origin
                             },
-                            body: JSON.stringify({
+                            body: JSON.stringify(_object_spread({
                                 internal_credentials: payload.internal_credentials,
                                 internal_warehouse: payload.internal_warehouse,
                                 destination_type: payload.destination_type,
                                 destination_name: payload.destination_name,
                                 table: payload.table,
                                 credentials: payload.credentials,
-                                scheduled_at: payload.scheduled_at,
-                                tenancy_column: payload.tenancy_column,
+                                scheduled_at: payload.scheduled_at
+                            }, payload.tenancy_column && {
+                                tenancy_column: payload.tenancy_column
+                            }, payload.tenancy_id && {
                                 tenancy_id: payload.tenancy_id
-                            })
+                            }))
                         })
                     ];
                 case 1:
