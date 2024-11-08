@@ -19,7 +19,6 @@ export interface ExportComponentProps {
   organizationId: string;
   internalWarehouse: string;
   tenancyColumn: string;
-  tenancyId: string;
   tableName: string;
   theme?: 'light' | 'dark';
   onSuccess?: (data: any) => void;
