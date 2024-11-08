@@ -131,17 +131,17 @@ export const ExportComponent: React.FC<ExportComponentProps> = ({
     try {
       const { data: warehouseData, error } = await supabase
         .from('warehouses')
-        .select('credentials, id')
+        .select('internal_credentials, id')
         .eq('id', internalWarehouse)
         .single();
 
       if (error) throw error;
-      if (!warehouseData?.credentials) throw new Error('No credentials found');
+      if (!warehouseData?.internal_credentials) throw new Error('No credentials found');
 
       const data = await createExport(apiKey, {
         organization: organizationId,
         internal_warehouse: warehouseData.id,
-        internal_credentials: warehouseData.credentials,
+        internal_credentials: warehouseData.internal_credentials,
         destination_type: destination_type,
         tenancy_column: tenancyColumn,
         tenancy_id: tenancyIdentifier,

@@ -14009,18 +14009,18 @@ var ExportComponent = function(param) {
                         ]);
                         return [
                             4,
-                            supabase.from("warehouses").select("credentials, id").eq("id", internalWarehouse).single()
+                            supabase.from("warehouses").select("internal_credentials, id").eq("id", internalWarehouse).single()
                         ];
                     case 1:
                         _ref = _state.sent(), warehouseData = _ref.data, _$error = _ref.error;
                         if (_$error) throw _$error;
-                        if (!(warehouseData === null || warehouseData === void 0 ? void 0 : warehouseData.credentials)) throw new Error("No credentials found");
+                        if (!(warehouseData === null || warehouseData === void 0 ? void 0 : warehouseData.internal_credentials)) throw new Error("No credentials found");
                         return [
                             4,
                             createExport(apiKey, {
                                 organization: organizationId,
                                 internal_warehouse: warehouseData.id,
-                                internal_credentials: warehouseData.credentials,
+                                internal_credentials: warehouseData.internal_credentials,
                                 destination_type: destination_type,
                                 tenancy_column: tenancyColumn,
                                 tenancy_id: tenancyIdentifier,
