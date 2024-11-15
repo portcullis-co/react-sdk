@@ -98337,6 +98337,7 @@ var ExportComponent = function(param) {
                             title: "Export Created",
                             description: "Your export has been configured successfully."
                         });
+                        setCurrentStep("success");
                         onSuccess === null || onSuccess === void 0 ? void 0 : onSuccess(data);
                         return [
                             3,
@@ -98365,6 +98366,25 @@ var ExportComponent = function(param) {
             return _ref.apply(this, arguments);
         };
     }();
+    var CheckmarkAnimation = function() {
+        return /* @__PURE__ */ React9__namespace.createElement("div", {
+            className: "flex items-center justify-center p-8"
+        }, /* @__PURE__ */ React9__namespace.createElement("svg", {
+            className: "checkmark w-16 h-16",
+            xmlns: "http://www.w3.org/2000/svg",
+            viewBox: "0 0 52 52"
+        }, /* @__PURE__ */ React9__namespace.createElement("circle", {
+            className: "checkmark__circle",
+            cx: "26",
+            cy: "26",
+            r: "25",
+            fill: "none"
+        }), /* @__PURE__ */ React9__namespace.createElement("path", {
+            className: "checkmark__check",
+            fill: "none",
+            d: "M14.1 27.2l7.1 7.2 16.7-16.8"
+        })));
+    };
     var renderDestinationStep = function() {
         return /* @__PURE__ */ React9__namespace.createElement(React9__namespace.Fragment, null, /* @__PURE__ */ React9__namespace.createElement(CardHeader, null, /* @__PURE__ */ React9__namespace.createElement(CardTitle, null, "Configure Destination")), /* @__PURE__ */ React9__namespace.createElement(CardContent, {
             className: "space-y-4"
@@ -98463,10 +98483,49 @@ var ExportComponent = function(param) {
             disabled: !!dateTimeError
         }, "Create Export")));
     };
+    var renderSuccessStep = function() {
+        return /* @__PURE__ */ React9__namespace.createElement(React9__namespace.Fragment, null, /* @__PURE__ */ React9__namespace.createElement(CardHeader, {
+            className: "text-center"
+        }, /* @__PURE__ */ React9__namespace.createElement(CardTitle, {
+            className: "text-2xl sm:text-3xl font-bold bg-gradient-to-r from-green-400 to-emerald-600 bg-clip-text text-transparent animate-gradient bg-[length:200%_auto]"
+        }, "Export Created Successfully! \u{1F389}")), /* @__PURE__ */ React9__namespace.createElement(CardContent, {
+            className: "space-y-6"
+        }, /* @__PURE__ */ React9__namespace.createElement("div", {
+            className: "relative"
+        }, /* @__PURE__ */ React9__namespace.createElement("div", {
+            className: "absolute inset-0 bg-gradient-to-r from-green-100 to-emerald-100 dark:from-green-900/20 dark:to-emerald-900/20 rounded-full blur-xl opacity-70 animate-pulse"
+        }), /* @__PURE__ */ React9__namespace.createElement(CheckmarkAnimation, null)), /* @__PURE__ */ React9__namespace.createElement("div", {
+            className: "space-y-4 text-center max-w-md mx-auto"
+        }, /* @__PURE__ */ React9__namespace.createElement("p", {
+            className: "text-lg sm:text-xl text-muted-foreground"
+        }, "Your export has been configured and will begin processing shortly."), /* @__PURE__ */ React9__namespace.createElement("div", {
+            className: "flex items-center justify-center gap-2 text-sm text-muted-foreground"
+        }, /* @__PURE__ */ React9__namespace.createElement("span", {
+            className: "relative flex h-3 w-3"
+        }, /* @__PURE__ */ React9__namespace.createElement("span", {
+            className: "animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"
+        }), /* @__PURE__ */ React9__namespace.createElement("span", {
+            className: "relative inline-flex rounded-full h-3 w-3 bg-green-500"
+        })), "Processing in background"))), /* @__PURE__ */ React9__namespace.createElement(CardFooter, {
+            className: "flex flex-col sm:flex-row gap-4 justify-center items-center"
+        }, /* @__PURE__ */ React9__namespace.createElement(Button, {
+            onClick: function() {
+                return setCurrentStep("destination");
+            },
+            className: "w-full sm:w-auto bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+        }, "Create Another Export"), /* @__PURE__ */ React9__namespace.createElement(Button, {
+            variant: "outline",
+            className: "w-full sm:w-auto hover:bg-green-50 dark:hover:bg-green-900/20 transition-all duration-300",
+            onClick: function() {
+                return window.open("https://docs.portcullis.com", "_blank");
+            }
+        }, "View Documentation")));
+    };
     var stepComponents = {
         destination: renderDestinationStep,
         credentials: renderCredentialsStep,
-        schedule: renderScheduleStep
+        schedule: renderScheduleStep,
+        success: renderSuccessStep
     };
     return /* @__PURE__ */ React9__namespace.createElement("div", {
         ref: containerRef,
