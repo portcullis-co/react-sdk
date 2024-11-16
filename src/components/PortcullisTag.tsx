@@ -1,13 +1,13 @@
 import { cn } from "../utils/utils";
 import React from "react";
-import { Card } from "./ui/card";
+import { ShinyButton } from "./ui/shiny-button";
 
 export const PortcullisTag = () => {
   return (
     <div className="flex justify-center mt-4">
-      <Card className="flex items-center gap-2 p-2 rounded-full shadow-md bg-white dark:bg-gray-800">
+      <ShinyButton className="border-2 border-transparent bg-gradient-to-r from-[#faff69] to-[#171717]">
         <a
-          href="https://runportcullis.com"
+          href="https://www.runportcullis.co"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center justify-end group"
@@ -30,7 +30,7 @@ export const PortcullisTag = () => {
             </span>
           </div>
         </a>
-      </Card>
+      </ShinyButton>
     </div>
   );
 }; 
