@@ -86592,11 +86592,11 @@ var AnimatedShinyText = function(param) {
 var animated_shiny_text_default = AnimatedShinyText;
 var PortcullisTag = function() {
     return /* @__PURE__ */ React12__namespace.default.createElement("div", {
-        className: "z-10 flex min-h-64 items-center justify-start"
+        className: "z-10 flex min-h-64 items-center justify-start mx-4 my-2"
     }, /* @__PURE__ */ React12__namespace.default.createElement("div", {
-        className: cn("group rounded-full border border-black/5 bg-neutral-100 text-base text-white transition-all ease-in hover:cursor-pointer hover:bg-neutral-200 dark:border-white/5 dark:bg-neutral-900 dark:hover:bg-neutral-800")
+        className: cn("group rounded-full bg-gray-200 text-sm text-white transition-all ease-in hover:cursor-pointer hover:bg-neutral-200 dark:bg-neutral-900 dark:hover:bg-neutral-800")
     }, /* @__PURE__ */ React12__namespace.default.createElement(animated_shiny_text_default, {
-        className: "inline-flex items-center justify-center px-4 py-1 transition ease-out hover:text-neutral-600 hover:duration-300 hover:dark:text-neutral-400"
+        className: "inline-flex items-center justify-center px-2 py-0.5 transition ease-out hover:text-neutral-600 hover:duration-300 hover:dark:text-neutral-400"
     }, /* @__PURE__ */ React12__namespace.default.createElement("img", {
         src: "/portcullis.svg",
         alt: "Portcullis Logo",
