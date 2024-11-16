@@ -412,7 +412,7 @@ import { twMerge } from 'tailwind-merge';
 import { Slot } from '@radix-ui/react-slot';
 import { cva } from 'class-variance-authority';
 import * as LabelPrimitive from '@radix-ui/react-label';
-import { CaretSortIcon, ChevronUpIcon, ChevronDownIcon, CheckIcon, ArrowRightIcon } from '@radix-ui/react-icons';
+import { CaretSortIcon, ChevronUpIcon, ChevronDownIcon, CheckIcon } from '@radix-ui/react-icons';
 import * as SelectPrimitive from '@radix-ui/react-select';
 import * as z from 'zod';
 import { Loader2 } from 'lucide-react';
@@ -2255,18 +2255,14 @@ function Skeleton(_param) {
 }
 var PortcullisTag = function() {
     return /* @__PURE__ */ React11__default.createElement("div", {
-        className: "z-10 flex min-h-64 items-center justify-start mx-4 my-2"
-    }, /* @__PURE__ */ React11__default.createElement("div", {
-        className: cn("group rounded-full bg-gray-200 text-sm text-white transition-all ease-in hover:cursor-pointer hover:bg-neutral-200 dark:bg-neutral-900 dark:hover:bg-neutral-800")
+        className: "flex items-center justify-start mx-4 my-2"
     }, /* @__PURE__ */ React11__default.createElement("img", {
         src: "/portcullis.svg",
         alt: "Portcullis Logo",
-        className: "mr-2 h-6 w-6"
+        className: "h-6 w-6 mr-2"
     }), /* @__PURE__ */ React11__default.createElement("span", {
-        className: "text-black"
-    }, "Powered by Portcullis"), /* @__PURE__ */ React11__default.createElement(ArrowRightIcon, {
-        className: "ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5"
-    })));
+        className: "bg-gray-200 text-sm text-black px-2 py-1 rounded"
+    }, "Powered by Portcullis"));
 };
 // ../node_modules/@supabase/functions-js/dist/module/helper.js
 var resolveFetch = function(customFetch) {
