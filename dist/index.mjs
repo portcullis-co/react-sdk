@@ -2259,9 +2259,9 @@ var PortcullisTag = function() {
     }, /* @__PURE__ */ React11__default.createElement("img", {
         src: "/portcullis.svg",
         alt: "Portcullis Logo",
-        className: "h-6 w-6 mr-2"
+        className: "h-6 w-6"
     }), /* @__PURE__ */ React11__default.createElement("span", {
-        className: "bg-gray-200 text-sm text-black px-2 py-1 rounded"
+        className: "text-sm text-black px-2 py-1"
     }, "Powered by Portcullis"));
 };
 // ../node_modules/@supabase/functions-js/dist/module/helper.js
@@ -14062,7 +14062,7 @@ var ExportComponent = function(param) {
     };
     var handleSubmit = /*#__PURE__*/ function() {
         var _ref = _async_to_generator(function() {
-            var _ref, warehouseData, _$error, processedCredentials, serviceAccountKey, result, data, error;
+            var _ref, warehouseData, _$error, processedCredentials, serviceAccountKey, data, error;
             return _ts_generator(this, function(_state) {
                 switch(_state.label){
                     case 0:
@@ -14082,21 +14082,33 @@ var ExportComponent = function(param) {
                         if (_$error) throw _$error;
                         if (!(warehouseData === null || warehouseData === void 0 ? void 0 : warehouseData.internal_credentials)) throw new Error("No credentials found");
                         processedCredentials = _object_spread({}, credentials);
-                        if (destination_type === "bigquery" /* BigQuery */  && credentials.service_account_key) {
+                        if (destination_type === "bigquery" /* BigQuery */ ) {
                             try {
-                                serviceAccountKey = JSON.parse(credentials.service_account_key);
-                                result = bigQueryServiceAccountSchema.safeParse(serviceAccountKey);
-                                if (!result.success) {
-                                    throw new Error("Invalid service account key format");
+                                if (credentials.service_account_key) {
+                                    serviceAccountKey = JSON.parse(credentials.service_account_key);
+                                    processedCredentials = {
+                                        project_id: serviceAccountKey.project_id,
+                                        private_key: serviceAccountKey.private_key,
+                                        client_email: serviceAccountKey.client_email,
+                                        dataset: credentials.dataset
+                                    };
+                                } else {
+                                    if (!credentials.project_id || !credentials.private_key || !credentials.client_email) {
+                                        throw new Error("Missing required BigQuery credentials");
+                                    }
+                                    processedCredentials = {
+                                        project_id: credentials.project_id,
+                                        private_key: credentials.private_key,
+                                        client_email: credentials.client_email,
+                                        dataset: credentials.dataset
+                                    };
                                 }
-                                processedCredentials = {
-                                    project_id: serviceAccountKey.project_id,
-                                    private_key: serviceAccountKey.private_key,
-                                    client_email: serviceAccountKey.client_email,
-                                    dataset: credentials.dataset
-                                };
                             } catch (e) {
-                                throw new Error("Invalid JSON format in service account key");
+                                setCredentialError(_instanceof(e, Error) ? e.message : "Invalid credentials format");
+                                setIsSubmitting(false);
+                                return [
+                                    2
+                                ];
                             }
                         }
                         return [
@@ -14202,6 +14214,17 @@ var ExportComponent = function(param) {
             value: credentials.service_account_key || "",
             onChange: function(e) {
                 setCredentialError("");
+                try {
+                    var parsed = JSON.parse(e.target.value);
+                    var result = bigQueryServiceAccountSchema.safeParse(parsed);
+                    if (!result.success) {
+                        setCredentialError("Invalid service account key format");
+                    }
+                } catch (error) {
+                    if (e.target.value.trim()) {
+                        setCredentialError("Invalid JSON format");
+                    }
+                }
                 setCredentials(function(prev) {
                     return _object_spread_props(_object_spread({}, prev), {
                         service_account_key: e.target.value
@@ -14225,7 +14248,8 @@ var ExportComponent = function(param) {
                     });
                 });
             },
-            placeholder: "Enter BigQuery dataset name"
+            placeholder: "Enter BigQuery dataset name",
+            required: true
         }))) : credentialFields[destination_type].map(function(field) {
             return /* @__PURE__ */ React11.createElement("div", {
                 key: field,
@@ -14252,7 +14276,7 @@ var ExportComponent = function(param) {
             onClick: function() {
                 return setCurrentStep("schedule");
             },
-            disabled: !Object.keys(credentials).length
+            disabled: !Object.keys(credentials).length || !!credentialError
         }, "Continue")));
     };
     var renderLoadingSpinner = function() {

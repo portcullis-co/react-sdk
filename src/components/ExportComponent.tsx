@@ -175,25 +175,34 @@ export const ExportComponent: React.FC<ExportComponentProps> = ({
 
       let processedCredentials = { ...credentials };
 
-      // Process BigQuery credentials if necessary
-      if (destination_type === WarehouseType.BigQuery && credentials.service_account_key) {
+      // Process BigQuery credentials
+      if (destination_type === WarehouseType.BigQuery) {
         try {
-          const serviceAccountKey = JSON.parse(credentials.service_account_key);
-          const result = bigQueryServiceAccountSchema.safeParse(serviceAccountKey);
-          
-          if (!result.success) {
-            throw new Error('Invalid service account key format');
+          // Handle both cases: when service_account_key is a string or when individual fields are provided
+          if (credentials.service_account_key) {
+            const serviceAccountKey = JSON.parse(credentials.service_account_key);
+            processedCredentials = {
+              project_id: serviceAccountKey.project_id,
+              private_key: serviceAccountKey.private_key,
+              client_email: serviceAccountKey.client_email,
+              dataset: credentials.dataset // Preserve dataset field
+            };
+          } else {
+            // Validate required fields
+            if (!credentials.project_id || !credentials.private_key || !credentials.client_email) {
+              throw new Error('Missing required BigQuery credentials');
+            }
+            processedCredentials = {
+              project_id: credentials.project_id,
+              private_key: credentials.private_key,
+              client_email: credentials.client_email,
+              dataset: credentials.dataset
+            };
           }
-
-          // Extract relevant fields for the API
-          processedCredentials = {
-            project_id: serviceAccountKey.project_id,
-            private_key: serviceAccountKey.private_key,
-            client_email: serviceAccountKey.client_email,
-            dataset: credentials.dataset // Preserve dataset if it was set separately
-          };
         } catch (e) {
-          throw new Error('Invalid JSON format in service account key');
+          setCredentialError(e instanceof Error ? e.message : 'Invalid credentials format');
+          setIsSubmitting(false);
+          return;
         }
       }
 
@@ -304,6 +313,19 @@ export const ExportComponent: React.FC<ExportComponentProps> = ({
                 value={credentials.service_account_key || ''}
                 onChange={(e) => {
                   setCredentialError('');
+                  try {
+                    // Validate JSON format when pasting
+                    const parsed = JSON.parse(e.target.value);
+                    const result = bigQueryServiceAccountSchema.safeParse(parsed);
+                    if (!result.success) {
+                      setCredentialError('Invalid service account key format');
+                    }
+                  } catch (error) {
+                    // Only set error if there's content (allow empty field)
+                    if (e.target.value.trim()) {
+                      setCredentialError('Invalid JSON format');
+                    }
+                  }
                   setCredentials(prev => ({
                     ...prev,
                     service_account_key: e.target.value
@@ -332,6 +354,7 @@ export const ExportComponent: React.FC<ExportComponentProps> = ({
                   dataset: e.target.value
                 }))}
                 placeholder="Enter BigQuery dataset name"
+                required
               />
             </div>
           </>
@@ -357,20 +380,20 @@ export const ExportComponent: React.FC<ExportComponentProps> = ({
             </div>
           ))
         )}
-      </CardContent>
-      <CardFooter className="space-x-2">
-        <Button onClick={() => setCurrentStep('destination')}>
-          Back
-        </Button>
-        <Button
-          onClick={() => setCurrentStep('schedule')}
-          disabled={!Object.keys(credentials).length}
-        >
-          Continue
-        </Button>
-      </CardFooter>
-    </>
-  );
+        </CardContent>
+        <CardFooter className="space-x-2">
+          <Button onClick={() => setCurrentStep('destination')}>
+            Back
+          </Button>
+          <Button
+            onClick={() => setCurrentStep('schedule')}
+            disabled={!Object.keys(credentials).length || !!credentialError}
+          >
+            Continue
+          </Button>
+        </CardFooter>
+      </>
+    );
 
   const renderLoadingSpinner = () => (
     <div className="flex items-center justify-center p-8">
