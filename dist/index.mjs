@@ -2255,12 +2255,14 @@ function Skeleton(_param) {
 }
 var PortcullisTag = function() {
     return /* @__PURE__ */ React10__default.createElement("div", {
-        className: "border-t border-border/40"
+        className: "flex justify-center mt-4"
+    }, /* @__PURE__ */ React10__default.createElement(Card, {
+        className: "flex items-center gap-2 p-2 rounded-full shadow-md bg-white dark:bg-gray-800"
     }, /* @__PURE__ */ React10__default.createElement("a", {
         href: "https://runportcullis.com",
         target: "_blank",
         rel: "noopener noreferrer",
-        className: "flex items-center justify-end p-4 group"
+        className: "flex items-center justify-end group"
     }, /* @__PURE__ */ React10__default.createElement("div", {
         className: "flex items-center gap-2"
     }, /* @__PURE__ */ React10__default.createElement("img", {
@@ -2269,7 +2271,7 @@ var PortcullisTag = function() {
         className: "w-4 h-4 group-hover:scale-110 transition-transform duration-200"
     }), /* @__PURE__ */ React10__default.createElement("span", {
         className: cn("text-sm font-semibold bg-gradient-to-r from-[#faff69] to-[#171717]", "bg-clip-text text-transparent", "animate-gradient bg-[length:200%_auto]", "group-hover:bg-[length:300%_auto] transition-all duration-200")
-    }, "Powered by Portcullis"))));
+    }, "Powered by Portcullis")))));
 };
 // ../node_modules/@supabase/functions-js/dist/module/helper.js
 var resolveFetch = function(customFetch) {
@@ -14233,7 +14235,11 @@ var ExportComponent = function(param) {
         }, "Create Export")));
     };
     var renderSuccessStep = function() {
-        return /* @__PURE__ */ React10.createElement(React10.Fragment, null, /* @__PURE__ */ React10.createElement(CardHeader, {
+        return /* @__PURE__ */ React10.createElement("div", {
+            className: "flex justify-center"
+        }, /* @__PURE__ */ React10.createElement(Card, {
+            className: "max-w-md w-full"
+        }, /* @__PURE__ */ React10.createElement(CardHeader, {
             className: "text-center"
         }, /* @__PURE__ */ React10.createElement(CardTitle, {
             className: "text-2xl sm:text-3xl font-bold bg-gradient-to-r from-green-400 to-emerald-600 bg-clip-text text-transparent animate-gradient bg-[length:200%_auto]"
@@ -14266,9 +14272,9 @@ var ExportComponent = function(param) {
             variant: "outline",
             className: "w-full sm:w-auto hover:bg-green-50 dark:hover:bg-green-900/20 transition-all duration-300",
             onClick: function() {
-                return window.open("https://docs.portcullis.com", "_blank");
+                return window.open("https://docs.runportcullis.co", "_blank");
             }
-        }, "View Documentation")));
+        }, "View Documentation"))));
     };
     var stepComponents = {
         destination: renderDestinationStep,

@@ -25,6 +25,7 @@ export interface ExportComponentProps {
   theme?: 'light' | 'dark';
   onSuccess?: (data: any) => void;
   onError?: (error: any) => void;
+  className?: string;
 }
 
 type Step = 'destination' | 'credentials' | 'schedule' | 'success';
@@ -339,46 +340,48 @@ export const ExportComponent: React.FC<ExportComponentProps> = ({
   );
 
   const renderSuccessStep = () => (
-    <>
-      <CardHeader className="text-center">
-        <CardTitle className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-green-400 to-emerald-600 bg-clip-text text-transparent animate-gradient bg-[length:200%_auto]">
-          Export Created Successfully! 🎉
-        </CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-6">
-        <div className="relative">
-          <div className="absolute inset-0 bg-gradient-to-r from-green-100 to-emerald-100 dark:from-green-900/20 dark:to-emerald-900/20 rounded-full blur-xl opacity-70 animate-pulse" />
-          <CheckmarkAnimation />
-        </div>
-        <div className="space-y-4 text-center max-w-md mx-auto">
-          <p className="text-lg sm:text-xl text-muted-foreground">
-            Your export has been configured and will begin processing shortly.
-          </p>
-          <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
-            <span className="relative flex h-3 w-3">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-            </span>
-            Processing in background
+    <div className="flex justify-center">
+      <Card className="max-w-md w-full">
+        <CardHeader className="text-center">
+          <CardTitle className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-green-400 to-emerald-600 bg-clip-text text-transparent animate-gradient bg-[length:200%_auto]">
+            Export Created Successfully! 🎉
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          <div className="relative">
+            <div className="absolute inset-0 bg-gradient-to-r from-green-100 to-emerald-100 dark:from-green-900/20 dark:to-emerald-900/20 rounded-full blur-xl opacity-70 animate-pulse" />
+            <CheckmarkAnimation />
           </div>
-        </div>
-      </CardContent>
-      <CardFooter className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-        <Button 
-          onClick={() => setCurrentStep('destination')}
-          className="w-full sm:w-auto bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
-        >
-          Create Another Export
-        </Button>
-        <Button 
-          variant="outline"
-          className="w-full sm:w-auto hover:bg-green-50 dark:hover:bg-green-900/20 transition-all duration-300"
-          onClick={() => window.open('https://docs.portcullis.com', '_blank')}
-        >
-          View Documentation
-        </Button>
-      </CardFooter>
-    </>
+          <div className="space-y-4 text-center max-w-md mx-auto">
+            <p className="text-lg sm:text-xl text-muted-foreground">
+              Your export has been configured and will begin processing shortly.
+            </p>
+            <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
+              <span className="relative flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+              </span>
+              Processing in background
+            </div>
+          </div>
+        </CardContent>
+        <CardFooter className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <Button 
+            onClick={() => setCurrentStep('destination')}
+            className="w-full sm:w-auto bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+          >
+            Create Another Export
+          </Button>
+          <Button 
+            variant="outline"
+            className="w-full sm:w-auto hover:bg-green-50 dark:hover:bg-green-900/20 transition-all duration-300"
+            onClick={() => window.open('https://docs.runportcullis.co', '_blank')}
+          >
+            View Documentation
+          </Button>
+        </CardFooter>
+      </Card>
+    </div>
   );
 
   const stepComponents = {

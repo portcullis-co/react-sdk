@@ -10,6 +10,7 @@ interface ExportComponentProps {
     theme?: 'light' | 'dark';
     onSuccess?: (data: any) => void;
     onError?: (error: any) => void;
+    className?: string;
 }
 declare enum WarehouseType {
     Clickhouse = "clickhouse",
