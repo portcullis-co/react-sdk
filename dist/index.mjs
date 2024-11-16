@@ -405,17 +405,16 @@ function _ts_generator(thisArg, body) {
 }
 import { require_lib } from './chunk-KVIJIKN6.mjs';
 import { __commonJS, __toESM } from './chunk-6DZX6EAA.mjs';
-import * as React11 from 'react';
-import React11__default, { useRef, useState, useEffect } from 'react';
+import * as React12 from 'react';
+import React12__default, { useRef, useState, useEffect } from 'react';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { Slot } from '@radix-ui/react-slot';
 import { cva } from 'class-variance-authority';
 import * as LabelPrimitive from '@radix-ui/react-label';
-import { CaretSortIcon, ChevronUpIcon, ChevronDownIcon, CheckIcon } from '@radix-ui/react-icons';
+import { CaretSortIcon, ChevronUpIcon, ChevronDownIcon, CheckIcon, ArrowRightIcon } from '@radix-ui/react-icons';
 import * as SelectPrimitive from '@radix-ui/react-select';
 import * as z from 'zod';
-import { motion } from 'framer-motion';
 import { Loader2 } from 'lucide-react';
 // ../node_modules/@supabase/postgrest-js/dist/cjs/PostgrestError.js
 var require_PostgrestError = __commonJS({
@@ -1841,61 +1840,61 @@ function cn() {
     return twMerge(clsx(inputs));
 }
 // src/components/ui/card.tsx
-var Card = React11.forwardRef(function(_param, ref) {
+var Card = React12.forwardRef(function(_param, ref) {
     var className = _param.className, props = _object_without_properties(_param, [
         "className"
     ]);
-    return /* @__PURE__ */ React11.createElement("div", _object_spread({
+    return /* @__PURE__ */ React12.createElement("div", _object_spread({
         ref: ref,
         className: cn("rounded-xl border bg-card text-card-foreground shadow", className)
     }, props));
 });
 Card.displayName = "Card";
-var CardHeader = React11.forwardRef(function(_param, ref) {
+var CardHeader = React12.forwardRef(function(_param, ref) {
     var className = _param.className, props = _object_without_properties(_param, [
         "className"
     ]);
-    return /* @__PURE__ */ React11.createElement("div", _object_spread({
+    return /* @__PURE__ */ React12.createElement("div", _object_spread({
         ref: ref,
         className: cn("flex flex-col space-y-1.5 p-6", className)
     }, props));
 });
 CardHeader.displayName = "CardHeader";
-var CardTitle = React11.forwardRef(function(_param, ref) {
+var CardTitle = React12.forwardRef(function(_param, ref) {
     var className = _param.className, props = _object_without_properties(_param, [
         "className"
     ]);
-    return /* @__PURE__ */ React11.createElement("h3", _object_spread({
+    return /* @__PURE__ */ React12.createElement("h3", _object_spread({
         ref: ref,
         className: cn("font-semibold leading-none tracking-tight", className)
     }, props));
 });
 CardTitle.displayName = "CardTitle";
-var CardDescription = React11.forwardRef(function(_param, ref) {
+var CardDescription = React12.forwardRef(function(_param, ref) {
     var className = _param.className, props = _object_without_properties(_param, [
         "className"
     ]);
-    return /* @__PURE__ */ React11.createElement("p", _object_spread({
+    return /* @__PURE__ */ React12.createElement("p", _object_spread({
         ref: ref,
         className: cn("text-sm text-muted-foreground", className)
     }, props));
 });
 CardDescription.displayName = "CardDescription";
-var CardContent = React11.forwardRef(function(_param, ref) {
+var CardContent = React12.forwardRef(function(_param, ref) {
     var className = _param.className, props = _object_without_properties(_param, [
         "className"
     ]);
-    return /* @__PURE__ */ React11.createElement("div", _object_spread({
+    return /* @__PURE__ */ React12.createElement("div", _object_spread({
         ref: ref,
         className: cn("p-6 pt-0", className)
     }, props));
 });
 CardContent.displayName = "CardContent";
-var CardFooter = React11.forwardRef(function(_param, ref) {
+var CardFooter = React12.forwardRef(function(_param, ref) {
     var className = _param.className, props = _object_without_properties(_param, [
         "className"
     ]);
-    return /* @__PURE__ */ React11.createElement("div", _object_spread({
+    return /* @__PURE__ */ React12.createElement("div", _object_spread({
         ref: ref,
         className: cn("flex items-center p-6 pt-0", className)
     }, props));
@@ -1923,7 +1922,7 @@ var buttonVariants = cva("inline-flex items-center justify-center whitespace-now
         size: "default"
     }
 });
-var Button = React11.forwardRef(function(_param, ref) {
+var Button = React12.forwardRef(function(_param, ref) {
     var className = _param.className, variant = _param.variant, size = _param.size, _param_asChild = _param.asChild, asChild = _param_asChild === void 0 ? false : _param_asChild, props = _object_without_properties(_param, [
         "className",
         "variant",
@@ -1931,7 +1930,7 @@ var Button = React11.forwardRef(function(_param, ref) {
         "asChild"
     ]);
     var Comp = asChild ? Slot : "button";
-    return /* @__PURE__ */ React11.createElement(Comp, _object_spread({
+    return /* @__PURE__ */ React12.createElement(Comp, _object_spread({
         className: cn(buttonVariants({
             variant: variant,
             size: size,
@@ -1941,12 +1940,12 @@ var Button = React11.forwardRef(function(_param, ref) {
     }, props));
 });
 Button.displayName = "Button";
-var Input = React11.forwardRef(function(_param, ref) {
+var Input = React12.forwardRef(function(_param, ref) {
     var className = _param.className, type = _param.type, props = _object_without_properties(_param, [
         "className",
         "type"
     ]);
-    return /* @__PURE__ */ React11.createElement("input", _object_spread({
+    return /* @__PURE__ */ React12.createElement("input", _object_spread({
         type: type,
         className: cn("flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50", className),
         ref: ref
@@ -1954,11 +1953,11 @@ var Input = React11.forwardRef(function(_param, ref) {
 });
 Input.displayName = "Input";
 var labelVariants = cva("text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70");
-var Label = React11.forwardRef(function(_param, ref) {
+var Label = React12.forwardRef(function(_param, ref) {
     var className = _param.className, props = _object_without_properties(_param, [
         "className"
     ]);
-    return /* @__PURE__ */ React11.createElement(LabelPrimitive.Root, _object_spread({
+    return /* @__PURE__ */ React12.createElement(LabelPrimitive.Root, _object_spread({
         ref: ref,
         className: cn(labelVariants(), className)
     }, props));
@@ -1966,86 +1965,86 @@ var Label = React11.forwardRef(function(_param, ref) {
 Label.displayName = LabelPrimitive.Root.displayName;
 var Select = SelectPrimitive.Root;
 var SelectValue = SelectPrimitive.Value;
-var SelectTrigger = React11.forwardRef(function(_param, ref) {
+var SelectTrigger = React12.forwardRef(function(_param, ref) {
     var className = _param.className, children = _param.children, props = _object_without_properties(_param, [
         "className",
         "children"
     ]);
-    return /* @__PURE__ */ React11.createElement(SelectPrimitive.Trigger, _object_spread({
+    return /* @__PURE__ */ React12.createElement(SelectPrimitive.Trigger, _object_spread({
         ref: ref,
         className: cn("flex h-9 w-full items-center justify-between whitespace-nowrap rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1", className)
-    }, props), children, /* @__PURE__ */ React11.createElement(SelectPrimitive.Icon, {
+    }, props), children, /* @__PURE__ */ React12.createElement(SelectPrimitive.Icon, {
         asChild: true
-    }, /* @__PURE__ */ React11.createElement(CaretSortIcon, {
+    }, /* @__PURE__ */ React12.createElement(CaretSortIcon, {
         className: "h-4 w-4 opacity-50"
     })));
 });
 SelectTrigger.displayName = SelectPrimitive.Trigger.displayName;
-var SelectScrollUpButton = React11.forwardRef(function(_param, ref) {
+var SelectScrollUpButton = React12.forwardRef(function(_param, ref) {
     var className = _param.className, props = _object_without_properties(_param, [
         "className"
     ]);
-    return /* @__PURE__ */ React11.createElement(SelectPrimitive.ScrollUpButton, _object_spread({
+    return /* @__PURE__ */ React12.createElement(SelectPrimitive.ScrollUpButton, _object_spread({
         ref: ref,
         className: cn("flex cursor-default items-center justify-center py-1", className)
-    }, props), /* @__PURE__ */ React11.createElement(ChevronUpIcon, null));
+    }, props), /* @__PURE__ */ React12.createElement(ChevronUpIcon, null));
 });
 SelectScrollUpButton.displayName = SelectPrimitive.ScrollUpButton.displayName;
-var SelectScrollDownButton = React11.forwardRef(function(_param, ref) {
+var SelectScrollDownButton = React12.forwardRef(function(_param, ref) {
     var className = _param.className, props = _object_without_properties(_param, [
         "className"
     ]);
-    return /* @__PURE__ */ React11.createElement(SelectPrimitive.ScrollDownButton, _object_spread({
+    return /* @__PURE__ */ React12.createElement(SelectPrimitive.ScrollDownButton, _object_spread({
         ref: ref,
         className: cn("flex cursor-default items-center justify-center py-1", className)
-    }, props), /* @__PURE__ */ React11.createElement(ChevronDownIcon, null));
+    }, props), /* @__PURE__ */ React12.createElement(ChevronDownIcon, null));
 });
 SelectScrollDownButton.displayName = SelectPrimitive.ScrollDownButton.displayName;
-var SelectContent = React11.forwardRef(function(_param, ref) {
+var SelectContent = React12.forwardRef(function(_param, ref) {
     var className = _param.className, children = _param.children, _param_position = _param.position, position = _param_position === void 0 ? "popper" : _param_position, props = _object_without_properties(_param, [
         "className",
         "children",
         "position"
     ]);
-    return /* @__PURE__ */ React11.createElement(SelectPrimitive.Portal, null, /* @__PURE__ */ React11.createElement(SelectPrimitive.Content, _object_spread({
+    return /* @__PURE__ */ React12.createElement(SelectPrimitive.Portal, null, /* @__PURE__ */ React12.createElement(SelectPrimitive.Content, _object_spread({
         ref: ref,
         className: cn("relative z-50 max-h-96 min-w-[8rem] overflow-hidden rounded-md border bg-popover text-popover-foreground shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2", position === "popper" && "data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1", className),
         position: position
-    }, props), /* @__PURE__ */ React11.createElement(SelectScrollUpButton, null), /* @__PURE__ */ React11.createElement(SelectPrimitive.Viewport, {
+    }, props), /* @__PURE__ */ React12.createElement(SelectScrollUpButton, null), /* @__PURE__ */ React12.createElement(SelectPrimitive.Viewport, {
         className: cn("p-1", position === "popper" && "h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)]")
-    }, children), /* @__PURE__ */ React11.createElement(SelectScrollDownButton, null)));
+    }, children), /* @__PURE__ */ React12.createElement(SelectScrollDownButton, null)));
 });
 SelectContent.displayName = SelectPrimitive.Content.displayName;
-var SelectLabel = React11.forwardRef(function(_param, ref) {
+var SelectLabel = React12.forwardRef(function(_param, ref) {
     var className = _param.className, props = _object_without_properties(_param, [
         "className"
     ]);
-    return /* @__PURE__ */ React11.createElement(SelectPrimitive.Label, _object_spread({
+    return /* @__PURE__ */ React12.createElement(SelectPrimitive.Label, _object_spread({
         ref: ref,
         className: cn("px-2 py-1.5 text-sm font-semibold", className)
     }, props));
 });
 SelectLabel.displayName = SelectPrimitive.Label.displayName;
-var SelectItem = React11.forwardRef(function(_param, ref) {
+var SelectItem = React12.forwardRef(function(_param, ref) {
     var className = _param.className, children = _param.children, props = _object_without_properties(_param, [
         "className",
         "children"
     ]);
-    return /* @__PURE__ */ React11.createElement(SelectPrimitive.Item, _object_spread({
+    return /* @__PURE__ */ React12.createElement(SelectPrimitive.Item, _object_spread({
         ref: ref,
         className: cn("relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pl-2 pr-8 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50", className)
-    }, props), /* @__PURE__ */ React11.createElement("span", {
+    }, props), /* @__PURE__ */ React12.createElement("span", {
         className: "absolute right-2 flex h-3.5 w-3.5 items-center justify-center"
-    }, /* @__PURE__ */ React11.createElement(SelectPrimitive.ItemIndicator, null, /* @__PURE__ */ React11.createElement(CheckIcon, {
+    }, /* @__PURE__ */ React12.createElement(SelectPrimitive.ItemIndicator, null, /* @__PURE__ */ React12.createElement(CheckIcon, {
         className: "h-4 w-4"
-    }))), /* @__PURE__ */ React11.createElement(SelectPrimitive.ItemText, null, children));
+    }))), /* @__PURE__ */ React12.createElement(SelectPrimitive.ItemText, null, children));
 });
 SelectItem.displayName = SelectPrimitive.Item.displayName;
-var SelectSeparator = React11.forwardRef(function(_param, ref) {
+var SelectSeparator = React12.forwardRef(function(_param, ref) {
     var className = _param.className, props = _object_without_properties(_param, [
         "className"
     ]);
-    return /* @__PURE__ */ React11.createElement(SelectPrimitive.Separator, _object_spread({
+    return /* @__PURE__ */ React12.createElement(SelectPrimitive.Separator, _object_spread({
         ref: ref,
         className: cn("-mx-1 my-1 h-px bg-muted", className)
     }, props));
@@ -2161,8 +2160,8 @@ function toast(_param) {
     };
 }
 function useToast() {
-    var _React11_useState = _sliced_to_array(React11.useState(memoryState), 2), state = _React11_useState[0], setState = _React11_useState[1];
-    React11.useEffect(function() {
+    var _React12_useState = _sliced_to_array(React12.useState(memoryState), 2), state = _React12_useState[0], setState = _React12_useState[1];
+    React12.useEffect(function() {
         listeners.push(setState);
         return function() {
             var index2 = listeners.indexOf(setState);
@@ -2250,66 +2249,36 @@ function Skeleton(_param) {
     var className = _param.className, props = _object_without_properties(_param, [
         "className"
     ]);
-    return /* @__PURE__ */ React11__default.createElement("div", _object_spread({
+    return /* @__PURE__ */ React12__default.createElement("div", _object_spread({
         className: cn("animate-pulse rounded-md bg-muted", className)
     }, props));
 }
+var AnimatedShinyText = function(param) {
+    var children = param.children, className = param.className, _param_shimmerWidth = param.shimmerWidth, shimmerWidth = _param_shimmerWidth === void 0 ? 100 : _param_shimmerWidth;
+    return /* @__PURE__ */ React12__default.createElement("p", {
+        style: {
+            "--shiny-width": "".concat(shimmerWidth, "px")
+        },
+        className: cn("mx-auto max-w-md text-neutral-600/70 dark:text-neutral-400/70", // Shine effect
+        "animate-shiny-text bg-clip-text bg-no-repeat [background-position:0_0] [background-size:var(--shiny-width)_100%] [transition:background-position_1s_cubic-bezier(.6,.6,0,1)_infinite]", // Shine gradient
+        "bg-gradient-to-r from-transparent via-black/80 via-50% to-transparent  dark:via-white/80", className)
+    }, children);
+};
+var animated_shiny_text_default = AnimatedShinyText;
 var PortcullisTag = function() {
-    return /* @__PURE__ */ React11__default.createElement("div", {
-        className: "flex justify-center mt-4"
-    }, /* @__PURE__ */ React11__default.createElement(motion.a, {
-        href: "https://www.runportcullis.co",
-        target: "_blank",
-        rel: "noopener noreferrer",
-        className: "group relative inline-flex items-center gap-2 rounded-full bg-black px-4 py-2 transition-all hover:scale-105",
-        initial: {
-            opacity: 0,
-            y: 20
-        },
-        animate: {
-            opacity: 1,
-            y: 0
-        },
-        whileHover: {
-            boxShadow: "0 0 20px rgba(250, 255, 105, 0.2)"
-        },
-        style: {
-            background: "linear-gradient(90deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.9) 100%)",
-            border: "1px solid rgba(255, 255, 255, 0.1)",
-            backdropFilter: "blur(10px)"
-        }
-    }, /* @__PURE__ */ React11__default.createElement("img", {
+    return /* @__PURE__ */ React12__default.createElement("div", {
+        className: "z-10 flex min-h-64 items-center justify-start"
+    }, /* @__PURE__ */ React12__default.createElement("div", {
+        className: cn("group rounded-full border border-black/5 bg-neutral-100 text-base text-white transition-all ease-in hover:cursor-pointer hover:bg-neutral-200 dark:border-white/5 dark:bg-neutral-900 dark:hover:bg-neutral-800")
+    }, /* @__PURE__ */ React12__default.createElement(animated_shiny_text_default, {
+        className: "inline-flex items-center justify-center px-4 py-1 transition ease-out hover:text-neutral-600 hover:duration-300 hover:dark:text-neutral-400"
+    }, /* @__PURE__ */ React12__default.createElement("img", {
         src: "/portcullis.svg",
-        alt: "Portcullis",
-        className: "h-5 w-5 transition-transform duration-300 group-hover:scale-110"
-    }), /* @__PURE__ */ React11__default.createElement("span", {
-        className: "text-sm font-medium"
-    }, /* @__PURE__ */ React11__default.createElement("span", {
-        className: "bg-gradient-to-r from-[#faff69] to-[#faff69]/50 bg-clip-text text-transparent",
-        style: {
-            backgroundSize: "200% auto",
-            animation: "shine 2s linear infinite"
-        }
-    }, "Powered by"), " ", /* @__PURE__ */ React11__default.createElement("span", {
-        className: "ml-1 text-white/90"
-    }, "Portcullis")), /* @__PURE__ */ React11__default.createElement(motion.div, {
-        className: "absolute inset-0 rounded-full opacity-30",
-        style: {
-            background: "linear-gradient(90deg, transparent, #faff69, transparent)",
-            backgroundSize: "200% 100%"
-        },
-        animate: {
-            backgroundPosition: [
-                "200% 0",
-                "-200% 0"
-            ]
-        },
-        transition: {
-            duration: 3,
-            repeat: Infinity,
-            ease: "linear"
-        }
-    })), /* @__PURE__ */ React11__default.createElement("style", null, "\n        @keyframes shine {\n          to {\n            backgroundPosition: 200% center;\n          }\n        }\n      "));
+        alt: "Portcullis Logo",
+        className: "mr-2 h-6 w-6"
+    }), /* @__PURE__ */ React12__default.createElement("span", null, "Powered by Portcullis"), /* @__PURE__ */ React12__default.createElement(ArrowRightIcon, {
+        className: "ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5"
+    }))));
 };
 // ../node_modules/@supabase/functions-js/dist/module/helper.js
 var resolveFetch = function(customFetch) {
@@ -13926,21 +13895,21 @@ var loaderVariants = cva("animate-spin text-primary", {
 });
 function Spinner(param) {
     var size = param.size, show = param.show, children = param.children, className = param.className;
-    return /* @__PURE__ */ React11__default.createElement("span", {
+    return /* @__PURE__ */ React12__default.createElement("span", {
         className: spinnerVariants({
             show: show
         })
-    }, /* @__PURE__ */ React11__default.createElement(Loader2, {
+    }, /* @__PURE__ */ React12__default.createElement(Loader2, {
         className: cn(loaderVariants({
             size: size
         }), className)
     }), children);
 }
-var Textarea = React11.forwardRef(function(_param, ref) {
+var Textarea = React12.forwardRef(function(_param, ref) {
     var className = _param.className, props = _object_without_properties(_param, [
         "className"
     ]);
-    return /* @__PURE__ */ React11.createElement("textarea", _object_spread({
+    return /* @__PURE__ */ React12.createElement("textarea", _object_spread({
         className: cn("flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm", className),
         ref: ref
     }, props));
@@ -14010,45 +13979,45 @@ var bigQueryServiceAccountSchema = z.object({
 }).strict();
 z.string().datetime();
 var _obj1;
-var warehouseIcons = (_obj1 = {}, _define_property(_obj1, "clickhouse" /* Clickhouse */ , /* @__PURE__ */ React11.createElement("img", {
+var warehouseIcons = (_obj1 = {}, _define_property(_obj1, "clickhouse" /* Clickhouse */ , /* @__PURE__ */ React12.createElement("img", {
     src: "https://cdn.brandfetch.io/idnezyZEJm/theme/dark/symbol.svg",
     alt: "Clickhouse",
     className: "mr-2 h-4 w-4"
-})), _define_property(_obj1, "snowflake" /* Snowflake */ , /* @__PURE__ */ React11.createElement("img", {
+})), _define_property(_obj1, "snowflake" /* Snowflake */ , /* @__PURE__ */ React12.createElement("img", {
     src: "https://cdn.brandfetch.io/idJz-fGD_q/theme/dark/symbol.svg",
     alt: "Snowflake",
     className: "mr-2 h-4 w-4"
-})), _define_property(_obj1, "databricks" /* Databricks */ , /* @__PURE__ */ React11.createElement("img", {
+})), _define_property(_obj1, "databricks" /* Databricks */ , /* @__PURE__ */ React12.createElement("img", {
     src: "https://cdn.brandfetch.io/idSUrLOWbH/theme/dark/symbol.svg?k=bfHSJFAPEG",
     alt: "Databricks",
     className: "mr-2 h-4 w-4"
-})), _define_property(_obj1, "bigquery" /* BigQuery */ , /* @__PURE__ */ React11.createElement("img", {
+})), _define_property(_obj1, "bigquery" /* BigQuery */ , /* @__PURE__ */ React12.createElement("img", {
     src: "https://cdn.worldvectorlogo.com/logos/google-bigquery-logo-1.svg",
     alt: "BigQuery",
     className: "mr-2 h-4 w-4"
-})), _define_property(_obj1, "redshift" /* Redshift */ , /* @__PURE__ */ React11.createElement("img", {
+})), _define_property(_obj1, "redshift" /* Redshift */ , /* @__PURE__ */ React12.createElement("img", {
     src: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Amazon-Redshift-Logo.svg/218px-Amazon-Redshift-Logo.svg.png",
     alt: "Redshift",
     className: "mr-2 h-4 w-4"
-})), _define_property(_obj1, "kafka" /* Kafka */ , /* @__PURE__ */ React11.createElement("img", {
+})), _define_property(_obj1, "kafka" /* Kafka */ , /* @__PURE__ */ React12.createElement("img", {
     src: "https://upload.wikimedia.org/wikipedia/commons/0/05/Apache_kafka.svg",
     alt: "Kafka",
     className: "mr-2 h-4 w-4"
-})), _define_property(_obj1, "postgres" /* Postgres */ , /* @__PURE__ */ React11.createElement("img", {
+})), _define_property(_obj1, "postgres" /* Postgres */ , /* @__PURE__ */ React12.createElement("img", {
     src: "https://cdn.brandfetch.io/idjSeCeMle/theme/dark/logo.svg?k=bfHSJFAPEG",
     alt: "Postgres",
     className: "mr-2 h-4 w-4"
 })), _obj1);
 var ExportComponent = function(param) {
     var apiKey = param.apiKey, organizationId = param.organizationId, internalWarehouse = param.internalWarehouse, tenancyColumn = param.tenancyColumn, tenancyIdentifier = param.tenancyIdentifier, tableName = param.tableName, _param_theme = param.theme, theme = _param_theme === void 0 ? "light" : _param_theme, onSuccess = param.onSuccess, onError = param.onError;
-    var _React11_useState = _sliced_to_array(React11.useState("destination"), 2), currentStep = _React11_useState[0], setCurrentStep = _React11_useState[1];
-    var _React11_useState1 = _sliced_to_array(React11.useState("clickhouse" /* Clickhouse */ ), 2), destination_type = _React11_useState1[0], setdestination_type = _React11_useState1[1];
-    var _React11_useState2 = _sliced_to_array(React11.useState(""), 2), destination_name = _React11_useState2[0], setdestination_name = _React11_useState2[1];
-    var _React11_useState3 = _sliced_to_array(React11.useState({}), 2), credentials = _React11_useState3[0], setCredentials = _React11_useState3[1];
-    var _React11_useState4 = _sliced_to_array(React11.useState(void 0), 2), scheduledAt = _React11_useState4[0], setScheduledAt = _React11_useState4[1];
-    var _React11_useState5 = _sliced_to_array(React11.useState(""), 2), dateTimeError = _React11_useState5[0], setDateTimeError = _React11_useState5[1];
+    var _React12_useState = _sliced_to_array(React12.useState("destination"), 2), currentStep = _React12_useState[0], setCurrentStep = _React12_useState[1];
+    var _React12_useState1 = _sliced_to_array(React12.useState("clickhouse" /* Clickhouse */ ), 2), destination_type = _React12_useState1[0], setdestination_type = _React12_useState1[1];
+    var _React12_useState2 = _sliced_to_array(React12.useState(""), 2), destination_name = _React12_useState2[0], setdestination_name = _React12_useState2[1];
+    var _React12_useState3 = _sliced_to_array(React12.useState({}), 2), credentials = _React12_useState3[0], setCredentials = _React12_useState3[1];
+    var _React12_useState4 = _sliced_to_array(React12.useState(void 0), 2), scheduledAt = _React12_useState4[0], setScheduledAt = _React12_useState4[1];
+    var _React12_useState5 = _sliced_to_array(React12.useState(""), 2), dateTimeError = _React12_useState5[0], setDateTimeError = _React12_useState5[1];
     var _useToast = useToast(), toast2 = _useToast.toast;
-    var _React11_useState6 = _sliced_to_array(React11.useState(false), 2), isLoading = _React11_useState6[0], setIsLoading = _React11_useState6[1];
+    var _React12_useState6 = _sliced_to_array(React12.useState(false), 2), isLoading = _React12_useState6[0], setIsLoading = _React12_useState6[1];
     var containerRef = useRef(null);
     var _useState = _sliced_to_array(useState(0), 2), containerWidth = _useState[0], setContainerWidth = _useState[1];
     useState("");
@@ -14089,19 +14058,19 @@ var ExportComponent = function(param) {
     var supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
     var _useState2 = _sliced_to_array(useState(""), 2), credentialError = _useState2[0], setCredentialError = _useState2[1];
     var CheckmarkAnimation = function() {
-        return /* @__PURE__ */ React11.createElement("div", {
+        return /* @__PURE__ */ React12.createElement("div", {
             className: "flex items-center justify-center p-8"
-        }, /* @__PURE__ */ React11.createElement("svg", {
+        }, /* @__PURE__ */ React12.createElement("svg", {
             className: "checkmark w-16 h-16",
             xmlns: "http://www.w3.org/2000/svg",
             viewBox: "0 0 52 52"
-        }, /* @__PURE__ */ React11.createElement("circle", {
+        }, /* @__PURE__ */ React12.createElement("circle", {
             className: "checkmark__circle",
             cx: "26",
             cy: "26",
             r: "25",
             fill: "none"
-        }), /* @__PURE__ */ React11.createElement("path", {
+        }), /* @__PURE__ */ React12.createElement("path", {
             className: "checkmark__check",
             fill: "none",
             d: "M14.1 27.2l7.1 7.2 16.7-16.8"
@@ -14202,37 +14171,37 @@ var ExportComponent = function(param) {
         };
     }();
     var renderDestinationStep = function() {
-        return /* @__PURE__ */ React11.createElement(React11.Fragment, null, /* @__PURE__ */ React11.createElement(CardHeader, null, /* @__PURE__ */ React11.createElement(CardTitle, null, "Configure Destination")), /* @__PURE__ */ React11.createElement(CardContent, {
+        return /* @__PURE__ */ React12.createElement(React12.Fragment, null, /* @__PURE__ */ React12.createElement(CardHeader, null, /* @__PURE__ */ React12.createElement(CardTitle, null, "Configure Destination")), /* @__PURE__ */ React12.createElement(CardContent, {
             className: "space-y-4"
-        }, /* @__PURE__ */ React11.createElement("div", {
+        }, /* @__PURE__ */ React12.createElement("div", {
             className: "space-y-2"
-        }, /* @__PURE__ */ React11.createElement(Label, null, "Destination Type"), /* @__PURE__ */ React11.createElement(Select, {
+        }, /* @__PURE__ */ React12.createElement(Label, null, "Destination Type"), /* @__PURE__ */ React12.createElement(Select, {
             value: destination_type,
             onValueChange: function(value) {
                 return setdestination_type(value);
             }
-        }, /* @__PURE__ */ React11.createElement(SelectTrigger, {
+        }, /* @__PURE__ */ React12.createElement(SelectTrigger, {
             className: "w-full"
-        }, /* @__PURE__ */ React11.createElement(SelectValue, null, destination_type && /* @__PURE__ */ React11.createElement("div", {
+        }, /* @__PURE__ */ React12.createElement(SelectValue, null, destination_type && /* @__PURE__ */ React12.createElement("div", {
             className: "flex items-center gap-2"
-        }, warehouseIcons[destination_type], /* @__PURE__ */ React11.createElement("span", null, destination_type.charAt(0).toUpperCase() + destination_type.slice(1))))), /* @__PURE__ */ React11.createElement(SelectContent, null, Object.values(WarehouseType).map(function(type) {
-            return /* @__PURE__ */ React11.createElement(SelectItem, {
+        }, warehouseIcons[destination_type], /* @__PURE__ */ React12.createElement("span", null, destination_type.charAt(0).toUpperCase() + destination_type.slice(1))))), /* @__PURE__ */ React12.createElement(SelectContent, null, Object.values(WarehouseType).map(function(type) {
+            return /* @__PURE__ */ React12.createElement(SelectItem, {
                 key: type,
                 value: type
-            }, /* @__PURE__ */ React11.createElement("div", {
+            }, /* @__PURE__ */ React12.createElement("div", {
                 className: "flex items-center gap-2 w-full min-w-[200px]"
-            }, warehouseIcons[type], /* @__PURE__ */ React11.createElement("span", {
+            }, warehouseIcons[type], /* @__PURE__ */ React12.createElement("span", {
                 className: "truncate"
             }, type.charAt(0).toUpperCase() + type.slice(1))));
-        })))), /* @__PURE__ */ React11.createElement("div", {
+        })))), /* @__PURE__ */ React12.createElement("div", {
             className: "space-y-2"
-        }, /* @__PURE__ */ React11.createElement(Label, null, "Warehouse Name"), /* @__PURE__ */ React11.createElement(Input, {
+        }, /* @__PURE__ */ React12.createElement(Label, null, "Warehouse Name"), /* @__PURE__ */ React12.createElement(Input, {
             value: destination_name,
             onChange: function(e) {
                 return setdestination_name(e.target.value);
             },
             placeholder: "Enter a name for this warehouse"
-        }))), /* @__PURE__ */ React11.createElement(CardFooter, null, /* @__PURE__ */ React11.createElement(Button, {
+        }))), /* @__PURE__ */ React12.createElement(CardFooter, null, /* @__PURE__ */ React12.createElement(Button, {
             onClick: function() {
                 return setCurrentStep("credentials");
             },
@@ -14240,11 +14209,11 @@ var ExportComponent = function(param) {
         }, "Continue")));
     };
     var renderCredentialsStep = function() {
-        return /* @__PURE__ */ React11.createElement(React11.Fragment, null, /* @__PURE__ */ React11.createElement(CardHeader, null, /* @__PURE__ */ React11.createElement(CardTitle, null, "Configure Credentials")), /* @__PURE__ */ React11.createElement(CardContent, {
+        return /* @__PURE__ */ React12.createElement(React12.Fragment, null, /* @__PURE__ */ React12.createElement(CardHeader, null, /* @__PURE__ */ React12.createElement(CardTitle, null, "Configure Credentials")), /* @__PURE__ */ React12.createElement(CardContent, {
             className: "space-y-4"
-        }, destination_type === "bigquery" /* BigQuery */  ? /* @__PURE__ */ React11.createElement(React11.Fragment, null, /* @__PURE__ */ React11.createElement("div", {
+        }, destination_type === "bigquery" /* BigQuery */  ? /* @__PURE__ */ React12.createElement(React12.Fragment, null, /* @__PURE__ */ React12.createElement("div", {
             className: "space-y-2"
-        }, /* @__PURE__ */ React11.createElement(Label, null, "Service Account Key (JSON)"), /* @__PURE__ */ React11.createElement(Textarea, {
+        }, /* @__PURE__ */ React12.createElement(Label, null, "Service Account Key (JSON)"), /* @__PURE__ */ React12.createElement(Textarea, {
             className: "font-mono",
             value: credentials.service_account_key || "",
             onChange: function(e) {
@@ -14257,13 +14226,13 @@ var ExportComponent = function(param) {
             },
             placeholder: '{\n  "project_id": "your-project",\n  "private_key": "-----BEGIN PRIVATE KEY-----...-----END PRIVATE KEY-----",\n  "client_email": "service-account@project.iam.gserviceaccount.com"\n}',
             rows: 10
-        }), credentialError && /* @__PURE__ */ React11.createElement("p", {
+        }), credentialError && /* @__PURE__ */ React12.createElement("p", {
             className: "text-sm text-red-500"
-        }, credentialError), /* @__PURE__ */ React11.createElement("p", {
+        }, credentialError), /* @__PURE__ */ React12.createElement("p", {
             className: "text-sm text-muted-foreground"
-        }, "Paste your Google Cloud service account key JSON here. You can download this from the Google Cloud Console.")), /* @__PURE__ */ React11.createElement("div", {
+        }, "Paste your Google Cloud service account key JSON here. You can download this from the Google Cloud Console.")), /* @__PURE__ */ React12.createElement("div", {
             className: "space-y-2"
-        }, /* @__PURE__ */ React11.createElement(Label, null, "Dataset"), /* @__PURE__ */ React11.createElement(Input, {
+        }, /* @__PURE__ */ React12.createElement(Label, null, "Dataset"), /* @__PURE__ */ React12.createElement(Input, {
             value: credentials.dataset || "",
             onChange: function(e) {
                 return setCredentials(function(prev) {
@@ -14274,12 +14243,12 @@ var ExportComponent = function(param) {
             },
             placeholder: "Enter BigQuery dataset name"
         }))) : credentialFields[destination_type].map(function(field) {
-            return /* @__PURE__ */ React11.createElement("div", {
+            return /* @__PURE__ */ React12.createElement("div", {
                 key: field,
                 className: "space-y-2"
-            }, /* @__PURE__ */ React11.createElement(Label, {
+            }, /* @__PURE__ */ React12.createElement(Label, {
                 className: "capitalize"
-            }, field === "host" ? "Hostname" : field === "port" ? "Port Number" : field.charAt(0).toUpperCase() + field.slice(1).replace("_", " ")), /* @__PURE__ */ React11.createElement(Input, {
+            }, field === "host" ? "Hostname" : field === "port" ? "Port Number" : field.charAt(0).toUpperCase() + field.slice(1).replace("_", " ")), /* @__PURE__ */ React12.createElement(Input, {
                 type: field.includes("password") ? "password" : "text",
                 value: credentials[field] || "",
                 onChange: function(e) {
@@ -14289,13 +14258,13 @@ var ExportComponent = function(param) {
                 },
                 placeholder: field === "port" ? "8123" : field === "host" ? "localhost" : "Enter ".concat(field.replace("_", " "))
             }));
-        })), /* @__PURE__ */ React11.createElement(CardFooter, {
+        })), /* @__PURE__ */ React12.createElement(CardFooter, {
             className: "space-x-2"
-        }, /* @__PURE__ */ React11.createElement(Button, {
+        }, /* @__PURE__ */ React12.createElement(Button, {
             onClick: function() {
                 return setCurrentStep("destination");
             }
-        }, "Back"), /* @__PURE__ */ React11.createElement(Button, {
+        }, "Back"), /* @__PURE__ */ React12.createElement(Button, {
             onClick: function() {
                 return setCurrentStep("schedule");
             },
@@ -14303,18 +14272,18 @@ var ExportComponent = function(param) {
         }, "Continue")));
     };
     var renderLoadingSpinner = function() {
-        return /* @__PURE__ */ React11.createElement("div", {
+        return /* @__PURE__ */ React12.createElement("div", {
             className: "flex items-center justify-center p-8"
-        }, /* @__PURE__ */ React11.createElement(Spinner, null), /* @__PURE__ */ React11.createElement("p", {
+        }, /* @__PURE__ */ React12.createElement(Spinner, null), /* @__PURE__ */ React12.createElement("p", {
             className: "mt-4 text-lg"
         }, "Processing your export..."));
     };
     var renderScheduleStep = function() {
-        return /* @__PURE__ */ React11.createElement(React11.Fragment, null, /* @__PURE__ */ React11.createElement(CardHeader, null, /* @__PURE__ */ React11.createElement(CardTitle, null, "Schedule Export")), /* @__PURE__ */ React11.createElement(CardContent, {
+        return /* @__PURE__ */ React12.createElement(React12.Fragment, null, /* @__PURE__ */ React12.createElement(CardHeader, null, /* @__PURE__ */ React12.createElement(CardTitle, null, "Schedule Export")), /* @__PURE__ */ React12.createElement(CardContent, {
             className: "space-y-4"
-        }, /* @__PURE__ */ React11.createElement("div", {
+        }, /* @__PURE__ */ React12.createElement("div", {
             className: "space-y-2"
-        }, /* @__PURE__ */ React11.createElement(Label, null, "Schedule Time"), /* @__PURE__ */ React11.createElement(Input, {
+        }, /* @__PURE__ */ React12.createElement(Label, null, "Schedule Time"), /* @__PURE__ */ React12.createElement(Input, {
             value: scheduledAt || "",
             onChange: function(e) {
                 return setScheduledAt(e.target.value);
@@ -14322,52 +14291,52 @@ var ExportComponent = function(param) {
             type: "datetime-local",
             placeholder: "2024-03-21T15:30:00+00:00",
             className: dateTimeError ? "border-red-500" : ""
-        }), dateTimeError && /* @__PURE__ */ React11.createElement("p", {
+        }), dateTimeError && /* @__PURE__ */ React12.createElement("p", {
             className: "text-sm text-red-500"
-        }, dateTimeError), /* @__PURE__ */ React11.createElement("p", {
+        }, dateTimeError), /* @__PURE__ */ React12.createElement("p", {
             className: "text-sm text-muted-foreground"
-        }, "Enter schedule time in ISO 8601 format with timezone. Leave empty for immediate execution."))), /* @__PURE__ */ React11.createElement(CardFooter, {
+        }, "Enter schedule time in ISO 8601 format with timezone. Leave empty for immediate execution."))), /* @__PURE__ */ React12.createElement(CardFooter, {
             className: "space-x-2"
-        }, /* @__PURE__ */ React11.createElement(Button, {
+        }, /* @__PURE__ */ React12.createElement(Button, {
             onClick: function() {
                 return setCurrentStep("credentials");
             }
-        }, "Back"), /* @__PURE__ */ React11.createElement(Button, {
+        }, "Back"), /* @__PURE__ */ React12.createElement(Button, {
             onClick: handleSubmit,
             disabled: !!dateTimeError || isSubmitting
         }, "Create Export")));
     };
     var renderSuccessStep = function() {
-        return /* @__PURE__ */ React11.createElement(React11.Fragment, null, /* @__PURE__ */ React11.createElement(CardHeader, {
+        return /* @__PURE__ */ React12.createElement(React12.Fragment, null, /* @__PURE__ */ React12.createElement(CardHeader, {
             className: "text-center"
-        }, /* @__PURE__ */ React11.createElement(CardTitle, {
+        }, /* @__PURE__ */ React12.createElement(CardTitle, {
             className: "text-2xl sm:text-3xl font-bold bg-gradient-to-r from-green-400 to-emerald-600 bg-clip-text text-transparent animate-gradient bg-[length:200%_auto]"
-        }, "Export Created Successfully! \u{1F389}")), /* @__PURE__ */ React11.createElement(CardContent, {
+        }, "Export Created Successfully! \u{1F389}")), /* @__PURE__ */ React12.createElement(CardContent, {
             className: "space-y-6"
-        }, /* @__PURE__ */ React11.createElement("div", {
+        }, /* @__PURE__ */ React12.createElement("div", {
             className: "relative flex justify-center"
-        }, /* @__PURE__ */ React11.createElement("div", {
+        }, /* @__PURE__ */ React12.createElement("div", {
             className: "absolute inset-0 bg-gradient-to-r from-green-100 to-emerald-100 dark:from-green-900/20 dark:to-emerald-900/20 rounded-full blur-xl opacity-70 animate-pulse"
-        }), /* @__PURE__ */ React11.createElement(CheckmarkAnimation, null)), /* @__PURE__ */ React11.createElement("div", {
+        }), /* @__PURE__ */ React12.createElement(CheckmarkAnimation, null)), /* @__PURE__ */ React12.createElement("div", {
             className: "space-y-4 text-center"
-        }, /* @__PURE__ */ React11.createElement("p", {
+        }, /* @__PURE__ */ React12.createElement("p", {
             className: "text-lg sm:text-xl text-muted-foreground"
-        }, "Your export has been configured and will begin processing shortly."), /* @__PURE__ */ React11.createElement("div", {
+        }, "Your export has been configured and will begin processing shortly."), /* @__PURE__ */ React12.createElement("div", {
             className: "flex items-center justify-center gap-2 text-sm text-muted-foreground"
-        }, /* @__PURE__ */ React11.createElement("span", {
+        }, /* @__PURE__ */ React12.createElement("span", {
             className: "relative flex h-3 w-3"
-        }, /* @__PURE__ */ React11.createElement("span", {
+        }, /* @__PURE__ */ React12.createElement("span", {
             className: "animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"
-        }), /* @__PURE__ */ React11.createElement("span", {
+        }), /* @__PURE__ */ React12.createElement("span", {
             className: "relative inline-flex rounded-full h-3 w-3 bg-green-500"
-        })), "Processing in background"))), /* @__PURE__ */ React11.createElement(CardFooter, {
+        })), "Processing in background"))), /* @__PURE__ */ React12.createElement(CardFooter, {
             className: "flex flex-col sm:flex-row gap-4 justify-center"
-        }, /* @__PURE__ */ React11.createElement(Button, {
+        }, /* @__PURE__ */ React12.createElement(Button, {
             onClick: function() {
                 return setCurrentStep("destination");
             },
             className: "w-full sm:w-auto bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
-        }, "Create Another Export"), /* @__PURE__ */ React11.createElement(Button, {
+        }, "Create Another Export"), /* @__PURE__ */ React12.createElement(Button, {
             variant: "outline",
             className: "w-full sm:w-auto hover:bg-green-50 dark:hover:bg-green-900/20 transition-all duration-300",
             onClick: function() {
@@ -14381,27 +14350,27 @@ var ExportComponent = function(param) {
         schedule: renderScheduleStep,
         success: renderSuccessStep
     };
-    return /* @__PURE__ */ React11.createElement("div", {
+    return /* @__PURE__ */ React12.createElement("div", {
         ref: containerRef,
         className: "relative w-full max-w-lg mx-auto"
-    }, /* @__PURE__ */ React11.createElement(Card, {
+    }, /* @__PURE__ */ React12.createElement(Card, {
         className: "relative"
-    }, isLoading ? /* @__PURE__ */ React11.createElement("div", {
+    }, isLoading ? /* @__PURE__ */ React12.createElement("div", {
         className: "space-y-4"
-    }, /* @__PURE__ */ React11.createElement(Skeleton, {
+    }, /* @__PURE__ */ React12.createElement(Skeleton, {
         className: "h-10 w-full"
-    }), /* @__PURE__ */ React11.createElement("div", {
+    }), /* @__PURE__ */ React12.createElement("div", {
         className: "space-y-2"
-    }, /* @__PURE__ */ React11.createElement(Skeleton, {
+    }, /* @__PURE__ */ React12.createElement(Skeleton, {
         className: "h-4 w-[".concat(Math.min(250, containerWidth * 0.8), "px]")
-    }), /* @__PURE__ */ React11.createElement(Skeleton, {
+    }), /* @__PURE__ */ React12.createElement(Skeleton, {
         className: "h-8 w-full"
-    }), /* @__PURE__ */ React11.createElement(Skeleton, {
+    }), /* @__PURE__ */ React12.createElement(Skeleton, {
         className: "h-4 w-[".concat(Math.min(200, containerWidth * 0.6), "px]")
-    }), /* @__PURE__ */ React11.createElement(Skeleton, {
+    }), /* @__PURE__ */ React12.createElement(Skeleton, {
         className: "h-8 w-full"
-    })), /* @__PURE__ */ React11.createElement(Skeleton, {
+    })), /* @__PURE__ */ React12.createElement(Skeleton, {
         className: "h-10 w-[".concat(Math.min(120, containerWidth * 0.3), "px]")
-    })) : /* @__PURE__ */ React11.createElement(React11.Fragment, null, isSubmitting && currentStep === "schedule" ? renderLoadingSpinner() : stepComponents[currentStep](), /* @__PURE__ */ React11.createElement(PortcullisTag, null))));
+    })) : /* @__PURE__ */ React12.createElement(React12.Fragment, null, isSubmitting && currentStep === "schedule" ? renderLoadingSpinner() : stepComponents[currentStep](), /* @__PURE__ */ React12.createElement(PortcullisTag, null))));
 };
 export { ExportComponent, WarehouseType };
