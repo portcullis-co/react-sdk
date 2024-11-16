@@ -74,11 +74,19 @@ const credentialFields = {
   [WarehouseType.Postgres]: ['host', 'port', 'database', 'username', 'password', 'schema']
 } as const;
 
-const bigQueryServiceAccountSchema = z.object({
+const serviceAccountSchema = z.object({
+  type: z.string().optional(),
   project_id: z.string(),
+  private_key_id: z.string().optional(),
   private_key: z.string(),
   client_email: z.string(),
-}).strict();
+  client_id: z.string().optional(),
+  auth_uri: z.string().optional(),
+  token_uri: z.string().optional(),
+  auth_provider_x509_cert_url: z.string().optional(),
+  client_x509_cert_url: z.string().optional(),
+  universe_domain: z.string().optional(),
+}).passthrough(); // Allow additional fields
 
 // Update the schema to handle ISO8601 with timezone
 const dateTimeSchema = z.string().datetime();
@@ -314,35 +322,63 @@ export const ExportComponent: React.FC<ExportComponentProps> = ({
                 onChange={(e) => {
                   setCredentialError('');
                   try {
-                    // Validate JSON format when pasting
-                    const parsed = JSON.parse(e.target.value);
-                    const result = bigQueryServiceAccountSchema.safeParse(parsed);
-                    if (!result.success) {
-                      setCredentialError('Invalid service account key format');
+                    if (e.target.value.trim()) {
+                      // Parse the service account JSON
+                      const parsedKey = JSON.parse(e.target.value);
+                      const result = serviceAccountSchema.safeParse(parsedKey);
+                      
+                      if (!result.success) {
+                        setCredentialError('Invalid service account key format');
+                      } else {
+                        // Extract only the required fields for our schema
+                        const { project_id, private_key, client_email } = result.data;
+                        // Update credentials with both raw JSON and extracted fields
+                        setCredentials(prev => ({
+                          ...prev,
+                          service_account_key: e.target.value,
+                          project_id,
+                          private_key,
+                          client_email,
+                        }));
+                      }
+                    } else {
+                      // Clear credentials if input is empty
+                      setCredentials(prev => ({
+                        ...prev,
+                        service_account_key: '',
+                        project_id: '',
+                        private_key: '',
+                        client_email: '',
+                      }));
                     }
                   } catch (error) {
-                    // Only set error if there's content (allow empty field)
                     if (e.target.value.trim()) {
                       setCredentialError('Invalid JSON format');
                     }
+                    // Clear credentials on error
+                    setCredentials(prev => ({
+                      ...prev,
+                      service_account_key: e.target.value,
+                      project_id: '',
+                      private_key: '',
+                      client_email: '',
+                    }));
                   }
-                  setCredentials(prev => ({
-                    ...prev,
-                    service_account_key: e.target.value
-                  }));
                 }}
-                placeholder="{
-  &quot;project_id&quot;: &quot;your-project&quot;,
-  &quot;private_key&quot;: &quot;-----BEGIN PRIVATE KEY-----...-----END PRIVATE KEY-----&quot;,
-  &quot;client_email&quot;: &quot;service-account@project.iam.gserviceaccount.com&quot;
-}"
+                placeholder='{
+    "type": "service_account",
+    "project_id": "your-project",
+    "private_key": "-----BEGIN PRIVATE KEY-----...-----END PRIVATE KEY-----",
+    "client_email": "service-account@project.iam.gserviceaccount.com"
+    // ... other fields
+  }'
                 rows={10}
               />
               {credentialError && (
                 <p className="text-sm text-red-500">{credentialError}</p>
               )}
               <p className="text-sm text-muted-foreground">
-                Paste your Google Cloud service account key JSON here. You can download this from the Google Cloud Console.
+                Paste your complete Google Cloud service account key JSON here. The required fields will be automatically extracted.
               </p>
             </div>
             <div className="space-y-2">
@@ -387,7 +423,9 @@ export const ExportComponent: React.FC<ExportComponentProps> = ({
           </Button>
           <Button
             onClick={() => setCurrentStep('schedule')}
-            disabled={!Object.keys(credentials).length || !!credentialError}
+            disabled={!Object.keys(credentials).length || !!credentialError ||
+              (destination_type === WarehouseType.BigQuery && 
+               (!credentials.project_id || !credentials.private_key || !credentials.client_email || !credentials.dataset))}
           >
             Continue
           </Button>

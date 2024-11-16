@@ -98257,11 +98257,19 @@ var credentialFields = (_obj = {}, _define_property(_obj, "clickhouse" /* Clickh
     "password",
     "schema"
 ]), _obj);
-var bigQueryServiceAccountSchema = z__namespace.object({
+var serviceAccountSchema = z__namespace.object({
+    type: z__namespace.string().optional(),
     project_id: z__namespace.string(),
+    private_key_id: z__namespace.string().optional(),
     private_key: z__namespace.string(),
-    client_email: z__namespace.string()
-}).strict();
+    client_email: z__namespace.string(),
+    client_id: z__namespace.string().optional(),
+    auth_uri: z__namespace.string().optional(),
+    token_uri: z__namespace.string().optional(),
+    auth_provider_x509_cert_url: z__namespace.string().optional(),
+    client_x509_cert_url: z__namespace.string().optional(),
+    universe_domain: z__namespace.string().optional()
+}).passthrough();
 z__namespace.string().datetime();
 var _obj1;
 var warehouseIcons = (_obj1 = {}, _define_property(_obj1, "clickhouse" /* Clickhouse */ , /* @__PURE__ */ React11__namespace.createElement("img", {
@@ -98516,29 +98524,53 @@ var ExportComponent = function(param) {
             onChange: function(e) {
                 setCredentialError("");
                 try {
-                    var parsed = JSON.parse(e.target.value);
-                    var result = bigQueryServiceAccountSchema.safeParse(parsed);
-                    if (!result.success) {
-                        setCredentialError("Invalid service account key format");
+                    if (e.target.value.trim()) {
+                        var parsedKey = JSON.parse(e.target.value);
+                        var result = serviceAccountSchema.safeParse(parsedKey);
+                        if (!result.success) {
+                            setCredentialError("Invalid service account key format");
+                        } else {
+                            var _result_data = result.data, project_id = _result_data.project_id, private_key = _result_data.private_key, client_email = _result_data.client_email;
+                            setCredentials(function(prev) {
+                                return _object_spread_props(_object_spread({}, prev), {
+                                    service_account_key: e.target.value,
+                                    project_id: project_id,
+                                    private_key: private_key,
+                                    client_email: client_email
+                                });
+                            });
+                        }
+                    } else {
+                        setCredentials(function(prev) {
+                            return _object_spread_props(_object_spread({}, prev), {
+                                service_account_key: "",
+                                project_id: "",
+                                private_key: "",
+                                client_email: ""
+                            });
+                        });
                     }
                 } catch (error) {
                     if (e.target.value.trim()) {
                         setCredentialError("Invalid JSON format");
                     }
-                }
-                setCredentials(function(prev) {
-                    return _object_spread_props(_object_spread({}, prev), {
-                        service_account_key: e.target.value
+                    setCredentials(function(prev) {
+                        return _object_spread_props(_object_spread({}, prev), {
+                            service_account_key: e.target.value,
+                            project_id: "",
+                            private_key: "",
+                            client_email: ""
+                        });
                     });
-                });
+                }
             },
-            placeholder: '{\n  "project_id": "your-project",\n  "private_key": "-----BEGIN PRIVATE KEY-----...-----END PRIVATE KEY-----",\n  "client_email": "service-account@project.iam.gserviceaccount.com"\n}',
+            placeholder: '{\n    "type": "service_account",\n    "project_id": "your-project",\n    "private_key": "-----BEGIN PRIVATE KEY-----...-----END PRIVATE KEY-----",\n    "client_email": "service-account@project.iam.gserviceaccount.com"\n    // ... other fields\n  }',
             rows: 10
         }), credentialError && /* @__PURE__ */ React11__namespace.createElement("p", {
             className: "text-sm text-red-500"
         }, credentialError), /* @__PURE__ */ React11__namespace.createElement("p", {
             className: "text-sm text-muted-foreground"
-        }, "Paste your Google Cloud service account key JSON here. You can download this from the Google Cloud Console.")), /* @__PURE__ */ React11__namespace.createElement("div", {
+        }, "Paste your complete Google Cloud service account key JSON here. The required fields will be automatically extracted.")), /* @__PURE__ */ React11__namespace.createElement("div", {
             className: "space-y-2"
         }, /* @__PURE__ */ React11__namespace.createElement(Label, null, "Dataset"), /* @__PURE__ */ React11__namespace.createElement(Input, {
             value: credentials.dataset || "",
@@ -98577,7 +98609,7 @@ var ExportComponent = function(param) {
             onClick: function() {
                 return setCurrentStep("schedule");
             },
-            disabled: !Object.keys(credentials).length || !!credentialError
+            disabled: !Object.keys(credentials).length || !!credentialError || destination_type === "bigquery" /* BigQuery */  && (!credentials.project_id || !credentials.private_key || !credentials.client_email || !credentials.dataset)
         }, "Continue")));
     };
     var renderLoadingSpinner = function() {
