@@ -2254,76 +2254,62 @@ function Skeleton(_param) {
         className: cn("animate-pulse rounded-md bg-muted", className)
     }, props));
 }
-var animationProps = {
-    initial: {
-        "--x": "100%",
-        scale: 0.8
-    },
-    animate: {
-        "--x": "-100%",
-        scale: 1
-    },
-    whileTap: {
-        scale: 0.95
-    },
-    transition: {
-        repeat: Infinity,
-        repeatType: "loop",
-        repeatDelay: 1,
-        type: "spring",
-        stiffness: 20,
-        damping: 15,
-        mass: 2,
-        scale: {
-            type: "spring",
-            stiffness: 200,
-            damping: 5,
-            mass: 0.5
-        }
-    }
-};
-var ShinyButton = React11__default.forwardRef(function(_param, ref) {
-    var children = _param.children, className = _param.className, props = _object_without_properties(_param, [
-        "children",
-        "className"
-    ]);
-    return /* @__PURE__ */ React11__default.createElement(motion.button, _object_spread_props(_object_spread({
-        ref: ref
-    }, animationProps, props), {
-        className: cn("relative rounded-lg px-6 py-2 font-medium backdrop-blur-xl transition-shadow duration-300 ease-in-out hover:shadow dark:bg-[radial-gradient(circle_at_50%_0%,hsl(var(--primary)/10%)_0%,transparent_60%)] dark:hover:shadow-[0_0_20px_hsl(var(--primary)/10%)]", className)
-    }), /* @__PURE__ */ React11__default.createElement("span", {
-        className: "relative block size-full text-sm uppercase tracking-wide text-[rgb(0,0,0,65%)] dark:font-light dark:text-[rgb(255,255,255,90%)]",
-        style: {
-            maskImage: "linear-gradient(-75deg,hsl(var(--primary)) calc(var(--x) + 20%),transparent calc(var(--x) + 30%),hsl(var(--primary)) calc(var(--x) + 100%))"
-        }
-    }, children), /* @__PURE__ */ React11__default.createElement("span", {
-        style: {
-            mask: "linear-gradient(rgb(0,0,0), rgb(0,0,0)) content-box,linear-gradient(rgb(0,0,0), rgb(0,0,0))",
-            maskComposite: "exclude"
-        },
-        className: "absolute inset-0 z-10 block rounded-[inherit] bg-[linear-gradient(-75deg,hsl(var(--primary)/10%)_calc(var(--x)+20%),hsl(var(--primary)/50%)_calc(var(--x)+25%),hsl(var(--primary)/10%)_calc(var(--x)+100%))] p-px"
-    }));
-});
-// src/components/PortcullisTag.tsx
 var PortcullisTag = function() {
     return /* @__PURE__ */ React11__default.createElement("div", {
         className: "flex justify-center mt-4"
-    }, /* @__PURE__ */ React11__default.createElement(ShinyButton, {
-        className: "border-2 border-transparent bg-gradient-to-r from-[#faff69] to-[#171717]"
-    }, /* @__PURE__ */ React11__default.createElement("a", {
+    }, /* @__PURE__ */ React11__default.createElement(motion.a, {
         href: "https://www.runportcullis.co",
         target: "_blank",
         rel: "noopener noreferrer",
-        className: "flex items-center justify-end group"
-    }, /* @__PURE__ */ React11__default.createElement("div", {
-        className: "flex items-center gap-2"
+        className: "group relative inline-flex items-center gap-2 rounded-full bg-black px-4 py-2 transition-all hover:scale-105",
+        initial: {
+            opacity: 0,
+            y: 20
+        },
+        animate: {
+            opacity: 1,
+            y: 0
+        },
+        whileHover: {
+            boxShadow: "0 0 20px rgba(250, 255, 105, 0.2)"
+        },
+        style: {
+            background: "linear-gradient(90deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.9) 100%)",
+            border: "1px solid rgba(255, 255, 255, 0.1)",
+            backdropFilter: "blur(10px)"
+        }
     }, /* @__PURE__ */ React11__default.createElement("img", {
         src: "/portcullis.svg",
         alt: "Portcullis",
-        className: "w-4 h-4 group-hover:scale-110 transition-transform duration-200"
+        className: "h-5 w-5 transition-transform duration-300 group-hover:scale-110"
     }), /* @__PURE__ */ React11__default.createElement("span", {
-        className: cn("text-sm font-semibold bg-gradient-to-r from-[#faff69] to-[#171717]", "bg-clip-text text-transparent", "animate-gradient bg-[length:200%_auto]", "group-hover:bg-[length:300%_auto] transition-all duration-200")
-    }, "Powered by Portcullis")))));
+        className: "text-sm font-medium"
+    }, /* @__PURE__ */ React11__default.createElement("span", {
+        className: "bg-gradient-to-r from-[#faff69] to-[#faff69]/50 bg-clip-text text-transparent",
+        style: {
+            backgroundSize: "200% auto",
+            animation: "shine 2s linear infinite"
+        }
+    }, "Powered by"), " ", /* @__PURE__ */ React11__default.createElement("span", {
+        className: "ml-1 text-white/90"
+    }, "Portcullis")), /* @__PURE__ */ React11__default.createElement(motion.div, {
+        className: "absolute inset-0 rounded-full opacity-30",
+        style: {
+            background: "linear-gradient(90deg, transparent, #faff69, transparent)",
+            backgroundSize: "200% 100%"
+        },
+        animate: {
+            backgroundPosition: [
+                "200% 0",
+                "-200% 0"
+            ]
+        },
+        transition: {
+            duration: 3,
+            repeat: Infinity,
+            ease: "linear"
+        }
+    })), /* @__PURE__ */ React11__default.createElement("style", null, "\n        @keyframes shine {\n          to {\n            backgroundPosition: 200% center;\n          }\n        }\n      "));
 };
 // ../node_modules/@supabase/functions-js/dist/module/helper.js
 var resolveFetch = function(customFetch) {
@@ -13950,6 +13936,16 @@ function Spinner(param) {
         }), className)
     }), children);
 }
+var Textarea = React11.forwardRef(function(_param, ref) {
+    var className = _param.className, props = _object_without_properties(_param, [
+        "className"
+    ]);
+    return /* @__PURE__ */ React11.createElement("textarea", _object_spread({
+        className: cn("flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm", className),
+        ref: ref
+    }, props));
+});
+Textarea.displayName = "Textarea";
 // src/components/ExportComponent.tsx
 var WarehouseType = /* @__PURE__ */ function(WarehouseType2) {
     WarehouseType2["Clickhouse"] = "clickhouse";
@@ -14007,6 +14003,11 @@ var credentialFields = (_obj = {}, _define_property(_obj, "clickhouse" /* Clickh
     "password",
     "schema"
 ]), _obj);
+var bigQueryServiceAccountSchema = z.object({
+    project_id: z.string(),
+    private_key: z.string(),
+    client_email: z.string()
+}).strict();
 z.string().datetime();
 var _obj1;
 var warehouseIcons = (_obj1 = {}, _define_property(_obj1, "clickhouse" /* Clickhouse */ , /* @__PURE__ */ React11.createElement("img", {
@@ -14086,9 +14087,29 @@ var ExportComponent = function(param) {
         };
     }, []);
     var supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
+    var _useState2 = _sliced_to_array(useState(""), 2), credentialError = _useState2[0], setCredentialError = _useState2[1];
+    var CheckmarkAnimation = function() {
+        return /* @__PURE__ */ React11.createElement("div", {
+            className: "flex items-center justify-center p-8"
+        }, /* @__PURE__ */ React11.createElement("svg", {
+            className: "checkmark w-16 h-16",
+            xmlns: "http://www.w3.org/2000/svg",
+            viewBox: "0 0 52 52"
+        }, /* @__PURE__ */ React11.createElement("circle", {
+            className: "checkmark__circle",
+            cx: "26",
+            cy: "26",
+            r: "25",
+            fill: "none"
+        }), /* @__PURE__ */ React11.createElement("path", {
+            className: "checkmark__check",
+            fill: "none",
+            d: "M14.1 27.2l7.1 7.2 16.7-16.8"
+        })));
+    };
     var handleSubmit = /*#__PURE__*/ function() {
         var _ref = _async_to_generator(function() {
-            var _ref, warehouseData, _$error, data, error;
+            var _ref, warehouseData, _$error, processedCredentials, serviceAccountKey, result, data, error;
             return _ts_generator(this, function(_state) {
                 switch(_state.label){
                     case 0:
@@ -14107,6 +14128,24 @@ var ExportComponent = function(param) {
                         _ref = _state.sent(), warehouseData = _ref.data, _$error = _ref.error;
                         if (_$error) throw _$error;
                         if (!(warehouseData === null || warehouseData === void 0 ? void 0 : warehouseData.internal_credentials)) throw new Error("No credentials found");
+                        processedCredentials = _object_spread({}, credentials);
+                        if (destination_type === "bigquery" /* BigQuery */  && credentials.service_account_key) {
+                            try {
+                                serviceAccountKey = JSON.parse(credentials.service_account_key);
+                                result = bigQueryServiceAccountSchema.safeParse(serviceAccountKey);
+                                if (!result.success) {
+                                    throw new Error("Invalid service account key format");
+                                }
+                                processedCredentials = {
+                                    project_id: serviceAccountKey.project_id,
+                                    private_key: serviceAccountKey.private_key,
+                                    client_email: serviceAccountKey.client_email,
+                                    dataset: credentials.dataset
+                                };
+                            } catch (e) {
+                                throw new Error("Invalid JSON format in service account key");
+                            }
+                        }
                         return [
                             4,
                             createExport(apiKey, {
@@ -14118,7 +14157,7 @@ var ExportComponent = function(param) {
                                 tenancy_id: tenancyIdentifier,
                                 destination_name: destination_name,
                                 table: tableName,
-                                credentials: credentials,
+                                credentials: processedCredentials,
                                 scheduled_at: scheduledAt || void 0
                             })
                         ];
@@ -14162,25 +14201,6 @@ var ExportComponent = function(param) {
             return _ref.apply(this, arguments);
         };
     }();
-    var CheckmarkAnimation = function() {
-        return /* @__PURE__ */ React11.createElement("div", {
-            className: "flex items-center justify-center p-8"
-        }, /* @__PURE__ */ React11.createElement("svg", {
-            className: "checkmark w-16 h-16",
-            xmlns: "http://www.w3.org/2000/svg",
-            viewBox: "0 0 52 52"
-        }, /* @__PURE__ */ React11.createElement("circle", {
-            className: "checkmark__circle",
-            cx: "26",
-            cy: "26",
-            r: "25",
-            fill: "none"
-        }), /* @__PURE__ */ React11.createElement("path", {
-            className: "checkmark__check",
-            fill: "none",
-            d: "M14.1 27.2l7.1 7.2 16.7-16.8"
-        })));
-    };
     var renderDestinationStep = function() {
         return /* @__PURE__ */ React11.createElement(React11.Fragment, null, /* @__PURE__ */ React11.createElement(CardHeader, null, /* @__PURE__ */ React11.createElement(CardTitle, null, "Configure Destination")), /* @__PURE__ */ React11.createElement(CardContent, {
             className: "space-y-4"
@@ -14222,7 +14242,38 @@ var ExportComponent = function(param) {
     var renderCredentialsStep = function() {
         return /* @__PURE__ */ React11.createElement(React11.Fragment, null, /* @__PURE__ */ React11.createElement(CardHeader, null, /* @__PURE__ */ React11.createElement(CardTitle, null, "Configure Credentials")), /* @__PURE__ */ React11.createElement(CardContent, {
             className: "space-y-4"
-        }, credentialFields[destination_type].map(function(field) {
+        }, destination_type === "bigquery" /* BigQuery */  ? /* @__PURE__ */ React11.createElement(React11.Fragment, null, /* @__PURE__ */ React11.createElement("div", {
+            className: "space-y-2"
+        }, /* @__PURE__ */ React11.createElement(Label, null, "Service Account Key (JSON)"), /* @__PURE__ */ React11.createElement(Textarea, {
+            className: "font-mono",
+            value: credentials.service_account_key || "",
+            onChange: function(e) {
+                setCredentialError("");
+                setCredentials(function(prev) {
+                    return _object_spread_props(_object_spread({}, prev), {
+                        service_account_key: e.target.value
+                    });
+                });
+            },
+            placeholder: '{\n  "project_id": "your-project",\n  "private_key": "-----BEGIN PRIVATE KEY-----...-----END PRIVATE KEY-----",\n  "client_email": "service-account@project.iam.gserviceaccount.com"\n}',
+            rows: 10
+        }), credentialError && /* @__PURE__ */ React11.createElement("p", {
+            className: "text-sm text-red-500"
+        }, credentialError), /* @__PURE__ */ React11.createElement("p", {
+            className: "text-sm text-muted-foreground"
+        }, "Paste your Google Cloud service account key JSON here. You can download this from the Google Cloud Console.")), /* @__PURE__ */ React11.createElement("div", {
+            className: "space-y-2"
+        }, /* @__PURE__ */ React11.createElement(Label, null, "Dataset"), /* @__PURE__ */ React11.createElement(Input, {
+            value: credentials.dataset || "",
+            onChange: function(e) {
+                return setCredentials(function(prev) {
+                    return _object_spread_props(_object_spread({}, prev), {
+                        dataset: e.target.value
+                    });
+                });
+            },
+            placeholder: "Enter BigQuery dataset name"
+        }))) : credentialFields[destination_type].map(function(field) {
             return /* @__PURE__ */ React11.createElement("div", {
                 key: field,
                 className: "space-y-2"
@@ -14287,22 +14338,18 @@ var ExportComponent = function(param) {
         }, "Create Export")));
     };
     var renderSuccessStep = function() {
-        return /* @__PURE__ */ React11.createElement("div", {
-            className: "flex justify-center"
-        }, /* @__PURE__ */ React11.createElement(Card, {
-            className: "max-w-md w-full"
-        }, /* @__PURE__ */ React11.createElement(CardHeader, {
+        return /* @__PURE__ */ React11.createElement(React11.Fragment, null, /* @__PURE__ */ React11.createElement(CardHeader, {
             className: "text-center"
         }, /* @__PURE__ */ React11.createElement(CardTitle, {
             className: "text-2xl sm:text-3xl font-bold bg-gradient-to-r from-green-400 to-emerald-600 bg-clip-text text-transparent animate-gradient bg-[length:200%_auto]"
         }, "Export Created Successfully! \u{1F389}")), /* @__PURE__ */ React11.createElement(CardContent, {
             className: "space-y-6"
         }, /* @__PURE__ */ React11.createElement("div", {
-            className: "relative"
+            className: "relative flex justify-center"
         }, /* @__PURE__ */ React11.createElement("div", {
             className: "absolute inset-0 bg-gradient-to-r from-green-100 to-emerald-100 dark:from-green-900/20 dark:to-emerald-900/20 rounded-full blur-xl opacity-70 animate-pulse"
         }), /* @__PURE__ */ React11.createElement(CheckmarkAnimation, null)), /* @__PURE__ */ React11.createElement("div", {
-            className: "space-y-4 text-center max-w-md mx-auto"
+            className: "space-y-4 text-center"
         }, /* @__PURE__ */ React11.createElement("p", {
             className: "text-lg sm:text-xl text-muted-foreground"
         }, "Your export has been configured and will begin processing shortly."), /* @__PURE__ */ React11.createElement("div", {
@@ -14314,7 +14361,7 @@ var ExportComponent = function(param) {
         }), /* @__PURE__ */ React11.createElement("span", {
             className: "relative inline-flex rounded-full h-3 w-3 bg-green-500"
         })), "Processing in background"))), /* @__PURE__ */ React11.createElement(CardFooter, {
-            className: "flex flex-col sm:flex-row gap-4 justify-center items-center"
+            className: "flex flex-col sm:flex-row gap-4 justify-center"
         }, /* @__PURE__ */ React11.createElement(Button, {
             onClick: function() {
                 return setCurrentStep("destination");
@@ -14326,7 +14373,7 @@ var ExportComponent = function(param) {
             onClick: function() {
                 return window.open("https://docs.runportcullis.co", "_blank");
             }
-        }, "View Documentation"))));
+        }, "View Documentation")));
     };
     var stepComponents = {
         destination: renderDestinationStep,
@@ -14336,7 +14383,7 @@ var ExportComponent = function(param) {
     };
     return /* @__PURE__ */ React11.createElement("div", {
         ref: containerRef,
-        className: "relative w-full"
+        className: "relative w-full max-w-lg mx-auto"
     }, /* @__PURE__ */ React11.createElement(Card, {
         className: "relative"
     }, isLoading ? /* @__PURE__ */ React11.createElement("div", {
@@ -14355,6 +14402,6 @@ var ExportComponent = function(param) {
         className: "h-8 w-full"
     })), /* @__PURE__ */ React11.createElement(Skeleton, {
         className: "h-10 w-[".concat(Math.min(120, containerWidth * 0.3), "px]")
-    })) : /* @__PURE__ */ React11.createElement(React11.Fragment, null, currentStep === "success" ? stepComponents[currentStep]() : currentStep === "schedule" && isSubmitting ? renderLoadingSpinner() : stepComponents[currentStep](), /* @__PURE__ */ React11.createElement(PortcullisTag, null))));
+    })) : /* @__PURE__ */ React11.createElement(React11.Fragment, null, isSubmitting && currentStep === "schedule" ? renderLoadingSpinner() : stepComponents[currentStep](), /* @__PURE__ */ React11.createElement(PortcullisTag, null))));
 };
 export { ExportComponent, WarehouseType };

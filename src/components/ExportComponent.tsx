@@ -14,6 +14,7 @@ import { createClient } from '@clickhouse/client-web';
 import { PortcullisTag } from "./PortcullisTag";
 import { createClient as createSupabaseClient } from '@supabase/supabase-js';
 import { Spinner } from "../components/ui/spinner";
+import { Textarea } from "./ui/text-area"
 // Change the interface declaration to export
 export interface ExportComponentProps {
   apiKey: string;
@@ -73,6 +74,12 @@ const credentialFields = {
   [WarehouseType.Postgres]: ['host', 'port', 'database', 'username', 'password', 'schema']
 } as const;
 
+const bigQueryServiceAccountSchema = z.object({
+  project_id: z.string(),
+  private_key: z.string(),
+  client_email: z.string(),
+}).strict();
+
 // Update the schema to handle ISO8601 with timezone
 const dateTimeSchema = z.string().datetime();
 // Add after the enums
@@ -130,49 +137,8 @@ export const ExportComponent: React.FC<ExportComponentProps> = ({
 
   const supabase = createSupabaseClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!);
 
-  const handleSubmit = async () => {
-    try {
-      setIsSubmitting(true);
-      const { data: warehouseData, error } = await supabase
-        .from('warehouses')
-        .select('internal_credentials, id')
-        .eq('id', internalWarehouse)
-        .single();
+  const [credentialError, setCredentialError] = useState<string>('');
 
-      if (error) throw error;
-      if (!warehouseData?.internal_credentials) throw new Error('No credentials found');
-
-      const data = await createExport(apiKey, {
-        organization: organizationId,
-        internal_warehouse: warehouseData.id,
-        internal_credentials: warehouseData.internal_credentials,
-        destination_type: destination_type,
-        tenancy_column: tenancyColumn,
-        tenancy_id: tenancyIdentifier,
-        destination_name: destination_name,
-        table: tableName,
-        credentials: credentials,
-        scheduled_at: scheduledAt || undefined
-      });
-
-      toast({
-        title: "Export Created",
-        description: "Your export has been configured successfully.",
-      });
-
-      setCurrentStep('success');
-      onSuccess?.(data);
-    } catch (error: unknown) {
-      toast({
-        title: "Error",
-        description: error instanceof Error ? error.message : "Failed to create export",
-        variant: "destructive",
-      });
-      onError?.(error);
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
 
   const CheckmarkAnimation = () => (
     <div className="flex items-center justify-center p-8">
@@ -194,6 +160,74 @@ export const ExportComponent: React.FC<ExportComponentProps> = ({
       </svg>
     </div>
   );
+
+  const handleSubmit = async () => {
+    try {
+      setIsSubmitting(true);
+      const { data: warehouseData, error } = await supabase
+        .from('warehouses')
+        .select('internal_credentials, id')
+        .eq('id', internalWarehouse)
+        .single();
+
+      if (error) throw error;
+      if (!warehouseData?.internal_credentials) throw new Error('No credentials found');
+
+      let processedCredentials = { ...credentials };
+
+      // Process BigQuery credentials if necessary
+      if (destination_type === WarehouseType.BigQuery && credentials.service_account_key) {
+        try {
+          const serviceAccountKey = JSON.parse(credentials.service_account_key);
+          const result = bigQueryServiceAccountSchema.safeParse(serviceAccountKey);
+          
+          if (!result.success) {
+            throw new Error('Invalid service account key format');
+          }
+
+          // Extract relevant fields for the API
+          processedCredentials = {
+            project_id: serviceAccountKey.project_id,
+            private_key: serviceAccountKey.private_key,
+            client_email: serviceAccountKey.client_email,
+            dataset: credentials.dataset // Preserve dataset if it was set separately
+          };
+        } catch (e) {
+          throw new Error('Invalid JSON format in service account key');
+        }
+      }
+
+      const data = await createExport(apiKey, {
+        organization: organizationId,
+        internal_warehouse: warehouseData.id,
+        internal_credentials: warehouseData.internal_credentials,
+        destination_type: destination_type,
+        tenancy_column: tenancyColumn,
+        tenancy_id: tenancyIdentifier,
+        destination_name: destination_name,
+        table: tableName,
+        credentials: processedCredentials,
+        scheduled_at: scheduledAt || undefined
+      });
+
+      toast({
+        title: "Export Created",
+        description: "Your export has been configured successfully.",
+      });
+
+      setCurrentStep('success');
+      onSuccess?.(data);
+    } catch (error: unknown) {
+      toast({
+        title: "Error",
+        description: error instanceof Error ? error.message : "Failed to create export",
+        variant: "destructive",
+      });
+      onError?.(error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const renderDestinationStep = () => (
     <>
@@ -254,32 +288,75 @@ export const ExportComponent: React.FC<ExportComponentProps> = ({
     </>
   );
 
+
   const renderCredentialsStep = () => (
     <>
       <CardHeader>
         <CardTitle>Configure Credentials</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
-        {credentialFields[destination_type].map((field) => (
-          <div key={field} className="space-y-2">
-            <Label className="capitalize">
-              {field === 'host' ? 'Hostname' : 
-               field === 'port' ? 'Port Number' :
-               field.charAt(0).toUpperCase() + field.slice(1).replace('_', ' ')}
-            </Label>
-            <Input
-              type={field.includes('password') ? 'password' : 'text'}
-              value={credentials[field] || ''}
-              onChange={(e) => setCredentials(prev => ({
-                ...prev,
-                [field]: e.target.value
-              }))}
-              placeholder={field === 'port' ? '8123' :
-                          field === 'host' ? 'localhost' :
-                          `Enter ${field.replace('_', ' ')}`}
-            />
-          </div>
-        ))}
+        {destination_type === WarehouseType.BigQuery ? (
+          <>
+            <div className="space-y-2">
+              <Label>Service Account Key (JSON)</Label>
+              <Textarea
+                className="font-mono"
+                value={credentials.service_account_key || ''}
+                onChange={(e) => {
+                  setCredentialError('');
+                  setCredentials(prev => ({
+                    ...prev,
+                    service_account_key: e.target.value
+                  }));
+                }}
+                placeholder="{
+  &quot;project_id&quot;: &quot;your-project&quot;,
+  &quot;private_key&quot;: &quot;-----BEGIN PRIVATE KEY-----...-----END PRIVATE KEY-----&quot;,
+  &quot;client_email&quot;: &quot;service-account@project.iam.gserviceaccount.com&quot;
+}"
+                rows={10}
+              />
+              {credentialError && (
+                <p className="text-sm text-red-500">{credentialError}</p>
+              )}
+              <p className="text-sm text-muted-foreground">
+                Paste your Google Cloud service account key JSON here. You can download this from the Google Cloud Console.
+              </p>
+            </div>
+            <div className="space-y-2">
+              <Label>Dataset</Label>
+              <Input
+                value={credentials.dataset || ''}
+                onChange={(e) => setCredentials(prev => ({
+                  ...prev,
+                  dataset: e.target.value
+                }))}
+                placeholder="Enter BigQuery dataset name"
+              />
+            </div>
+          </>
+        ) : (
+          credentialFields[destination_type].map((field) => (
+            <div key={field} className="space-y-2">
+              <Label className="capitalize">
+                {field === 'host' ? 'Hostname' : 
+                 field === 'port' ? 'Port Number' :
+                 field.charAt(0).toUpperCase() + field.slice(1).replace('_', ' ')}
+              </Label>
+              <Input
+                type={field.includes('password') ? 'password' : 'text'}
+                value={credentials[field] || ''}
+                onChange={(e) => setCredentials(prev => ({
+                  ...prev,
+                  [field]: e.target.value
+                }))}
+                placeholder={field === 'port' ? '8123' :
+                            field === 'host' ? 'localhost' :
+                            `Enter ${field.replace('_', ' ')}`}
+              />
+            </div>
+          ))
+        )}
       </CardContent>
       <CardFooter className="space-x-2">
         <Button onClick={() => setCurrentStep('destination')}>
@@ -340,48 +417,46 @@ export const ExportComponent: React.FC<ExportComponentProps> = ({
   );
 
   const renderSuccessStep = () => (
-    <div className="flex justify-center">
-      <Card className="max-w-md w-full">
-        <CardHeader className="text-center">
-          <CardTitle className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-green-400 to-emerald-600 bg-clip-text text-transparent animate-gradient bg-[length:200%_auto]">
-            Export Created Successfully! 🎉
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-6">
-          <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-green-100 to-emerald-100 dark:from-green-900/20 dark:to-emerald-900/20 rounded-full blur-xl opacity-70 animate-pulse" />
-            <CheckmarkAnimation />
+    <>
+      <CardHeader className="text-center">
+        <CardTitle className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-green-400 to-emerald-600 bg-clip-text text-transparent animate-gradient bg-[length:200%_auto]">
+          Export Created Successfully! 🎉
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-6">
+        <div className="relative flex justify-center">
+          <div className="absolute inset-0 bg-gradient-to-r from-green-100 to-emerald-100 dark:from-green-900/20 dark:to-emerald-900/20 rounded-full blur-xl opacity-70 animate-pulse" />
+          <CheckmarkAnimation />
+        </div>
+        <div className="space-y-4 text-center">
+          <p className="text-lg sm:text-xl text-muted-foreground">
+            Your export has been configured and will begin processing shortly.
+          </p>
+          <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
+            <span className="relative flex h-3 w-3">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+            </span>
+            Processing in background
           </div>
-          <div className="space-y-4 text-center max-w-md mx-auto">
-            <p className="text-lg sm:text-xl text-muted-foreground">
-              Your export has been configured and will begin processing shortly.
-            </p>
-            <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
-              <span className="relative flex h-3 w-3">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-              </span>
-              Processing in background
-            </div>
-          </div>
-        </CardContent>
-        <CardFooter className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <Button 
-            onClick={() => setCurrentStep('destination')}
-            className="w-full sm:w-auto bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
-          >
-            Create Another Export
-          </Button>
-          <Button 
-            variant="outline"
-            className="w-full sm:w-auto hover:bg-green-50 dark:hover:bg-green-900/20 transition-all duration-300"
-            onClick={() => window.open('https://docs.runportcullis.co', '_blank')}
-          >
-            View Documentation
-          </Button>
-        </CardFooter>
-      </Card>
-    </div>
+        </div>
+      </CardContent>
+      <CardFooter className="flex flex-col sm:flex-row gap-4 justify-center">
+        <Button 
+          onClick={() => setCurrentStep('destination')}
+          className="w-full sm:w-auto bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+        >
+          Create Another Export
+        </Button>
+        <Button 
+          variant="outline"
+          className="w-full sm:w-auto hover:bg-green-50 dark:hover:bg-green-900/20 transition-all duration-300"
+          onClick={() => window.open('https://docs.runportcullis.co', '_blank')}
+        >
+          View Documentation
+        </Button>
+      </CardFooter>
+    </>
   );
 
   const stepComponents = {
@@ -392,7 +467,7 @@ export const ExportComponent: React.FC<ExportComponentProps> = ({
   };
 
   return (
-    <div ref={containerRef} className="relative w-full">
+    <div ref={containerRef} className="relative w-full max-w-lg mx-auto">
       <Card className="relative">
         {isLoading ? (
           <div className="space-y-4">
@@ -407,14 +482,10 @@ export const ExportComponent: React.FC<ExportComponentProps> = ({
           </div>
         ) : (
           <>
-            {currentStep === 'success' ? (
-              stepComponents[currentStep]()
+            {isSubmitting && currentStep === 'schedule' ? (
+              renderLoadingSpinner()
             ) : (
-              currentStep === 'schedule' && isSubmitting ? (
-                renderLoadingSpinner()
-              ) : (
-                stepComponents[currentStep]()
-              )
+              stepComponents[currentStep]()
             )}
             <PortcullisTag />
           </>
@@ -422,4 +493,4 @@ export const ExportComponent: React.FC<ExportComponentProps> = ({
       </Card>
     </div>
   );
-}
+};
