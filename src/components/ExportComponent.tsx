@@ -13,6 +13,7 @@ import { useEffect, useRef, useState } from "react"
 import { createClient } from '@clickhouse/client-web';
 import { PortcullisTag } from "./PortcullisTag";
 import { createClient as createSupabaseClient } from '@supabase/supabase-js';
+import { Spinner } from "../components/ui/spinner";
 // Change the interface declaration to export
 export interface ExportComponentProps {
   apiKey: string;
@@ -107,6 +108,7 @@ export const ExportComponent: React.FC<ExportComponentProps> = ({
   const [containerWidth, setContainerWidth] = useState(0)
   const [selectedTable, setSelectedTable] = useState<string>('');
   const [isLoadingTables, setIsLoadingTables] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const PORTCULLIS_NEXT_URL = process.env.NEXT_PUBLIC_PORTCULLIS_URL || 'https://portcullis-app.fly.dev';
 
@@ -129,6 +131,7 @@ export const ExportComponent: React.FC<ExportComponentProps> = ({
 
   const handleSubmit = async () => {
     try {
+      setIsSubmitting(true);
       const { data: warehouseData, error } = await supabase
         .from('warehouses')
         .select('internal_credentials, id')
@@ -165,6 +168,8 @@ export const ExportComponent: React.FC<ExportComponentProps> = ({
         variant: "destructive",
       });
       onError?.(error);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -289,6 +294,13 @@ export const ExportComponent: React.FC<ExportComponentProps> = ({
     </>
   );
 
+  const renderLoadingSpinner = () => (
+    <div className="flex items-center justify-center p-8">
+      <Spinner />
+      <p className="mt-4 text-lg">Processing your export...</p>
+    </div>
+  );
+
   const renderScheduleStep = () => (
     <>
       <CardHeader>
@@ -318,7 +330,7 @@ export const ExportComponent: React.FC<ExportComponentProps> = ({
         </Button>
         <Button 
           onClick={handleSubmit}
-          disabled={!!dateTimeError}
+          disabled={!!dateTimeError || isSubmitting}
         >
           Create Export
         </Button>
@@ -392,7 +404,15 @@ export const ExportComponent: React.FC<ExportComponentProps> = ({
           </div>
         ) : (
           <>
-            {stepComponents[currentStep]()}
+            {currentStep === 'success' ? (
+              stepComponents[currentStep]()
+            ) : (
+              currentStep === 'schedule' && isSubmitting ? (
+                renderLoadingSpinner()
+              ) : (
+                stepComponents[currentStep]()
+              )
+            )}
             <PortcullisTag />
           </>
         )}
